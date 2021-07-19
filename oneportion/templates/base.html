@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>base</title>
+        <style>
+            a:link {
+                color: black; text-decoration: none;
+            }
+            a:visited {
+                color: black;
+            }
+            a:hover {
+                color : yellow; 
+            }
+            ul{
+                margin:0; 
+                display:flex; 
+                flex-flow:row nowrap; 
+                justify-content:space-evenly; 
+                padding-left:130px; 
+                padding-top:50px; 
+                padding-bottom: 30px; 
+                font-size: 15pt;
+                background-color: rgba(255, 178, 77, 0.979);
+            }
+            li{
+                list-style-type: none;
+            }
+            #bar{
+                border-bottom:solid; border-bottom-color:darkorange;
+            }
+            #back{
+                color:black;
+                font-style:initial; 
+                font-size: 16pt;
+                font-weight: bold;
+                text-decoration:initial;
+                position:absolute;
+                top: 20px;
+                left:70px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="bar">
+            <a href="main.html" id="back">&nbsp;일<br />&nbsp;인<br />&nbsp;분</a>
+        <ul>
+            <li><a href="WIMR.html">나의 냉장고</a></li>
+            <li><a href="specialist.html">전문가 일인분</a></li>
+            <li><a href="bestrecipe.html">BEST RECIPE</a></li>
+            <li><a href="community.html">COMMUNITY</a></li>
+            <li><a href="login.html">로그인</a>/<a href="signup.html">회원가입</a></li>
+        </ul>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>
