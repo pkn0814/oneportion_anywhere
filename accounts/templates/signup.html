@@ -1,5 +1,55 @@
+{% extends 'base2.html' %}
+{% block content %}
+<head>
+    <style>
+        .signup {
+            text-align: center;
+        }
+        h1{
+                font-family: 'Noto Sans KR', sans-serif;
+            }
+        .allBorder{
+                border: 2px solid gray;
+                padding-left: 20px;
+                padding-right:20px;
+                padding-top:10px;
+                padding-bottom:10px;
+                
+                margin-bottom: 200px;
+            }
+            .border1{
+                border: 2px solid rgb(0,147,0);
+                border-radius: 10px;
+                
+            }
+            .box{
+                width:300px;
+                height:30px;
+                border: 2px solid orange;
+                border-radius: 5px;
+                color:gray;
+            }
+            .button{
+                width: 60px;
+                height:30px;
+                background-color: rgb(255,193,158);
+                border: 1px solid black;
+                border-radius: 6px;
+                color: white;
+            }
+    </style>
+</head>
+<div class="signup">
+    <br><h1>회원가입</h1>
+<div class="allBorder">
 <form action="{% url 'signup' %}" method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">회원가입하기</button>
+    <p>이미 회원이라면? <a href="{% url 'login' %}">로그인하기</a></p>
+        <br>
+        <button type="submit" class="button">확인</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="reset" class="button">취소</button>
 </form>
+</div>
+</div>
+{% endblock %}

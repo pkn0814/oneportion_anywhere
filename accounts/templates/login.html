@@ -1,5 +1,21 @@
+{% extends 'base2.html' %}
+{% block content %}
+<head>
+    <title>Login</title>
+    <style>
+        .login{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<div class="login">
+    <br>
+    <h1>LOGIN</h1>
 <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">로그인하기</button>
+    <button type="submit" style="width:100px; height:90px; background-color:darkorange; border-radius:5px; font-size:12pt; font-weight:bold;">확인</button>
 </form>
+</div>
+{% endblock %}
