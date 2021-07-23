@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'accounts.CustomerUser'
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'accounts',
     'community',
     'bestrecipe',
