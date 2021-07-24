@@ -3,11 +3,13 @@ from accounts.models import CustomerUser
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . models import CustomerUser
 from django import forms
+from argon2 import PasswordHasher
 
 class SignupForm(UserCreationForm):
     POSITION = (
-        ('일반사용자','일반사용자'),
-        ('사업자','사업자')
+        ('일반','일반'),
+        ('사업자','사업자'),
+        
     )
     position = forms.CharField(
         label='등급선택',
@@ -36,7 +38,10 @@ class SignupForm(UserCreationForm):
                     'placeholder':'ID',
                     'class':'box',
                 }
-        )
+        ),
+        error_messages={
+            'unique':'중복된 아이디입니다.'
+        }
     )
     nickname = forms.CharField(
         label = '',
@@ -45,7 +50,10 @@ class SignupForm(UserCreationForm):
                     'placeholder':'닉네임',
                     'class':'box',
                 }
-        )
+        ),
+        error_messages={
+            'unique':'중복된 닉네임입니다.'
+        }
     )
     password1 = forms.CharField(
         label = '',
@@ -83,6 +91,22 @@ class SignupForm(UserCreationForm):
     class Meta:
         model = CustomerUser
         fields = ['position','upload','username','nickname','password1','password2','email']
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        position = cleaned_data.get('position','')
+        upload = cleaned_data.get('upload','')
+        username = cleaned_data.get('username','')
+        nickname = cleaned_data.get('nickname','')
+        password1 = cleaned_data.get('password1','')
+        password2 = cleaned_data.get('password2','')
+        email = cleaned_data.get('email','')
+
+        if CustomerUser.objects.get(nickname=nickname):
+            return self.add_error('nickname','중복된 닉네임입니다.')
+        
+    
+
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(
@@ -105,3 +129,22 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomerUser
         fields = ['username']
+    
+    def clean(self):
+        cleaned_data = super.clean()
+
+        username = cleaned_data.get('username','')
+        password1 = cleaned_data.get('password1','')
+
+        if username == '':
+            return self.add_error('username','아이디를 다시 입력해주세요.')
+        else:
+            try:
+                user = CustomerUser.objects.get(username=username)
+            except CustomerUser.DoesNotExist:
+                return self.add_error('username','아이디가 존재하지 않습니다.')
+
+            try:
+                PasswordHasher().verify(CustomerUser.password1, password1)
+            except exceptions.VerifyMismatchError:
+                return self.add_error('password1','비밀번호가 다릅니다.')
