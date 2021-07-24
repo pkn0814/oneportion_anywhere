@@ -4,10 +4,10 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomerUser(AbstractUser):
     POSITION = (
-        ('일반 사용자', '일반 사용자'),
-        ('사업자', '사업자')
+        ('일반', '일반'),
+        ('사업자', '사업자'),
     )
-    position = models.CharField(max_length=128, choices=POSITION)
+    position = models.CharField(verbose_name='등급', max_length=1000, choices=POSITION)
     upload = models.FileField(upload_to='uploads/')
     nickname = models.CharField(max_length=100)
     email = models.EmailField()

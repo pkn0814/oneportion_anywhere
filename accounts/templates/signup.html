@@ -37,6 +37,10 @@
                 border-radius: 6px;
                 color: white;
             }
+            .errorlist{
+                font-size: 8pt;
+                background-color: white;
+            }
     </style>
 </head>
 <div class="signup">
@@ -44,7 +48,7 @@
 <div class="allBorder">
 <form action="{% url 'signup' %}" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    {{forms.as_p}}
     <p>이미 회원이라면? <a href="{% url 'login' %}">로그인하기</a></p>
         <br>
         <button type="submit" class="button">확인</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

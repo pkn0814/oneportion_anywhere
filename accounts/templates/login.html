@@ -6,6 +6,9 @@
         .login{
             text-align: center;
         }
+        .errorlist{
+            font-size: 8pt;
+        }
     </style>
 </head>
 
@@ -14,8 +17,9 @@
     <h1>LOGIN</h1>
 <form action="{% url 'login' %}" method="post">
     {% csrf_token %}
-    {{form.as_p}}
+    {{forms.as_p}}
     <button type="submit" style="width:100px; height:90px; background-color:darkorange; border-radius:5px; font-size:12pt; font-weight:bold;">확인</button>
 </form>
 </div>
+
 {% endblock %}
