@@ -6,6 +6,9 @@
         .login{
             text-align: center;
         }
+        .errorlist{
+            font-size: 8pt;
+        }
     </style>
 </head>
 
@@ -17,9 +20,6 @@
     {{forms.as_p}}
     <button type="submit" style="width:100px; height:90px; background-color:darkorange; border-radius:5px; font-size:12pt; font-weight:bold;">확인</button>
 </form>
-{% if error %}
-{{ error }}
-<br><br>
-{% endif %}
 </div>
+
 {% endblock %}

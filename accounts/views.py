@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import AuthenticationForm
 from accounts.forms import SignupForm
 from django.shortcuts import redirect, render
 from . models import CustomerUser
@@ -8,30 +9,22 @@ from argon2 import PasswordHasher
 
 # Create your views here.
 def signup_view(request):
-    signup_form = SignupForm()
-    context = {'forms':signup_form}
-
-    if request.method == 'GET':
-        return render(request, 'signup.html', context)
-
-    elif request.method == 'POST':
-        signup_form = SignupForm(request.POST)
-        if signup_form.is_valid():
-            user = CustomerUser(
-                position = signup_form.position,
-                upload = signup_form.upload,
-                nickname = signup_form.nickname,
-                username = signup_form.username,
-                password = signup_form.password1,
-                email = signup_form.email,
-                
-            )
-            user.save()
-            auth.login(request,user)
+    if request.method=='POST':
+        
+        forms = SignupForm(request.POST)
+        context = {'forms':forms}
+        if forms.is_valid():
+            user = forms.save()
+            login(request, user)
             return redirect('main')
         else:
-            context['forms']=signup_form
+            context['forms']=forms
         return render(request, 'signup.html', context)
+    else:
+        forms = SignupForm()
+        return render(request, 'signup.html',{'forms':forms})
+
+    
 
 
 def login_view(request):
@@ -42,15 +35,16 @@ def login_view(request):
         return render(request, 'login.html', context)
 
     elif request.method == 'POST':
-        loginform = LoginForm(request.POST)
+        loginform = LoginForm(request=request,data=request.POST)
 
         if loginform.is_valid():
+            username = loginform.cleaned_data.get('username')
+            password = loginform.cleaned_data.get('password')
+            user = authenticate(request=request, username=username, password = password)
+            auth.login(request,user)
             return redirect('main')
         else:
             context['forms']=loginform
-            if loginform.errors:
-                for value in loginform.errors.values():
-                    context['error']=value
         return render(request,'login.html', context)
 
 def logout_view(request):

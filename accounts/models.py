@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class CustomerUser(AbstractUser):
     POSITION = (
         ('일반', '일반'),
-        ('사업자', '사업자')
+        ('사업자', '사업자'),
     )
     position = models.CharField(verbose_name='등급', max_length=1000, choices=POSITION)
     upload = models.FileField(upload_to='uploads/')

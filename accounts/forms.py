@@ -3,7 +3,7 @@ from accounts.models import CustomerUser
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from . models import CustomerUser
 from django import forms
-from argon2 import PasswordHasher
+from argon2 import PasswordHasher, exceptions
 
 class SignupForm(UserCreationForm):
     POSITION = (
@@ -102,7 +102,7 @@ class SignupForm(UserCreationForm):
         password2 = cleaned_data.get('password2','')
         email = cleaned_data.get('email','')
 
-        if CustomerUser.objects.get(nickname=nickname):
+        if CustomerUser.objects.filter(nickname=nickname):
             return self.add_error('nickname','중복된 닉네임입니다.')
         
     
@@ -115,7 +115,8 @@ class LoginForm(AuthenticationForm):
                 attrs={
                     'placeholder':'ID',
                 }
-            )
+            ),
+            error_messages={'':'안녕'}
         )
     password = forms.CharField(
             label = '',
@@ -126,25 +127,25 @@ class LoginForm(AuthenticationForm):
                 
             )
         )
-    class Meta:
-        model = CustomerUser
-        fields = ['username']
+    # class Meta:
+    #     model = CustomerUser
+    #     fields = ['username','password']
     
-    def clean(self):
-        cleaned_data = super.clean()
+    # def clean(self):
+    #     cleaned_data = super.clean()
 
-        username = cleaned_data.get('username','')
-        password1 = cleaned_data.get('password1','')
+    #     username = cleaned_data.get('username','')
+    #     password1 = cleaned_data.get('password','')
 
-        if username == '':
-            return self.add_error('username','아이디를 다시 입력해주세요.')
-        else:
-            try:
-                user = CustomerUser.objects.get(username=username)
-            except CustomerUser.DoesNotExist:
-                return self.add_error('username','아이디가 존재하지 않습니다.')
+    #     if username == '':
+    #         return self.add_error('username','아이디를 다시 입력해주세요.')
+    #     else:
+    #         try:
+    #             user = CustomerUser.objects.get(username=username)
+    #         except CustomerUser.DoesNotExist:
+    #             return self.add_error('username','아이디가 존재하지 않습니다.')
 
-            try:
-                PasswordHasher().verify(CustomerUser.password1, password1)
-            except exceptions.VerifyMismatchError:
-                return self.add_error('password1','비밀번호가 다릅니다.')
+    #         try:
+    #             PasswordHasher().verify(CustomerUser.password1, password1)
+    #         except exceptions.VerifyMismatchError:
+    #             return self.add_error('password1','비밀번호가 다릅니다.')
