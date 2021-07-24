@@ -1,176 +1,115 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>What's In My Refrigerator </title>
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
-        </style>
-    </head>
 
-    <body>
-        {% block content%}
+<title>What's In My Refrigerator </title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<style>
+    article {
+        position:relative;
+        left: 200px;
+        top: 20px;
+    }
+    
+    .box1 {
+        padding: 10px; padding-bottom: 30px;
+        margin: 10px; border: thin solid silver; border-radius: 20px;
+        text-align: center;
+        position: absolute;
+        width: 500px;
+        height: 300px;
+        top: 100px;
+    }
+    .box1 p{
+        margin: 3px;
+    }
+    .box2 {
+       left: 520px;
+    }
+    .box3 p{
+        font-size: large;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px;
+    }
+    .box3 h3 {
+        padding: 15px;
+        margin: 5px;
+        background-color: rgb(255, 193, 111);
+        border-radius: 10px;
+    }
 
-        <article>
-            <section>
-                <h1><img src="fridge.png" width="50px">나의 냉장고 _ 요리보기</h1>
-            </section>
-        </article>
+    h1 {
+        font-size: xx-large;
+    }
 
-        <article id="viewcook">
-            <div id="MainResult">선택한 메인 재료: 달걀, 밥</div>
-            <div id="AdditionalResult">선택한 부가 재료: 간장 </div>
-            <button id="check" onclick="location.href='WIMR.html'" title="재료 다시 선택" target="_self">재료 재선택</button>
+    #Main{
+        font-size: medium;
+    }
 
-            <section class="box3">
-                <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
-                <div class="dish">
-                    <p>달걀간장밥</p>
-                    언제 먹어도 맛있는 초간단 달걀간장밥<br>
-                    <img src="달걀간장밥.jpeg">
-                    <ul>
-                        <li>메인재료: 달걀, 밥</li>
-                        <li>부가재료: 간장, 들기름</li>
-                        <li>옵션: 파, 참깨, 김 등</li>
-                    </ul>
-                </div>
-                <div class="dish">
-                    <p>달걀볶음밥</p>
-                    찬밥이랑 달걀만 있어도 가능!<br>
-                    <img src="달걀볶음밥.jpg">
-                    <ul>
-                        <li> 메인재료: 달걀, 밥</li>
-                        <li>부가재료: 간장, 굴소스</li>
-                        <li> 옵션: 파, 닭가슴살, 당근 등</li>
-                    </ul>
-                    
-                </div>
-                <div class="dish">
-                    <p>오므라이스</p>
-                    간단하게 만드는 영양만점 오므라이스<br>
-                    <img src="오므라이스.jpg">
-                    <ul>
-                        <li>메인재료: 달걀, 밥</li>
-                        <li>부가재료: 간장, 굴소스, 케찹, 당근, 파</li>
-                        <li>옵션: 햄, 새우 등</li>
-                    </ul>
-                </div>
-            </section>
+    #viewcook{
+        position: relative;
+        top: 30px;
+    }
+    #check {
+        width: 200px;
+        height: 50px;
+        background-color: rgb(255, 152, 16);
+        border-radius: 10px;
+    }
 
-            <section class="box3">
-                <h3>선택한 재료들을 포함하는 요리</h3>
-                <div class="dish">
-                    <p>불닭볶음밥</p>
-                    집에서 직접 만들어 먹는 불닭볶음밥<br>
-                    <img src="불닭볶음밥.jpg">
-                    <ul>
-                        <li>메인재료: 달걀, 밥, 닭고기</li>
-                        <li>부가재료: 간장, 불닭소스</li>
-                        <li>옵션: 양파, 파, 굴소스, 치킨스톡, 모짜렐라 치즈 등</li>
-                    </ul>           
-                </div>
-                <div class="dish">
-                    <p>달걀빵</p>
-                    전자레인지로 하는 초간단 레시피<br>
-                    <img src="달걀빵.jpeg">
-                    <ul>
-                        <li>메인재료: 달걀, 핫케이크 가루</li>
-                        <li>부가재료: 우유, 버터</li>
-                        <li>옵션: 파슬리 가루 등</li>
-                    </ul>
-                </div>
-                <div class="dish">
-                    <p>달걀버섯두부면</p>
-                    영양만점 다이어트식으로도 OK!<br>
-                    <img src="달걀버섯두부면.jpg">
-                    <ul>
-                        <li>메인재료: 달걀, 금이버섯</li>
-                        <li>부가재료: 굴소스, 들기름</li>
-                        <li>옵션: 닭가슴살 등</li>
-                    </ul>
-                </div>
-                <div class="dish">
-                    <p>달걀토스트</p>
-                    달걀 듬뿍 토스트
-                    <img src="달걀토스트.jpg">
-                    <ul>
-                        <li>메인재료: 식빵, 달걀, 잼</li>
-                        <li>부가재료: 치즈, 양상추, 베이컨</li>
-                        <li>옵션: 닭가슴살 등</li>
-                    </ul>
-                </div>
-                <div class="dish">
-                    <p>토마토달걀볶음</p>
-                    다이어트 요리로 딱! <br>
-                    <img src="토마토달걀볶음.jpg">
-                    <ul>
-                        <li>메인재료: 달걀, 토마토</li>
-                        <li>부가재료: 굴소스</li>
-                        <li>옵션: 치즈</li>
-                    </ul>
-                    
-                </div>
-                <div class="dish">
-                    <p>연두부달걀국</p>
-                    <img src="연두부달걀국.jpg" width="200" >
-                    <ul>
-                        <li> 메인재료: 달걀, 물, 양파</li>
-                        <li>부가재료: 새우젓, 소금, 대파, 다시마, 멸치</li>
-                        <li>옵션: 연두부 등</li>
-                    </ul>
-                </div>
-            </section>
-        </article>
+    .dish {
+        border:thin solid silver;
+        display: inline-block;
+        width: 270px;
+        height: 380px;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .dish img{
+        max-width: 240px;
+        max-height: 170px;
+        margin: 5px;
+    }
+    .dish ul {
+        margin-top: 5px;
+        text-align: left;
+    }
+    #thispage {
+        background-color: rgb(255, 255, 123);
+        padding: 5px;
+    }
+    #check {
+        width: 200px;
+        height: 50px;
+        background-color: rgb(248, 173, 74);
+        position: absolute;
+        right: 300px;
+        top: 0px;
+    }
+</style>
 
-        <script type="text/javascript">
-        function checkAllmain(checkAll){
-            const checkboxes1 = document.getElementsByName('ingredients');
-            checkboxes1.forEach((checkbox) => {
-                checkbox.checked = checkAll.checked;
-            })
-            
-            if(checkbox.checked == false){
-                CheckAll.checked = false;
-            }
-        }
+<body>
+    {% block content %}
 
-        function checkAllAdd(checkAll){
-            const checkboxes2 = document.getElementsByName('Additional');
-            checkboxes2.forEach((checkbox) => {
-                checkbox.checked = checkAll.checked;
-            })
+    <article>
+        <section>
+            <h1><img src="fridge.png" width="50px">나의 냉장고 _ 요리보기</h1>
+        </section>
+    </article>
 
-            if(checkbox.checked == false){
-                checkAlladd.checked = false;
-            }
-        }   
+    <article id="viewcook">
+        <div id="MainResult">선택한 메인 재료: {{ selectedMain }}</div>
+        <div id="AdditionalResult">선택한 부가 재료: {{ selectedAdd }} </div>
+        <button id="check" onclick="location.href='/fridge/'" title="재료 다시 선택" target="_self">재료 재선택</button>
 
-        function getCheckboxValue1()  {
-            const query1 = 'input[name="ingredients"]:checked';
-            const selectedEls1 = document.querySelectorAll(query1);
+        <section class="box3">
+            <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
+        </section>
 
-            let result1 = '';
-            selectedEls1.forEach((el1) => {
-                result1 += el1.value + ', ';
-            });
-
-            document.getElementById('MainResult').innerText= "선택한 메인 재료: "+result1;
-        }
-
-        function getCheckboxValue2()  {
-            const query2 = 'input[name="Additional"]:checked';
-            const selectedEls2 = document.querySelectorAll(query2);
-
-            let result2 = '';
-            selectedEls2.forEach((el2) => {
-                result2 += el2.value + ', ';
-            });
-
-            document.getElementById('AdditionalResult').innerText= "선택한 부가 재료: "+ result2;
-        }
-
-        </script>
-    </body>
-</html>
+        <section class="box3">
+            <h3>선택한 재료들을 포함하는 요리</h3>
+        </section>
+    </article>
+    {% endblock %}
+</body>
