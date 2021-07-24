@@ -5,43 +5,40 @@
 <head>
   <style>
     a:link {
-        color: black; text-decoration: none;
+      color: black; text-decoration: none;
     }
     a:visited {
-        color: black;
+      color: black;
     }
     a:hover {
-        color : yellow; 
-    }
-    ul{
-        margin:0; 
-        display:flex; 
-        flex-flow:row nowrap; 
-        justify-content:space-evenly; 
-        padding-left:130px; 
-        padding-top:50px; 
-        padding-bottom: 30px; 
-        font-size: 15pt;
-        background-color: rgba(255, 178, 77, 0.979);
-    }
-    li{
-        list-style-type: none;
+      color : yellow; 
     }
     #bar{
-        border-bottom:solid; border-bottom-color:darkorange;
+      border-bottom:solid; border-bottom-color:darkorange;
     }
+    #bar ul{
+      margin:0; 
+      display:flex; 
+      flex-flow:row nowrap; 
+      justify-content:space-evenly; 
+      padding-left:130px; 
+      padding-top:50px; 
+      padding-bottom: 30px; 
+      font-size: 15pt;
+      background-color: rgba(255, 178, 77, 0.979);
+    }
+    #bar li{
+      list-style-type: none;
+    }
+    
     #back{
-        color:black;
-        font-style:initial; 
-        font-size: 16pt;
-        font-weight: bold;
-        text-decoration:initial;
-        position:absolute;
-        top: 20px;
-        left:70px;
+      color:black;
+      font-style:initial; font-size: 16pt; font-weight: bold;
+      text-decoration:initial;
+      position:absolute; top: 20px; left:70px;
     }
     #mypage{
-        font-size:12pt;
+      font-size:12pt;
     }
   </style>
 </head>
@@ -49,7 +46,7 @@
 
 <div id="bar">
   <a href="{% url 'main' %}" id="back">&nbsp;일<br />&nbsp;인<br />&nbsp;분</a>
-  
+  <nav>
       <ul>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'myfridge' %}">나의 냉장고</a>
@@ -62,7 +59,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">COMMUNITY</a>
-          </li>
+        </li>
         <li class="nav-item dropdown">
             {% if user.is_authenticated %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -82,9 +79,9 @@
           </div>
         </li>
         {% endif %}
-      </ul>
-    
+      </ul>  
   </nav>
+</div>
 
   {% block content %} 
   {% endblock %}
