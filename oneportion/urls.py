@@ -18,10 +18,12 @@ from django.urls import path, include
 import home.views
 import accounts.views
 import fridge.views 
+import expert.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home.views.main, name="main"),
     path('accounts/', include('accounts.urls')),
     path('fridge/', include('fridge.urls')),
+    path('expert/', include('expert.urls')),
 ]

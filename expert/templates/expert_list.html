@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for expert in experts.all %}
+{{ expert.title }}
+{{ expert.user }}
+<a href="{% url 'detail' expert.id %}">자세히 보기</a>
+<a href="{% url 'expertcreate' %}">새 글 쓰기</a>
+{% endfor %}
+{% endblock %}
