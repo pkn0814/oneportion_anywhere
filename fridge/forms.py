@@ -1,6 +1,7 @@
 from django import forms
 from django.db.models import fields
 from django.forms import widgets
+from django.forms.models import ModelChoiceField
 from .models import Ingredients
 from django.forms.widgets import CheckboxSelectMultiple
 
@@ -18,6 +19,5 @@ class IngreForm(forms.ModelForm):
             ),
             
         }
-
-
+    
         
