@@ -1,7 +1,18 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% load static %}
 {% extends 'base.html' %}
-
 <title>What's In My Refrigerator </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="css/bootstrap.css">
+<link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/album/">
+
+<!-- Bootstrap core CSS -->
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom styles for this template -->
+<link href="album.css" rel="stylesheet">
 <style>
     article {
         position:relative;
@@ -99,12 +110,40 @@
     </article>
 
     <article id="viewcook">
-        <div id="MainResult">선택한 메인 재료: {{ selectedMain }}</div>
-        <div id="AdditionalResult">선택한 부가 재료: {{ selectedAdd }} </div>
+        
+        <div id="MainResult">선택한 메인 재료: 
+            
+            {% for selectedMain in selectedMains.all %}
+            <p>{{ selectedMain.main_ingre }} </p></div>
+            {% endfor %}
+        <div id="AdditionalResult">선택한 부가 재료:</div>
         <button id="check" onclick="location.href='/fridge/'" title="재료 다시 선택" target="_self">재료 재선택</button>
 
         <section class="box3">
             <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
+        
+      <div class="album py-5 bg-light">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                <div class="card-body">
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                <img class="card-img-top" src="{% static '달걀간장밥.jpeg' %}" alt="Card image cap">
         </section>
 
         <section class="box3">
