@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'community',
     'bestrecipe',
     'expert',
-    'fridge',
+    'fridge.apps.FridgeConfig',
     'home',
     'django.contrib.admin',
     'django.contrib.auth',
