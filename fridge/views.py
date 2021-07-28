@@ -8,7 +8,6 @@ def myfridge(request):
     if request.POST:
         ingreform = IngreForm(request.POST)
         if ingreform.is_valid():
-            selectedMain = request.POST.getlist('ingredients[]')
             selectedMain = ingreform.save(commit=False)
             selectedMain.save()
             return redirect('showdish')
@@ -20,5 +19,6 @@ def myfridge(request):
 
 def showdish(request):
     ingredients = Ingredients.objects.all()
-    return render(request, 'showdish.html', {'ingredients': ingredients})
+    selectedMain = request.POST.getlist('ingredients[]')
+    return render(request, 'showdish.html', {'ingredients': ingredients, 'selectedMain':selectedMain})
     
