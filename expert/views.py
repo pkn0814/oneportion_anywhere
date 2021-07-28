@@ -1,6 +1,6 @@
 import expert
 from django.shortcuts import render, get_object_or_404, redirect
-from . models import Expert, Photo
+from . models import Expert
 from . forms import ExpertForm
 # Create your views here.
 def expert_list(request):
@@ -16,15 +16,18 @@ def new(request):
     return render(request, 'new.html')
 
 def expertcreate(request):
+    
     if request.method == 'POST':
-        form = ExpertForm(request.POST)
+        form = ExpertForm(request.POST,request.FILES)
         if form.is_valid():
             expert = form.save(commit=True)
             expert.save()
             return redirect('expert_list')
     else:
         form = ExpertForm()
-        return render(request, 'new.html', {'form':form})
+        return render(request, 'new.html', {'form':form})         
+
+
 
 def edit(request):
     return render(request, 'edit.html')
