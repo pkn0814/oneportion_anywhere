@@ -1,10 +1,25 @@
 from django.contrib import admin
-from . models import Expert, Photo
-class PhotoInline(admin.TabularInline):
-    model = Photo
+from . models import Expert
+from django_summernote.admin import SummernoteModelAdmin
+@admin.register(Expert)
+class ExpertAdmin(SummernoteModelAdmin):
+    summernote_fileds = ('body',)
+    list_display = (
+        'title',
+        'writer',
+        'pub_date',
+        'body',
+        'image',
 
-class ExpertAdmin(admin.ModelAdmin):
-    inlines = [PhotoInline, ]
+    )
+    list_display_links = list_display
 
-admin.site.register(Expert, ExpertAdmin)
+
+# class PhotoInline(admin.TabularInline):
+#     model = Image
+
+# class ExpertAdmin(admin.ModelAdmin):
+#     inlines = [PhotoInline, ]
+
+# admin.site.register(Expert, ExpertAdmin)
 

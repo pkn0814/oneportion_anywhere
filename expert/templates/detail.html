@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+<body>
 {% block content %}
+<div>
 <h1>자세한 본문 내용</h1>
-{{expert.title}}
-{{expert.user}}
-{{expert.body}}
+{{ expert.body | safe }}
 
+</div>
 <a href="{% url 'expertupdate' expert.id %}">수정하기</a>
 <a href="{% url 'expertdelete' expert.id %}" onclick = "return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
 {% endblock %}
+</body>
