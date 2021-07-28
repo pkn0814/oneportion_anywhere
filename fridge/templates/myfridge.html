@@ -130,7 +130,7 @@
                     {% csrf_token %}
                     <div class="form-check form-check-block">
                         {% for main_ingre in ingreform %}
-                        {{ main_ingre}}
+                        <p>{{ main_ingre}}</p>
                         &Tab;
                         {% endfor %}
 
@@ -181,8 +181,7 @@
                             <img id="img2" src="{% static 'whisk-removebg-preview.png' %}" height="100" width="100">
                         </div>
                     </div>
-                    <button id="check" type="submit" onclick="location.href='showdish'" title="무슨 음식을 할 수 있을까?" target="_self">요리 보기</button>
-                    
+                    <input id="check" type="submit" href="{% url 'showdish' %}" title="무슨 음식을 할 수 있을까?" target="_self" value="요리보기">
                 </div>
             </form>
         </section>  

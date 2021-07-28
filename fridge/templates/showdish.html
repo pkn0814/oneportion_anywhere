@@ -1,136 +1,149 @@
-{% load bootstrap4 %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-{% load static %}
 {% extends 'base.html' %}
-<title>What's In My Refrigerator </title>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/album/">
+{% load bootstrap4 %} 
+{% bootstrap_css %} 
+{% bootstrap_javascript jquery='full' %}
+{% load static %} 
 
-<!-- Bootstrap core CSS -->
-<link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+<!doctype html>
+<html lang="ko">
+  <head>
+    <title>What's In My Refrigerator </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.1/assets/img/favicons/favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.1/examples/album/">
 
-<!-- Custom styles for this template -->
-<link href="album.css" rel="stylesheet">
-<style>
-    article {
-        position:relative;
-        left: 200px;
-        top: 20px;
-    }
-    
-    .box1 {
-        padding: 10px; padding-bottom: 30px;
-        margin: 10px; border: thin solid silver; border-radius: 20px;
-        text-align: center;
-        position: absolute;
-        width: 500px;
-        height: 300px;
-        top: 100px;
-    }
-    .box1 p{
-        margin: 3px;
-    }
-    .box2 {
-       left: 520px;
-    }
-    .box3 p{
-        font-size: large;
-        font-weight: bold;
-        text-align: center;
-        margin: 10px;
-    }
-    .box3 h3 {
-        padding: 15px;
-        margin: 5px;
-        background-color: rgb(255, 193, 111);
-        border-radius: 10px;
-    }
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
-    h1 {
-        font-size: xx-large;
-    }
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+    <style>
+      article {
+          position:relative;
+          left: 200px;
+          top: 20px;
+      }
+      
+      .box1 {
+          padding: 10px; padding-bottom: 30px;
+          margin: 10px; border: thin solid silver; border-radius: 20px;
+          text-align: center;
+          position: absolute;
+          width: 500px;
+          height: 300px;
+          top: 100px;
+      }
+      .box1 p{
+          margin: 3px;
+      }
+      .box2 {
+         left: 520px;
+      }
+      .box3 p{
+          font-size: large;
+          font-weight: bold;
+          text-align: center;
+          margin: 10px;
+      }
+      .box3 h3 {
+          padding: 15px;
+          margin: 5px;
+          background-color: rgb(255, 193, 111);
+          border-radius: 10px;
+      }
+  
+      h1 {
+          font-size: xx-large;
+      }
+  
+      #Main{
+          font-size: medium;
+      }
+  
+      #viewcook{
+          position: relative;
+          top: 30px;
+      }
+      #check {
+          width: 200px;
+          height: 50px;
+          background-color: rgb(255, 152, 16);
+          border-radius: 10px;
+      }
+  
+      .dish {
+          border:thin solid silver;
+          display: inline-block;
+          width: 270px;
+          height: 380px;
+          padding: 10px;
+          margin: 10px;
+          border-radius: 10px;
+          text-align: center;
+      }
+      .dish img{
+          max-width: 240px;
+          max-height: 170px;
+          margin: 5px;
+      }
+      .dish ul {
+          margin-top: 5px;
+          text-align: left;
+      }
+      #thispage {
+          background-color: rgb(255, 255, 123);
+          padding: 5px;
+      }
+      #check {
+          width: 200px;
+          height: 50px;
+          background-color: rgb(248, 173, 74);
+          position: absolute;
+          right: 300px;
+          top: 0px;
+      }
+  </style>
+  </head>
 
-    #Main{
-        font-size: medium;
-    }
-
-    #viewcook{
-        position: relative;
-        top: 30px;
-    }
-    #check {
-        width: 200px;
-        height: 50px;
-        background-color: rgb(255, 152, 16);
-        border-radius: 10px;
-    }
-
-    .dish {
-        border:thin solid silver;
-        display: inline-block;
-        width: 270px;
-        height: 380px;
-        padding: 10px;
-        margin: 10px;
-        border-radius: 10px;
-        text-align: center;
-    }
-    .dish img{
-        max-width: 240px;
-        max-height: 170px;
-        margin: 5px;
-    }
-    .dish ul {
-        margin-top: 5px;
-        text-align: left;
-    }
-    #thispage {
-        background-color: rgb(255, 255, 123);
-        padding: 5px;
-    }
-    #check {
-        width: 200px;
-        height: 50px;
-        background-color: rgb(248, 173, 74);
-        position: absolute;
-        right: 300px;
-        top: 0px;
-    }
-</style>
-
-<body>
+  <body>
     {% block content %}
+    <main role="main">
 
-    <article>
-        <section>
-            <h1><img src="fridge.png" width="50px">나의 냉장고 _ 요리보기</h1>
-        </section>
-    </article>
-
-    <article id="viewcook">
-        
-        <div id="MainResult">선택한 메인 재료: 
-            
-            {% for selectedMain in selectedMains.all %}
-            <p>{{ selectedMain.main_ingre }} </p></div>
-            {% endfor %}
-        <div id="AdditionalResult">선택한 부가 재료:</div>
-        <button id="check" onclick="location.href='/fridge/'" title="재료 다시 선택" target="_self">재료 재선택</button>
-
-        <section class="box3">
-            <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
-        
-      <div class="album py-5 bg-light">
+      <section class="jumbotron text-center">
         <div class="container">
+          <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
+          <p class="lead text-muted">선택한 메인재료: </p>
+          <p class="lead text-muted">선택한 부가재료: </p>
+            {% for ingredient in ingredients %}
+            <p>{{ ingredient.main_ingre }}</p>
+            {% endfor %}
+          <p>
+            <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+          </p>
+        </div>
+      </section>
 
+      <div class="album py-5 bg-light">
+
+        <div class="container">
+          <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
           <div class="row">
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
                 <div class="card-body">
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <h4 class="card-text">달걀간장밥</h4>
+                  <p class="card-text">언제 먹어도 맛있는 초간단 달걀간장밥</p>
+                  <img class="card-img-top" src="{% static '달걀간장밥.jpeg' %}" alt="Card image cap">
+                  <ul>
+                    <li>메인재료: 달걀, 밥</li>
+                    <li>부가재료: 간장, 들기름</li>
+                    <li>옵션: 파, 참깨, 김 등</li>
+                  </ul>
+
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
                       <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -143,12 +156,28 @@
             </div>
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" src="{% static '달걀간장밥.jpeg' %}" alt="Card image cap">
-        </section>
+                <div class="card-body">
+                  <h4 class="card-text">달걀볶음밥</h4>
+                  <p class="card-text">찬밥이랑 달걀만 있어도 가능!</p>
+                  <img class="card-img-top" src="{% static '달걀볶음밥.jpg' %}" alt="Card image cap">
+                  <ul>
+                    <li> 메인재료: 달걀, 밥</li>
+                    <li>부가재료: 간장, 굴소스</li>
+                    <li> 옵션: 파, 닭가슴살, 당근 등</li>
+                  </ul>
 
-        <section class="box3">
-            <h3>선택한 재료들을 포함하는 요리</h3>
-        </section>
-    </article>
-    {% endblock %}
-</body>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+      {% endblock %}
+
+    </body>
