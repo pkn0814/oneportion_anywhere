@@ -1,8 +1,23 @@
 from django import forms
-from .models import Fridge
+from django.db.models import fields
+from django.forms import widgets
+from django.forms.models import ModelChoiceField
+from .models import Ingredients
+from django.forms.widgets import CheckboxSelectMultiple
 
-class Ingredients(forms.ModelForm):
+
+class IngreForm(forms.ModelForm): 
     class Meta:
-        model = Fridge
+        model = Ingredients
+        fields = ['main_ingre']
+        widgets = {
+            'main_ingre' : forms.CheckboxSelectMultiple(
+                attrs={
+                    'class' : 'form-check-input',
+                    'name': 'ingredients[]',
+                }
+            ),
+            
+        }
     
-
+        
