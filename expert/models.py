@@ -13,9 +13,15 @@ class Expert(models.Model):
         processors=[ResizeToFit(width=250, height=250, upscale=False)],
         format='JPEG'
     )
+    users = models.ManyToManyField(CustomerUser, through='Scrap')
 
     def __str__(self):
         return self.title
+
+class Scrap(models.Model):
+    user = models.ForeignKey(CustomerUser, on_delete=models.CASCADE)
+    expert = models.ForeignKey(Expert, on_delete=models.CASCADE)
+
 
 
 
