@@ -9,11 +9,16 @@
 {% if request.user == expert.writer %}
 <a href="{% url 'expertupdate' expert.id %}">수정하기</a>
 <a href="{% url 'expertdelete' expert.id %}" onclick = "return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+
+{% endif %}
+{% if user.is_authenticated %}
+{% if request.user != expert.writer %}
 {% if scrap %}
 <a href="{% url 'scrap' expert.id %}">스크랩 취소</a>
     {% else %}
 <a href="{% url 'scrap' expert.id %}">스크랩</a>
     {% endif %}
+{% endif %}
 {% endif %}
 
 {% endblock %}
