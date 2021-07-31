@@ -151,35 +151,29 @@
                     
                 </div>
                 
-                
                 <div class="box1 box2">
-                <h2>부가재료</h2>
-                <p>가지고 있는 부가 재료를 선택해주세요:) <br>메인 재료에 부가재료가 포함된 순으로 요리를 정렬하여 보여드립니다.</p>
-                <hr>
-                <p>
-                    <input type="checkbox" name="checkAlladd" /><strong>전체 선택</strong>
-                </p>
-                <input type="checkbox" name="additional[]" value="올리브유" />올리브유
-                <input type="checkbox" name="additional[]" value="우유" />우유
-                <input type="checkbox" name="additional[]" value="스파게티 소스" />스파게티 소스
-                <input type="checkbox" name="additional[]" value="간장" />간장
-                <input type="checkbox" name="additional[]" value="굴소스" />굴소스
-                <input type="checkbox" name="additional[]" value="치킨스톡" />치킨스톡
-                <br>
-                <input type="checkbox" name="additional[]" value="고춧가루" />고춧가루
-                <input type="checkbox" name="additional[]" value="고추장" />고추장
-                <input type="checkbox" name="additional[]" value="설탕" />설탕
-                <input type="checkbox" name="additional[]" value="다진마늘" />다진마늘
-                <input type="checkbox" name="additional[]" value="양파"/>양파
+                    <h2>부가재료</h2>
+                    <p>가지고 있는 부가 재료를 선택해주세요:) <br>메인 재료에 부가재료가 포함된 순으로 요리를 정렬하여 보여드립니다.</p>
+                    <hr>
+                    <p><input type="checkbox" name="checkAlladd" onclick="checkAllAdd(this)"/><strong>전체 선택</strong></p>
+                    <input type="checkbox" name="additional" value="올리브유" onclick="getCheckboxValu2()"/>올리브유
+                    <input type="checkbox" name="additional" value="우유" onclick="getCheckboxValue2()"/>우유
+                    <input type="checkbox" name="additional" value="스파게티 소스" onclick="getCheckboxValue2()"/>스파게티 소스
+                    <input type="checkbox" name="additional" value="간장" onclick="getCheckboxValue2()"/>간장
+                    <input type="checkbox" name="additional" value="굴소스" onclick="getCheckboxValue2()"/>굴소스
+                    <input type="checkbox" name="additional" value="치킨스톡" onclick="getCheckboxValue2()"/>치킨스톡
+                    <br>
+                    <input type="checkbox" name="additional" value="고춧가루" onclick="getCheckboxValue2()"/>고춧가루
+                    <input type="checkbox" name="additional" value="고추장" onclick="getCheckboxValue2()"/>고추장
+                    <input type="checkbox" name="additional" value="설탕" onclick="getCheckboxValue2()"/>설탕
+                    <input type="checkbox" name="additional" value="다진마늘" onclick="getCheckboxValue2()"/>다진마늘
+                    <input type="checkbox" name="additional" value="양파" onclick="getCheckboxValue2()"/>양파
                 </div>
-
+                
                 <div id="viewcook">
 
                     <div id="MainResult">선택한 메인 재료: 
-                        {% for ingredient in ingredients.all %}
-                        {{ ingredient.main_ingre }}
-                        {{ ingredient.text }}
-                        {% endfor %}
+                        {{selectedMain}}
                     </div>
             
                     <br>
@@ -193,9 +187,11 @@
                         <div style="position: absolute; margin-left: 30px; ">
                             <img id="img2" src="{% static 'whisk-removebg-preview.png' %}" height="100" width="100">
                         </div>
+                        
                     </div>
                     <input id="check" type="submit" title="무슨 음식을 할 수 있을까?" target="_self" value="요리보기">
                 </div>
+                
             </form>
         </section>  
     </article>
@@ -211,6 +207,17 @@
             }
         }
 
+        function checkAllAdd(checkAll){
+            const checkboxes2 = document.getElementsByName('additional');
+            checkboxes2.forEach((checkbox) => {
+                checkbox.checked = checkAll.checked;
+            })
+
+            if(checkbox.checked == false){
+                checkAlladd.checked = false;
+            }
+        }   
+
         function getCheckboxValue1()  {
             const query1 = 'input[name="ingredients"]:checked';
             const selectedEls1 = document.querySelectorAll(query1);
@@ -221,6 +228,18 @@
             });
 
             document.getElementById('MainResult').innerText= "선택한 메인 재료: "+result1;
+        }
+
+        function getCheckboxValue2()  {
+            const query2 = 'input[name="additional"]:checked';
+            const selectedEls2 = document.querySelectorAll(query2);
+
+            let result2 = '';
+            selectedEls2.forEach((el2) => {
+                result2 += el2.value + ', ';
+            });
+
+            document.getElementById('AdditionalResult').innerText= "선택한 부가 재료: "+ result2;
         }
     </script>
     {% endblock %}
