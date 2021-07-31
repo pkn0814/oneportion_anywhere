@@ -115,13 +115,8 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
-          <p class="lead text-muted">선택한 메인재료: 
-            {% for dish in dishes.all %} 
-            <h3>{{dish.name}}</h3>
-            <p>{{dish.main}}</p>
-            {% endfor %}
+          <p class="lead text-muted">선택한 메인재료:
             {{selectedMain}}
-            
           </p>
           <p class="lead text-muted">선택한 부가재료: {{selectedAdd}} </p>
           
@@ -138,16 +133,18 @@
         <div class="container">
           <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
           <div class="row">
+            {% for dish in dishs.all %}
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
                 <div class="card-body">
-                  <h4 class="card-text">달걀간장밥</h4>
-                  <p class="card-text">언제 먹어도 맛있는 초간단 달걀간장밥</p>
-                  <img class="card-img-top" src="{% static '달걀간장밥.jpeg' %}" alt="Card image cap">
+                  
+                  <h4 class="card-text">{{dish.name}}</h4>
+                  <p class="card-text">{{dish.intro}}</p>
+                  <img class="card-img-top" src="{{dish.image.url}}" alt="Card image cap">
                   <ul>
-                    <li>메인재료: 달걀, 밥</li>
-                    <li>부가재료: 간장, 들기름</li>
-                    <li>옵션: 파, 참깨, 김 등</li>
+                    <li>메인재료: {{dish.main}}</li>
+                    <li>부가재료: {{dish.add}}</li>
+                    <li>옵션: {{dish.option}}</li>
                   </ul>
 
                   <div class="d-flex justify-content-between align-items-center">
@@ -155,34 +152,13 @@
                       <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                       <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <small class="text-muted">검색결과</small>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  <h4 class="card-text">달걀볶음밥</h4>
-                  <p class="card-text">찬밥이랑 달걀만 있어도 가능!</p>
-                  <img class="card-img-top" src="{% static '달걀볶음밥.jpg' %}" alt="Card image cap">
-                  <ul>
-                    <li> 메인재료: 달걀, 밥</li>
-                    <li>부가재료: 간장, 굴소스</li>
-                    <li> 옵션: 파, 닭가슴살, 당근 등</li>
-                  </ul>
-
-
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">9 mins</small>
-                  </div>
-                </div>
-              </div>
-            </div>
+            {% endfor %}
+          </div>
 
       {% endblock %}
 
