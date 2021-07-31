@@ -4,7 +4,12 @@
 {% load bootstrap4 %}
 {% block container %}
 
-<form method="post" enctype="multipart/form-data">
+<head>
+    <style>
+        
+    </style>
+</head>
+<form  method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     

@@ -95,9 +95,11 @@
         
     </ul>
     {% if user.is_authenticated %}
+    {% if request.user.position == "사업자" %}
     <a href="{% url 'expertcreate' %}">새 글 쓰기</a>
     {% else %}
     <a></a>
+    {% endif %}
     {% endif %} 
     
     
