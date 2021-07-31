@@ -1,24 +1,16 @@
-from fridge.models import Ingredients
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.decorators.http import require_POST
-from .forms import IngreForm
+from fridge.models import Dish
+from django.shortcuts import redirect, render
+
 
 # Create your views here.
 def myfridge(request):
-    if request.POST:
-        ingreform = IngreForm(request.POST)
-        if ingreform.is_valid():
-            selectedMain = ingreform.save(commit=False)
-            selectedMain.save()
-            return redirect('showdish')
-        else:
-            return redirect('showdish')
-    else:
-        ingreform = IngreForm()
-        return render(request, 'myfridge.html', {'ingreform': ingreform })
+    return render(request, 'myfridge.html')
 
 def showdish(request):
-    ingredients = Ingredients.objects.all()
-    selectedMain = request.POST.getlist('ingredients[]')
-    return render(request, 'showdish.html', {'ingredients': ingredients, 'selectedMain':selectedMain})
+    selectedMain = request.GET.getlist('ingredients')
+    selectedAdd = request.GET.getlist('additional')
+    ingre = " ".join(selectedMain)
+    add = " ".join(selectedAdd)
+    dish_obj = Dish.objects
+    return render(request, 'showdish.html', {'dishs': dish_obj, 'selectedMain':selectedMain, 'selectedAdd' : selectedAdd})
     

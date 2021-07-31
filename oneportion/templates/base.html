@@ -1,6 +1,7 @@
 {% load bootstrap4 %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+{% load static %}
 
 <head>
   <meta charset="utf-8">
@@ -50,7 +51,7 @@
 
 
 <div id="bar">
-  <a href="{% url 'main' %}" id="back">&nbsp;일<br />&nbsp;인<br />&nbsp;분</a>
+  <a href="{% url 'main' %}" id="back"><img src = "{% static 'logo.png' %}" width = "80px" alt="로고"></a>
   <nav>
       <ul>
         <li class="nav-item">
