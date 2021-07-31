@@ -5,6 +5,17 @@ from django_summernote.widgets import SummernoteWidget
 
 class ExpertForm(forms.ModelForm):
     body = SummernoteTextField()
+    
+    title = forms.CharField(
+        label='',
+        widget=forms.TextInput(
+            
+            
+        )
+
+    )
+
+    
     class Meta:
         model = Expert
         fields=[
