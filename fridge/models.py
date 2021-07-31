@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.deletion import PROTECT
 
 #메인재료
 #부가재료
@@ -15,18 +16,25 @@ MAIN_INGRE = (
 
 class Ingredients(models.Model):
     main_ingre = models.BooleanField(default=False, choices=MAIN_INGRE)
-
     def __str__(self):
         return self.main_ingre
 
+
 class Dish(models.Model):
     name = models.CharField(max_length=15) #음식 이름
-    intro = models.CharField(max_length=30) #음식 간단 소개
+    intro = models.TextField(max_length=30) #음식 간단 소개
     picture = models.ImageField #음식 사진
-    main = models.CharField #메인재료
-    add = models.CharField #부가재료
+    main = models.CharField(max_length=100) #메인재료
+    add = models.CharField(max_length=100) #부가재료
     option = models.CharField #옵션
 
+    def __str__(self):
+        return self.name 
+
+class Showdish(models.Model):
+    dish = models.ForeignKey(Dish, on_delete=PROTECT)
+    title = models.CharField(max_length=20)
+    content = models.CharField
 
 
 

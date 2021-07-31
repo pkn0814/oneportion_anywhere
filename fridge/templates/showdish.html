@@ -116,9 +116,15 @@
         <div class="container">
           <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
           <p class="lead text-muted">선택한 메인재료: 
+            {% for dish in dishes.all %} 
+            <h3>{{dish.name}}</h3>
+            <p>{{dish.main}}</p>
+            {% endfor %}
             {{selectedMain}}
+            
           </p>
-          <p class="lead text-muted">선택한 부가재료: </p>
+          <p class="lead text-muted">선택한 부가재료: {{selectedAdd}} </p>
+          
             
           <p>
             <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>

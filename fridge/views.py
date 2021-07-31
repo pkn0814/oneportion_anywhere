@@ -1,4 +1,4 @@
-from fridge.models import Ingredients
+from fridge.models import Ingredients, Dish
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 from .forms import IngreForm
@@ -10,7 +10,10 @@ def myfridge(request):
         if ingreform.is_valid():
             selectedMain = ingreform.save(commit=False)
             selectedMain.save()
-            return redirect('showdish')
+            selectedMain = request.POST.getlist('ingredients[]')
+            ingre = " ".join(selectedMain)
+            dish_obj = Dish.objects.filter(main=ingre)
+            return render(request, 'showdish.html', {'dishes': dish_obj, 'selectedMain':selectedMain})
         else:
             return redirect('showdish')
     else:
@@ -18,7 +21,11 @@ def myfridge(request):
         return render(request, 'myfridge.html', {'ingreform': ingreform })
 
 def showdish(request):
-    ingredients = Ingredients.objects.all()
-    selectedMain = request.POST.getlist('ingredients[]')
-    return render(request, 'showdish.html', {'ingredients': ingredients, 'selectedMain':selectedMain})
+    #ingredients = Ingredients.objects.all()
+    selectedMain = request.GET.getlist('ingredients')
+    selectedAdd = request.GET.getlist('additional[]')
+    ingre = " ".join(selectedMain)
+    add = " ".join(selectedAdd)
+    dish_obj = Dish.objects.filter(main=ingre, add = add)
+    return render(request, 'showdish.html', {'dishes': dish_obj, 'selectedMain':selectedMain, 'selectedAdd' : selectedAdd})
     
