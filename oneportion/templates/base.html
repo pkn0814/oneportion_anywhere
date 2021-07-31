@@ -63,7 +63,7 @@
           <a class="nav-link" href="#">BEST RECIPE</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">COMMUNITY</a>
+            <a class="nav-link" href="{% url 'list' %}">COMMUNITY</a>
         </li>
         <li class="nav-item dropdown">
             {% if user.is_authenticated %}
