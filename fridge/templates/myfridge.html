@@ -64,7 +64,11 @@
     }
 
     #viewcook{
-        position: relative;
+        position: relative; width: 800px;
+    }
+    #imgicon {
+        display: inline-block; width: 200px; 
+        margin-right: 500px; position: absolute; right: 10px;
     }
 
     #MainResult{
@@ -80,7 +84,7 @@
         font-size: 15pt;
     }
     #check {
-        width: 200px; height: 50px; position: absolute; right: 300px; top: 580px;
+        width: 200px; height: 50px; position: absolute; right: 230px; top: 500px;
         border-radius: 10px;
         background-color: #f59e00; border-color: #f59e00; 
         -webkit-box-shadow: 0 3px 0 #b37401; box-shadow: 0 3px 0 #b37401;     
@@ -110,11 +114,13 @@
     }
 
     #img1{
-        z-index: 2;
+        z-index: 2; position: absolute; right: 50px;
+        height: 150; width: 200;
     }
 
     #img2{
-        z-index: 1;
+        z-index: 1; position: absolute; right: 50px;
+        height:100; width:100;
     }
 </style>
 
@@ -205,13 +211,11 @@
                 <div id="AdditionalResult">선택한 부가 재료: 
                     {{ selectedAdd}}
                 </div>
-
-                <div style="float: right; margin-right: 500px; position: relative;">
-                    <img id="img1" src="{% static 'bowl-removebg-preview.png' %}" style="position: absolute; " height="150" width="200">
-                    <div style="position: absolute; margin-left: 30px; ">
-                        <img id="img2" src="{% static 'whisk-removebg-preview.png' %}" height="100" width="100">
-                    </div>
-                    
+            </div>
+            <div id="imgicon">
+                <img id="img1" src="{% static 'bowl-removebg-preview.png' %}">
+                <div style="position: absolute; margin-left: 30px; ">
+                    <img id="img2" src="{% static 'whisk-removebg-preview.png' %}">
                 </div>
             </div>
         </section>

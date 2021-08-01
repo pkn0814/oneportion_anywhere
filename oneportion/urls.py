@@ -19,6 +19,8 @@ import home.views
 import accounts.views
 import fridge.views 
 import expert.views
+import community.views
+import commentcrud.views
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,6 +30,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('fridge/', include('fridge.urls')),
     path('expert/', include('expert.urls')),
+    path('community/', include('community.urls')),
+    path('commentcrud/', include('commentcrud.urls')),
 ]
 urlpatterns += [path('summernote/', include('django_summernote.urls'))]
 if settings.DEBUG:

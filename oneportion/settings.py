@@ -35,9 +35,10 @@ AUTH_USER_MODEL = 'accounts.CustomerUser'
 INSTALLED_APPS = [
     'bootstrap4',
     'accounts',
-    'community',
     'bestrecipe',
     'expert',
+    'community.apps.CommunityConfig',
+    'commentcrud.apps.CommentcrudConfig',
     'fridge.apps.FridgeConfig',
     'home',
     'django.contrib.admin',
