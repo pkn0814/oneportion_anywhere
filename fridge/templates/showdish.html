@@ -115,9 +115,7 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
-          <p class="lead text-muted">선택한 메인재료:
-            {{selectedMain}}
-          </p>
+          <p class="lead text-muted">선택한 메인재료: {{selectedMain}} </p>
           <p class="lead text-muted">선택한 부가재료: {{selectedAdd}} </p>
           
             
@@ -141,6 +139,7 @@
                   <h4 class="card-text">{{dish.name}}</h4>
                   <p class="card-text">{{dish.intro}}</p>
                   <img class="card-img-top" src="{{dish.image.url}}" alt="Card image cap">
+                  <br>
                   <ul>
                     <li>메인재료: {{dish.main}}</li>
                     <li>부가재료: {{dish.add}}</li>
@@ -159,6 +158,37 @@
             </div>
             {% endfor %}
           </div>
+
+          <div class="container">
+            <h3>선택한 메인재료들을 포함한 요리</h3>
+            <div class="row">
+              {% for dish in dishs.all %}
+              <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                    
+                    <h4 class="card-text">{{dish.name}}</h4>
+                    <p class="card-text">{{dish.intro}}</p>
+                    <img class="card-img-top" src="{{dish.image.url}}" alt="Card image cap">
+                    <br>
+                    <ul>
+                      <li>메인재료: {{dish.main}}</li>
+                      <li>부가재료: {{dish.add}}</li>
+                      <li>옵션: {{dish.option}}</li>
+                    </ul>
+  
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                      </div>
+                      <small class="text-muted">검색결과</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
 
       {% endblock %}
 

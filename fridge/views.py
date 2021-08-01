@@ -7,10 +7,17 @@ def myfridge(request):
     return render(request, 'myfridge.html')
 
 def showdish(request):
+    maindish = Dish.objects.all()
     selectedMain = request.GET.getlist('ingredients')
+    if selectedMain:
+        for i in selectedMain:
+            maindish = maindish.filter(main__icontains=i)
+    
+    adddish = Dish.objects.all()
     selectedAdd = request.GET.getlist('additional')
-    ingre = " ".join(selectedMain)
-    add = " ".join(selectedAdd)
-    dish_obj = Dish.objects
-    return render(request, 'showdish.html', {'dishs': dish_obj, 'selectedMain':selectedMain, 'selectedAdd' : selectedAdd})
+    if selectedAdd:
+        for k in selectedAdd:
+            adddish = adddish.filter(main__icontains=k)
+    
+    return render(request, 'showdish.html', {'dishs': maindish, 'selectedMain':selectedMain, 'selectedAdd' : selectedAdd})
     
