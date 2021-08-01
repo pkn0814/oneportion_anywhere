@@ -131,7 +131,7 @@
         <div class="container">
           <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
           <div class="row">
-            {% for dish in dishs.all %}
+            {% for dish in maindish.all %}
             <div class="col-md-4">
               <div class="card mb-4 shadow-sm">
                 <div class="card-body">
@@ -162,7 +162,7 @@
           <div class="container">
             <h3>선택한 메인재료들을 포함한 요리</h3>
             <div class="row">
-              {% for dish in dishs.all %}
+              {% for dish in adddish.all %}
               <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                   <div class="card-body">
