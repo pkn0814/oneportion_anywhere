@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from . forms import LoginForm, SignupForm 
 from django.contrib import auth
 from argon2 import PasswordHasher
-
+from expert.models import Expert, Scrap
+from community.models import Post
 # Create your views here.
 def signup_view(request):
     if request.method=='POST':
@@ -50,3 +51,13 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("main")
+
+def mypage(request):
+    user = request.user
+    expert_post = Expert.objects.filter(writer=user)
+    expert_scrap = Scrap.objects.filter(user=user)
+
+    com_post = Post.objects.filter(writer=user)
+
+   
+    return render(request, 'mypage.html',{'expert_posts':expert_post,'expert_scraps':expert_scrap,'com_posts':com_post})
