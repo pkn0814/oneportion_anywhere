@@ -1,8 +1,10 @@
 from django.db import models
 from community.models import Post
+from accounts.models import CustomerUser
 # Create your models here.
 
 class Comment(models.Model):
+    writer = models.ForeignKey(CustomerUser, related_name="comment", on_delete=models.CASCADE, verbose_name="댓글작성자", null=True)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     content = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)

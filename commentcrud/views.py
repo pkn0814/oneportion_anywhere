@@ -10,6 +10,7 @@ def commentcreate(request, post_id):
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
+            comment.writer = request.user
             comment.post = post
             comment.save()
             return redirect('postshow', post_id=post.pk)
