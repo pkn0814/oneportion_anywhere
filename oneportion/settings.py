@@ -33,15 +33,6 @@ AUTH_USER_MODEL = 'accounts.CustomerUser'
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap4',
-    'accounts',
-    'bestrecipe',
-    'expert',
-    'community.apps.CommunityConfig',
-    'commentcrud.apps.CommentcrudConfig',
-    'fridge.apps.FridgeConfig',
-    'home',
-    'search',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_summernote',
     'imagekit',
+    'bootstrap4',
+    'accounts',
+    'bestrecipe',
+    'expert',
+    'community',
+    'commentcrud',
+    'fridge.apps.FridgeConfig',
+    'home',
+    'search',
 ]
 
 MIDDLEWARE = [
