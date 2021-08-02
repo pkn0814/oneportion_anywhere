@@ -1,3 +1,5 @@
 from django.contrib import admin
+from . models import Post, Scrap_commu
 
-# Register your models here.
+admin.site.register(Post)
+admin.site.register(Scrap_commu)
