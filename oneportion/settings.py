@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'commentcrud.apps.CommentcrudConfig',
     'fridge.apps.FridgeConfig',
     'home',
+    'search',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

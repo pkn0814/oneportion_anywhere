@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    검색 결과
+    {% for result in result.all %}
+        <h1>{{result.title}}</h1>
+        <p>내용: {{result.content}}</p>
+        <p>작성자: {{result.writer}}</p>
+    {% endfor %}
+{% endblock %}
