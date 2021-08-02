@@ -32,6 +32,7 @@ urlpatterns = [
     path('fridge/', include('fridge.urls')),
     path('expert/', include('expert.urls')),
     path('community/', include('community.urls')),
+    path('bestrecipe/', include('bestrecipe.urls')),
     path('commentcrud/', include('commentcrud.urls')),
     path('result/', search.views.result, name='result'),
     path('search/', search.views.search, name='search'),
