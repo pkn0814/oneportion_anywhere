@@ -8,4 +8,4 @@ def likelist(request):
     page = request.GET.get('page','1')
     paginator = Paginator(posts, 5)
     page_obj = paginator.page(page)
-    return render(request, 'list.html', {'posts': page_obj})
+    return render(request, 'likelist.html', {'posts': page_obj})

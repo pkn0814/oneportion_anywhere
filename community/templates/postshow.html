@@ -10,7 +10,7 @@
     <br/>
     <p>글쓴이 <span id="user_name">{{ post.writer.nickname }}</span></p>
     <hr/>
-    <p>내용 : {{ post.content }}</p>
+    <p>내용 : {{ post.content | safe }}</p>
     
     <div class="bt">
         {% if post.writer == user %}
