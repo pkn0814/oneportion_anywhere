@@ -22,7 +22,7 @@
 <div id="search">
     <form action = "{% url 'result' %}" method = "get">
         {% csrf_token %}
-        <input type = "search" placeholder="검색" style="height:22px; font-family:'굴림';" name = "query">
+        <input type = "search" placeholder="제목+본문" style="height:22px; font-family:'굴림';" name = "query">
         <input type = "submit" name="" value="🔍">
     </form>
 </div>

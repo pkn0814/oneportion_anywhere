@@ -1,10 +1,35 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    검색 결과
-    {% for result in result.all %}
-        <h1>{{result.title}}</h1>
-        <p>내용: {{result.content}}</p>
-        <p>작성자: {{result.writer}}</p>
-    {% endfor %}
+<div class="row mt-5">
+        <div class="col-12">
+                {% if result %}
+                <b>[ 검색 결과 ]</b>
+                <table class="table table-hover">
+            <thead>
+                <tr>
+                <th scope="col">No</th>
+                <th scope="col">제목</th>
+                <th scope="col">글쓴이</th>
+                <th scope="col">작성일</th>
+                <th scope="col">추천수</th>
+                </tr>
+            </thead>
+            <tbody>
+                    {% for post in result %}
+                    <tr>
+                    <th scope="row">{{ post.id }}</th>
+                    <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
+                    <td>{{ post.writer }}</td>
+                    <td>{{ post.pub_date }}</td>
+                    <td>{{ post.like.all.count }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <b>&nbsp;&nbsp;&nbsp;검색결과가 없습니다.</b>
+                {% endif %}
+            </tbody>
+            </table>
+    </div>
+</div>
 {% endblock %}
