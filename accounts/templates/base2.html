@@ -1,6 +1,8 @@
 {% load bootstrap4 %}
+{% load static %}
 {% bootstrap_css %}
 {% bootstrap_javascript jquery='full' %}
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,7 +52,7 @@
         
         
         <div id="bar">
-            <a href="{% url 'main' %}" id="back">&nbsp;일<br />&nbsp;인<br />&nbsp;분</a>
+            <a href="{% url 'main' %}" id="back"><img src = "{% static 'logo.png' %}" width = "80px" alt="로고"></a>
             
                 <ul>
                  

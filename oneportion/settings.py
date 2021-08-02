@@ -130,7 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'fridge', 'static'),
-    os.path.join(BASE_DIR, 'oneportion', 'static')
+    os.path.join(BASE_DIR, 'oneportion', 'static'),
+    os.path.join(BASE_DIR, 'accounts', 'static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
