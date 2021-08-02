@@ -20,8 +20,11 @@
 </table>
 
 <div id="search">
-    <input type="text" placeholder="검색" style="height:22px; font-family:'굴림';"/>
-    <button style="height:30px; background-color:darkorange; border:thin; border-radius:3px;">🔍</button>
+    <form action = "{% url 'result' %}" method = "get">
+        {% csrf_token %}
+        <input type = "search" placeholder="검색" style="height:22px; font-family:'굴림';" name = "query">
+        <input type = "submit" name="" value="🔍">
+    </form>
 </div>
 
 <div id="little">
