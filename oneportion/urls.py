@@ -20,6 +20,7 @@ import accounts.views
 import fridge.views 
 import expert.views
 import community.views
+import bestrecipe.views
 import commentcrud.views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,6 +33,7 @@ urlpatterns = [
     path('fridge/', include('fridge.urls')),
     path('expert/', include('expert.urls')),
     path('community/', include('community.urls')),
+    path('bestrecipe/', include('bestrecipe.urls')),
     path('commentcrud/', include('commentcrud.urls')),
     path('result/', search.views.result, name='result'),
     path('search/', search.views.search, name='search'),
