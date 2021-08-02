@@ -7,9 +7,6 @@
 
 <head>
     <style>
-        body{
-            width: auto;
-        }
         hr{
             background-color: orange;
         }
@@ -26,12 +23,6 @@
         section {
             position: relative;
             margin: 10px;
-            width: fit-content;
-        }
-    
-        article {
-            position:relative;
-            left: 100px; top: 20px;
         }
                 
         .box1 {
@@ -40,14 +31,15 @@
             text-align: center;
             position: relative;
             display: inline-block;
-            width: 500px;
-            height: 350px;
+            width: 500px; height: 350px;
+            left: 50px;
         }
         .box1 p{
             margin: 3px;
         }
         .box2 {
-            left: 520px;
+            display: inline-block;
+            left: 600px;
             position: absolute;
         }
         .box3 p{
@@ -69,11 +61,8 @@
         }
     
         #viewcook{
-            position: relative; width: 800px;
-        }
-        #imgicon {
-            display: inline-block; width: 200px; 
-            margin-right: 500px; position: absolute; right: 10px;
+            position: relative; width: 700px;
+            margin-left: 100px;
         }
     
         #MainResult{
@@ -87,10 +76,11 @@
             font-size: 15pt;
         }
         #check {
-            width: 200px; height: 50px; position: relative; right: 100px; top: 200px;
+            width: 200px; height: 50px; position: absolute; right: 150px; top: 420px;
             border-radius: 10px;
             background-color: #f59e00; border-color: #f59e00; 
-            -webkit-box-shadow: 0 3px 0 #b37401; box-shadow: 0 3px 0 #b37401;     
+            -webkit-box-shadow: 0 3px 0 #b37401; box-shadow: 0 3px 0 #b37401;
+            z-index: 1;   
         }
     
         #check:hover {
@@ -113,15 +103,6 @@
             text-align: left;
         }
     
-        #img1{
-            z-index: 2; position: absolute; right: 50px;
-            height: 150; width: 200;
-        }
-    
-        #img2{
-            z-index: 1; position: absolute; right: 50px;
-            height:100; width:100;
-        }
     </style>
 </head>
 
@@ -215,12 +196,7 @@
                     {{ selectedAdd}}
                 </div>
             </div>
-            <div id="imgicon">
-                <img id="img1" src="{% static 'bowl-removebg-preview.png' %}">
-                <div style="position: absolute; margin-left: 30px; ">
-                    <img id="img2" src="{% static 'whisk-removebg-preview.png' %}">
-                </div>
-            </div>
+
         </section>
 
     </article>
