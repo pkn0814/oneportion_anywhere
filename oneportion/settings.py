@@ -33,15 +33,6 @@ AUTH_USER_MODEL = 'accounts.CustomerUser'
 # Application definition
 
 INSTALLED_APPS = [
-    'bootstrap4',
-    'accounts',
-    'bestrecipe',
-    'expert',
-    'community.apps.CommunityConfig',
-    'commentcrud.apps.CommentcrudConfig',
-    'fridge.apps.FridgeConfig',
-    'home',
-    'search',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -50,6 +41,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_summernote',
     'imagekit',
+    'bootstrap4',
+    'accounts',
+    'bestrecipe',
+    'expert',
+    'community',
+    'commentcrud',
+    'fridge.apps.FridgeConfig',
+    'home',
+    'search',
 ]
 
 MIDDLEWARE = [
@@ -118,13 +118,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
