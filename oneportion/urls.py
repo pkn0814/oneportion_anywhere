@@ -31,6 +31,7 @@ urlpatterns = [
     path('fridge/', include('fridge.urls')),
     path('expert/', include('expert.urls')),
     path('community/', include('community.urls')),
+    path('bestrecipe/', include('bestrecipe.urls')),
     path('commentcrud/', include('commentcrud.urls')),
 ]
 urlpatterns += [path('summernote/', include('django_summernote.urls'))]
