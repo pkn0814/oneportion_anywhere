@@ -24,14 +24,18 @@
     <br/>
  
     {% if user.is_authenticated %}
-        {% if communityscrap %}
+    {% if request.user != post.writer %}
+    {% if scrap %}
             <a href="{% url 'communityscrap' post.id %}">스크랩 취소</a>
         {% else %}
             <a href="{% url 'communityscrap' post.id %}">스크랩</a>
-        {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endif %}
         <br/><br/>
-
+        {% if request.user != post.writer %}
         <a href="#" data-uri="{% url 'likes' post.id  %}" class="recommend btn btn-primary">추천</a>
+        {% endif %}
         <p>{{ post.like.all.count }}명이 이 게시글을 좋아합니다.</p>
         {% block script %}
         <script type='text/javascript'>
@@ -51,7 +55,6 @@
             {{form}}
             <button type="submit" class="btn btn-primary">댓글 등록</button>
         </form>
-    {% endif %}
 
     <br/>
 
