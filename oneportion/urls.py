@@ -25,6 +25,7 @@ import commentcrud.views
 from django.conf import settings
 from django.conf.urls.static import static
 import search.views
+import sociallogin.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +38,8 @@ urlpatterns = [
     path('commentcrud/', include('commentcrud.urls')),
     path('result/', search.views.result, name='result'),
     path('search/', search.views.search, name='search'),
+    path('', sociallogin.views.home, name='home'),
+    path('accounts/', include('allauth.urls')),
 ]
 urlpatterns += [path('summernote/', include('django_summernote.urls'))]
 if settings.DEBUG:
