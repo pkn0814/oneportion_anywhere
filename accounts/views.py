@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate, login, logout
 from . forms import LoginForm, SignupForm 
 from django.contrib import auth
 from argon2 import PasswordHasher
+from expert.models import Expert, Scrap
+from community.models import Post, Scrap_commu
+
 
 # Create your views here.
 def signup_view(request):
@@ -25,7 +28,26 @@ def signup_view(request):
         return render(request, 'signup.html',{'forms':forms})
 
     
+def mypage(request):
+    user = request.user
+    expert_post = Expert.objects.filter(writer=user)
+    expert_scrap = Scrap.objects.filter(user=user)
 
+    com_post = Post.objects.filter(writer=user)
+    com_scrap = Scrap_commu.objects.filter(user=user)
+
+    best_post = Post.objects.filter(writer=user,like__gt=2)
+    best_scrap = Scrap_commu.objects.filter(user=user,post__like__gt=1)
+
+    context = {
+        'expert_posts':expert_post,
+        'expert_scraps':expert_scrap,
+        'com_posts':com_post,
+        'com_scraps':com_scrap,
+        'best_posts':best_post,
+        'best_scraps':best_scrap,
+    }
+    return render(request, 'mypage.html', context)
 
 def login_view(request):
     loginform = LoginForm()
