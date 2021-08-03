@@ -8,14 +8,15 @@
                 <table class="table table-hover">
             <thead>
                 <tr>
-                <th scope="col">No</th>
-                <th scope="col">제목</th>
-                <th scope="col">글쓴이</th>
-                <th scope="col">작성일</th>
-                <th scope="col">추천수</th>
+                <th scope="col" style="text-align:center;">No</th>
+                <th scope="col" style="text-align:center;">제목</th>
+                <th scope="col" style="text-align:center;">글쓴이</th>
+                <th scope="col" style="text-align:center;">작성일</th>
+                <th scope="col" style="text-align:center;">추천수</th>
+                <th scope="col" style="text-align:center;">게시판</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="text-align:center;">
                     {% for post in result %}
                     <tr>
                     <th scope="row">{{ post.id }}</th>
@@ -23,12 +24,18 @@
                     <td>{{ post.writer }}</td>
                     <td>{{ post.pub_date }}</td>
                     <td>{{ post.like.all.count }}</td>
+                    <td> COMMUNITY </td>
                     </tr>
                     {% endfor %}
 
                     {% for expert in result2 %}
-                    <a href="{% url 'detail' expert.id %}">{{ expert.title }}</a>
-                    
+                    <tr>
+                    <th scope="row">{{ expert.id }}</th>
+                    <td><a href="{% url 'detail' expert.id %}">{{ expert.title }}</a></td>
+                    <td>{{ expert.writer }}</td>
+                    <td>{{ expert.pub_date }}</td>
+                    <td></td>
+                    <td> 전문가일인분 </td>
                     {% endfor %}
                     
                 {% else %}
