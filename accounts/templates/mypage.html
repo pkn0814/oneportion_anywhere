@@ -66,7 +66,19 @@
 아직 스크랩한 글이 없습니다.
 {% endif %}
 </p>
-<h4>BEST RECIPE/COMMUNITY</h4>
+<h4>BEST RECIPE</h4>
+<p class="post_list">
+    
+{% if best_scraps %}
+{% for best_scrap in best_scraps %}
+글제목: {{ best_scrap.post }}  <a href="{% url 'detail' best_scrap.id %}">글 보기</a><br>
+{% endfor %}
+{% else %}
+아직 스크랩한 글이 없습니다.
+{% endif %}
+    
+    </p>
+<h4>COMMUNITY</h4>
 <p class="post_list">
     {% if com_scraps %}
     {% for com_scrap in com_scraps %}
@@ -76,5 +88,4 @@
     아직 스크랩한 글이 없습니다.
     {% endif %}
     </p>
-
 {% endblock %}

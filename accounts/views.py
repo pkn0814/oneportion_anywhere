@@ -37,7 +37,7 @@ def mypage(request):
     com_scrap = Scrap_commu.objects.filter(user=user)
 
     best_post = Post.objects.filter(writer=user,like__gt=2)
-    best_scrap = Scrap_commu.objects.filter(user=user,post__like=2)
+    best_scrap = Scrap_commu.objects.filter(user=user,post__like__gt=1)
 
     context = {
         'expert_posts':expert_post,
@@ -45,7 +45,7 @@ def mypage(request):
         'com_posts':com_post,
         'com_scraps':com_scrap,
         'best_posts':best_post,
-        'best_scraps':best_scrap
+        'best_scraps':best_scrap,
     }
     return render(request, 'mypage.html', context)
 
