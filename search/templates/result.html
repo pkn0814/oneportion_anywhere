@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row mt-5">
         <div class="col-12">
-                {% if result %}
+                {% if result or result2 %}
                 <b>[ 검색 결과 ]</b>
                 <table class="table table-hover">
             <thead>
@@ -25,6 +25,12 @@
                     <td>{{ post.like.all.count }}</td>
                     </tr>
                     {% endfor %}
+
+                    {% for expert in result2 %}
+                    <a href="{% url 'detail' expert.id %}">{{ expert.title }}</a>
+                    
+                    {% endfor %}
+                    
                 {% else %}
                     <b>&nbsp;&nbsp;&nbsp;검색결과가 없습니다.</b>
                 {% endif %}
