@@ -5,6 +5,7 @@
 <body>
       <br>
       {% block content %}
+      <p>베스트 레시피는 커뮤니티에서 추천수 5개 이상 받은 게시물이 올라옵니다</p>
 
         <div class="row mt-5">
         <div class="col-12">
@@ -20,7 +21,7 @@
 
             <tbody style="text-align:center;">
                 {% for post in posts %}
-                {% if post.like.all.count > 1 %}
+                {% if post.like.all.count > 4 %}
                     <tr>
                     <th scope="row">{{ post.id }}</th>
                     <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
