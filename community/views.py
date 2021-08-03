@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 def list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-pub_date')
     page = request.GET.get('page','1')
     paginator = Paginator(posts, 5)
     page_obj = paginator.page(page)
@@ -13,7 +13,8 @@ def list(request):
 
 def postshow(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
-    return render(request, 'postshow.html', {'post': post})
+    scrap = Scrap_commu.objects.filter(user=request.user,post=post)
+    return render(request, 'postshow.html', {'post': post,'scrap':scrap})
 
 def postnew(request):
     if request.user.is_authenticated: 
@@ -27,6 +28,10 @@ def postcreate(request):
             post.writer = request.user
             post.save()
             return redirect('list')
+        else:
+            form = PostForm()
+            messages.info(request,'본문 내용을 작성해주세요')
+            return render(request, 'new.html', {'form':form}) 
     else:
         form = PostForm()
         return render(request, 'postnew.html', {'form':form})  

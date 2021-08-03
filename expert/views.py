@@ -43,6 +43,11 @@ def expertcreate(request):
             expert.writer = request.user
             expert.save()
             return redirect('expert_list')
+        else:
+            form = ExpertForm()
+            messages.info(request,'본문 내용을 작성해주세요')
+            return render(request, 'new.html', {'form':form}) 
+
     else:
         form = ExpertForm()
         return render(request, 'new.html', {'form':form})         
