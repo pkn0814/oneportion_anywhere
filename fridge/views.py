@@ -10,7 +10,6 @@ def showdish(request):
     selectedMain = request.GET.getlist('ingredients', None)
     selectedAdd = request.GET.getlist('additional', None)
     
-    #list = ['올리브유', '우유', '잼', '토마토소스', '간장', '굴소스', '치킨스톡', '고춧가루', '고추장', '설탕', '다진마늘', '양파']
     
     if selectedMain :
 
