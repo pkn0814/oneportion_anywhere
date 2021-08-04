@@ -16,6 +16,11 @@
         .hoverBlue:hover{
             color:blue ;
         }
+        .center{
+            display:flex;
+            justify-content: center;
+        }
+        
     </style>
 </head>
 
@@ -26,7 +31,7 @@
     {% if request.user.position == "사업자" %}
     
 <div class="row gx-4 gx-lg-5">
-    <div class="col-md-4 mb-5">
+    <div class="col-md-6 mb-5">
         <div class="card h-100">
             <div class="card-body">
                 <h2 class="card-title">전문가 일인분</h2>
@@ -44,27 +49,11 @@
             
         </div>
     </div>
-    <div class="col-md-4 mb-5">
+    
+    <div class="col-md-6 mb-5">
         <div class="card h-100">
             <div class="card-body">
-                <h2 class="card-title">BEST RECIPE</h2>
-                <p class="card-text">
-                    {% if best_posts %}
-                    {% for best_post in best_posts %}
-                    글제목: {{ best_post.title }}  <a class="hoverBlue"href="{% url 'detail' best_post.id %}"> <span class="view">글보기</span></a><br>
-                    {% endfor %}
-                    {% else %}
-                    아직 작성한 글이 없습니다.
-                    {% endif %}
-                </p>
-            </div>
-            <div class="card-footer"></div>
-        </div>
-    </div>
-    <div class="col-md-4 mb-5">
-        <div class="card h-100">
-            <div class="card-body">
-                <h2 class="card-title">COMMUNITY</h2>
+                <h2 class="card-title">BEST RECIPE/COMMUNITY</h2>
                 <p class="card-text">
                     {% if com_posts %}
                     {% for com_post in com_posts %}
@@ -126,30 +115,11 @@
 
 
 {% else %}
-<div class="row gx-4 gx-lg-5">
-
-    <div class="col-md-6 mb-5">
+<div class="center">
+    <div class="center">
         <div class="card h-100">
             <div class="card-body">
-                <h2 class="card-title">BEST RECIPE</h2>
-                <p class="card-text">
-                    {% if best_posts %}
-                    {% for best_post in best_posts %}
-                    글제목: {{ best_post.title }}  <a class="hoverBlue"href="{% url 'detail' best_post.id %}"> <span class="view">글보기</span></a><br>
-                    {% endfor %}
-                    {% else %}
-                    아직 작성한 글이 없습니다.
-                    {% endif %}
-                </p>
-            </div>
-            <div class="card-footer"></div>
-        </div>
-    </div>
-    
-    <div class="col-md-6 mb-5">
-        <div class="card h-100">
-            <div class="card-body">
-                <h2 class="card-title">COMMUNITY</h2>
+                <h2 class="card-title">BEST RECIPE/COMMUNITY</h2>
                 <p class="card-text">
                     {% if com_posts %}
                     {% for com_post in com_posts %}

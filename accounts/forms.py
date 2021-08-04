@@ -12,7 +12,7 @@ class SignupForm(UserCreationForm):
         
     )
     position = forms.CharField(
-        label='등급선택',
+        label='',
         widget=forms.RadioSelect(
             choices=POSITION,
             attrs={
@@ -27,7 +27,7 @@ class SignupForm(UserCreationForm):
         required = False,
         widget=forms.FileInput(
             attrs={
-                'class':'border1',
+                'class':'business'
             }
         )
     )
@@ -127,9 +127,9 @@ class LoginForm(AuthenticationForm):
                 
             )
         )
-    # class Meta:
-    #     model = CustomerUser
-    #     fields = ['username','password']
+    class Meta:
+        model = CustomerUser
+        fields = ['username','password']
     
     # def clean(self):
     #     cleaned_data = super.clean()

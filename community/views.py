@@ -30,7 +30,7 @@ def postcreate(request):
             return redirect('list')
         else:
             form = PostForm()
-            messages.info(request,'본문 내용을 작성해주세요')
+            messages.warning(request,'본문 내용을 작성해주세요')
             return render(request, 'new.html', {'form':form}) 
     else:
         form = PostForm()

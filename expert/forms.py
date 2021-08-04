@@ -1,18 +1,32 @@
 from django import forms
 from . models import Expert
-from django_summernote.fields import SummernoteTextField
+from django_summernote.fields import SummernoteTextField, SummernoteTextFormField
 from django_summernote.widgets import SummernoteWidget
 
 class ExpertForm(forms.ModelForm):
-    body = SummernoteTextField()
+    body = SummernoteTextFormField(
+        label='',
+        widget=forms.TextInput(
+            attrs={
+                'placeholder':'asdf',
+            }
+        )
+    )
     
     title = forms.CharField(
         label='',
         widget=forms.TextInput(
-            
+            attrs={
+                'class':'title',
+
+            }
             
         )
 
+    )
+
+    image = forms.ImageField(
+        label='',
     )
 
     
