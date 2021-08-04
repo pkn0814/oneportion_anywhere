@@ -50,6 +50,7 @@ def expertcreate(request):
 
     else:
         form = ExpertForm()
+        messages.info(request,'작성법 소개')
         return render(request, 'new.html', {'form':form})         
 
 

@@ -7,19 +7,37 @@
             text-align: center;
         }
         .errorlist{
-            font-size: 8pt;
+            font-size: 9pt;
+            text-align: center;
+            background-color:cornsilk;
+            margin-left: 200px;
+            margin-right:200px;
+            border-radius: 100px;
+            
         }
     </style>
+    <!-- <script>
+                window.setTimeout(function() {
+            $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+                $(this).remove();
+            });
+        }, 4000);
+            </script> -->
 </head>
 
 <div class="login">
     <br>
     <h1>LOGIN</h1>
 <form action="{% url 'login' %}" method="post">
+    
     {% csrf_token %}
     {{forms.as_p}}
     <button type="submit" style="width:100px; height:90px; background-color:darkorange; border-radius:5px; font-size:12pt; font-weight:bold;">확인</button>
+    
 </form>
 </div>
+
+
+
 
 {% endblock %}

@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from . models import CustomerUser
 from django.contrib.auth import authenticate, login, logout
 from . forms import LoginForm, SignupForm 
-from django.contrib import auth
+from django.contrib import auth, messages
 from argon2 import PasswordHasher
 from expert.models import Expert, Scrap
 from community.models import Post, Scrap_commu
@@ -36,7 +36,7 @@ def mypage(request):
     com_post = Post.objects.filter(writer=user)
     com_scrap = Scrap_commu.objects.filter(user=user)
 
-    best_post = Post.objects.filter(writer=user,like__gt=2)
+    best_post = Post.objects.filter(like__gt=4)
     best_scrap = Scrap_commu.objects.filter(user=user,post__like__gt=1)
 
     context = {
@@ -67,6 +67,7 @@ def login_view(request):
             return redirect('main')
         else:
             context['forms']=loginform
+            messages.info(request,'아이디 혹은 비밀번호를 확인해주세요.')
         return render(request,'login.html', context)
 
 def logout_view(request):

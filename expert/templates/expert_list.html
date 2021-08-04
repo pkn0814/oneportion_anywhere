@@ -12,6 +12,9 @@
       margin-left: auto;
       margin-right: auto;
     }
+    .card_text {
+      text-align: center;
+    }
     
   </style>
 </head>
@@ -25,8 +28,16 @@
           <h1 class="jumbotron-heading">Album example</h1>
           <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
           <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+              {% if user.is_authenticated %}
+              {% if request.user.position == "사업자" %}
+              <a href="{% url 'expertcreate' %}" class="btn btn-primary my-2">새 글 쓰기</a>
+              {% else %}
+              <a></a>
+              {% endif %}
+              {% endif %} 
+            
+            
+            
           </p>
         </div>
       </section>
@@ -41,21 +52,26 @@
               <div class="card mb-4 shadow-sm">
                 <img width="300" height="300" class="card-img-top" src="{{expert.image.url}}" alt="Card image cap">
                 <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center">
-                    <p id="title">{{expert.title}}</p>
-                  
-        
+                  <div class="card_text">
+                    <p id="title">{{expert.title}} <small class="text-muted">{{expert.writer}}</small>
+                    </p>
+                    {% if user.is_authenticated %}
                     <div class="btn-group">
                       <a href="{% url 'detail' expert.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">자세히 보기</button></a>
                     </div>
-                    <small class="text-muted">{{expert.writer}}</small>
+                    {% else %}
+                    <div class="btn-group">
+                      <a href="#" onclick = "return alert('로그인 후 열람 가능합니다.')"><button type="button" class="btn btn-sm btn-outline-secondary">자세히 보기</button></a>
+                    </div>
+                    {% endif %}
+                    
                   </div>
                 </div>
               </div>
             </div>
             {% endfor %}
 
-           
+            
               
 
     </main>
@@ -90,19 +106,7 @@
             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
         </li>
         {% endif %}
-        
-         
-        
     </ul>
-    {% if user.is_authenticated %}
-    {% if request.user.position == "사업자" %}
-    <a href="{% url 'expertcreate' %}">새 글 쓰기</a>
-    {% else %}
-    <a></a>
-    {% endif %}
-    {% endif %} 
-    
-    
     
     </div>
 

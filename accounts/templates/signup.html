@@ -16,10 +16,17 @@
                 padding-bottom:10px;
                 
                 margin-bottom: 200px;
+                margin-left: 10%;
+                margin-right:10%;
+                border-radius: 70px;
             }
             .border1{
                 border: 2px solid rgb(0,147,0);
-                border-radius: 10px;
+                background-color: white;
+                font-size: 11pt;
+            }
+            .business{
+                text-align: center;
                 
             }
             .box{
@@ -40,6 +47,7 @@
             .errorlist{
                 font-size: 8pt;
                 background-color: white;
+                text-align: center;
             }
     </style>
 </head>
@@ -49,6 +57,11 @@
 <form action="{% url 'signup' %}" method="post">
     {% csrf_token %}
     {{forms.as_p}}
+    {% if field.errors %}
+    {% for error in field.errors %}
+    {{ error }}
+    {% endfor %}
+    {% endif %}
     <p>이미 회원이라면? <a href="{% url 'login' %}">로그인하기</a></p>
         <br>
         <button type="submit" class="button">확인</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

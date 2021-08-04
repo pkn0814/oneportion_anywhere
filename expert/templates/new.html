@@ -1,24 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>새 글 쓰기</h1>
 {% load bootstrap4 %}
 {% block container %}
 
 <head>
     <style>
+        .form{
+            display:flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .title{
+            width:720px;
+        }
         
     </style>
+    <script>
+//         window.setTimeout(function() {
+//     $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+//         $(this).remove();
+//     });
+// }, 4000);
+    </script>
 </head>
-{% if messages %}
+<div class="error">
 {% for message in messages %}
-{{ message.message }}
+<div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message }}
+</div>
 {% endfor %}
-{% endif %}
+</div>
+<div class="form">
 <form  method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     
-    <br><input type="submit" value="Submit"/>
+    <br><input type="submit" value="작성"/>
 </form>
+</div>
 {% endblock %}
 {% endblock %}
