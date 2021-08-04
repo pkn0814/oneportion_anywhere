@@ -6,86 +6,225 @@
 {% block content %}
 <head>
     <style>
-        .post_list{
-            border: medium double black;
-            overflow:auto;
-            height:140px;
-            width:400px;
+        .view{
+            font-size: x-small;
+        }
+        .card-text{
+            height:100px;
+            overflow: auto;
+        }
+        .hoverBlue:hover{
+            color:blue ;
         }
     </style>
 </head>
-<h2>my page</h2>
 
-<h2>작성한 게시글</h2>
-{% if request.user.position == "사업자" %}
-<h4>전문가 일인분</h4>
-<p class="post_list">
-
-{% if expert_posts %}
-{% for expert_post in expert_posts %}
-글제목: {{ expert_post.title }}  <a href="{% url 'detail' expert_post.id %}">글 보기</a><br>
-{% endfor %}
-{% else %}
-아직 작성한 글이 없습니다.
-{% endif %}
-{% endif %}
-</p>
-<br>
-<h4>BEST RECIPE</h4>
-<p class="post_list">
+<div class="container px-4 px-lg-5">
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body"><p class="text-white m-0">작성한 게시글</p></div>
+    </div>
+    {% if request.user.position == "사업자" %}
     
-{% if best_posts %}
-{% for best_post in best_posts %}
-글제목: {{ best_post.title }}  <a href="{% url 'detail' best_post.id %}">글 보기</a><br>
-{% endfor %}
-{% else %}
-아직 작성한 글이 없습니다.
-{% endif %}
-</p>
-<h4>COMMUNITY</h4>
-<p class="post_list">
-{% if com_posts %}
-{% for com_post in com_posts %}
-글제목: {{ com_post.title }}  <a href="{% url 'postshow' com_post.id %}">글 보기</a><br>
-{% endfor %}
-{% else %}
-아직 작성한 글이 없습니다.
-{% endif %}
-</p>
+<div class="row gx-4 gx-lg-5">
+    <div class="col-md-4 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">전문가 일인분</h2>
+                <p class="card-text">
+                    {% if expert_posts %}
+                    {% for expert_post in expert_posts %}
+                    글제목: {{ expert_post.title }}  <a class="hoverBlue"href="{% url 'detail' expert_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer"></div>
+            
+        </div>
+    </div>
+    <div class="col-md-4 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">BEST RECIPE</h2>
+                <p class="card-text">
+                    {% if best_posts %}
+                    {% for best_post in best_posts %}
+                    글제목: {{ best_post.title }}  <a class="hoverBlue"href="{% url 'detail' best_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">COMMUNITY</h2>
+                <p class="card-text">
+                    {% if com_posts %}
+                    {% for com_post in com_posts %}
+                    글제목: {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}  
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body"><p class="text-white m-0">스크랩한 게시글</p></div>
+</div>
+                    
+<div class="row gx-4 gx-lg-5">
+    <div class="col-md-6 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">전문가 일인분</h2>
+                <p class="card-text">
+                    {% if expert_scraps %}
+                    {% for expert_scrap in expert_scraps %}
+                    글제목: {{ expert_scrap.expert }}<a class="hoverBlue"href="{% url 'detail' expert_scrap.expert.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+                
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">BEST RECIPE/COMMUNITY</h2>
+                <p class="card-text">
+                    {% if com_scraps %}
+                    {% for com_scrap in com_scraps %}
+                    글제목: {{ com_scrap.post }}<a class="hoverBlue"href="{% url 'postshow' com_scrap.post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
 
 
 
-<h2>스크랩</h2>
-<h4>전문가 일인분</h4>
-<p class="post_list">
-{% if expert_scraps %}
-{% for expert_scrap in expert_scraps %}
-글제목: {{ expert_scrap.expert }}<a href="{% url 'detail' expert_scrap.expert.id %}">글보기</a><br>
-{% endfor %}
 {% else %}
-아직 스크랩한 글이 없습니다.
-{% endif %}
-</p>
-<h4>BEST RECIPE</h4>
-<p class="post_list">
+<div class="row gx-4 gx-lg-5">
+
+    <div class="col-md-6 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">BEST RECIPE</h2>
+                <p class="card-text">
+                    {% if best_posts %}
+                    {% for best_post in best_posts %}
+                    글제목: {{ best_post.title }}  <a class="hoverBlue"href="{% url 'detail' best_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
     
-{% if best_scraps %}
-{% for best_scrap in best_scraps %}
-글제목: {{ best_scrap.post }}  <a href="{% url 'detail' best_scrap.id %}">글 보기</a><br>
-{% endfor %}
-{% else %}
-아직 스크랩한 글이 없습니다.
-{% endif %}
+    <div class="col-md-6 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">COMMUNITY</h2>
+                <p class="card-text">
+                    {% if com_posts %}
+                    {% for com_post in com_posts %}
+                    글제목: {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}  
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+    </div>
+    <div class="card text-white bg-secondary my-5 py-4 text-center">
+        <div class="card-body"><p class="text-white m-0">스크랩한 게시글</p></div>
+    </div>
+                        
+<div class="row gx-4 gx-lg-5">
+    <div class="col-md-6 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">전문가 일인분</h2>
+                <p class="card-text">
+                    {% if expert_scraps %}
+                    {% for expert_scrap in expert_scraps %}
+                    글제목: {{ expert_scrap.expert }}<a class="hoverBlue"href="{% url 'detail' expert_scrap.expert.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+                
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-5">
+        <div class="card h-100">
+            <div class="card-body">
+                <h2 class="card-title">BEST RECIPE/COMMUNITY</h2>
+                <p class="card-text">
+                    {% if com_scraps %}
+                    {% for com_scrap in com_scraps %}
+                    글제목: {{ com_scrap.post }}<a class="hoverBlue"href="{% url 'postshow' com_scrap.post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+
+                </p>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+
+
     
-    </p>
-<h4>COMMUNITY</h4>
-<p class="post_list">
-    {% if com_scraps %}
-    {% for com_scrap in com_scraps %}
-    글제목: {{ com_scrap.post }}<a href="{% url 'postshow' com_scrap.post.id %}">글보기</a><br>
-    {% endfor %}
-    {% else %}
-    아직 스크랩한 글이 없습니다.
-    {% endif %}
-    </p>
+                        
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endif %}
+
+
+
 {% endblock %}
