@@ -19,7 +19,7 @@
             <tbody style="text-align:center;">
                     {% for post in result %}
                     <tr>
-                    <th scope="row"> {{forloop.counter}} </th>
+                    <th scope="row"> {{forloop.revcounter}} </th>
                     <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
                     <td>{{ post.writer }}</td>
                     <td>{{ post.pub_date }}</td>
