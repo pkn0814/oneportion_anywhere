@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm
-from accounts.forms import SignupForm
+from accounts.forms import SignupForm, CustomerUserChangeForm
 from django.shortcuts import redirect, render
 from . models import CustomerUser
 from django.contrib.auth import authenticate, login, logout
@@ -8,9 +8,24 @@ from django.contrib import auth, messages
 from argon2 import PasswordHasher
 from expert.models import Expert, Scrap
 from community.models import Post, Scrap_commu
+from django.contrib.auth.forms import UserChangeForm
 
 
 # Create your views here.
+
+def userInfoChange(request):
+    if request.method == 'POST':
+        user_change_form = CustomerUserChangeForm(request.POST,request.FILES, instance = request.user)
+        if user_change_form.is_valid():
+            user_change_form.save()
+            messages.success(request, '회원정보가 수정되었습니다.')
+            return render(request, 'mypage.html')
+    else:
+        user_change_form = CustomerUserChangeForm(instance = request.user)
+        return render(request, 'userInfoChange.html', {'user_change_form':user_change_form})
+
+    
+
 def signup_view(request):
     if request.method=='POST':
         

@@ -1,9 +1,33 @@
 from typing import AbstractSet
 from accounts.models import CustomerUser
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from . models import CustomerUser
 from django import forms
 from argon2 import PasswordHasher, exceptions
+
+
+class CustomerUserChangeForm(forms.ModelForm):
+    upload = forms.FileField(
+        label = '사업자 인증',
+        required = False,
+        widget=forms.FileInput(
+            attrs={
+            }
+        )
+    )
+    profile = forms.ImageField(
+        label = '프로필 사진',
+        required = False,
+        
+        )
+
+    username = forms.CharField(
+        label='ID'
+    )
+    class Meta:
+        model = CustomerUser
+        fields = ['position','upload','profile','username','nickname','email']
+
 
 class SignupForm(UserCreationForm):
     POSITION = (
@@ -136,21 +160,4 @@ class LoginForm(AuthenticationForm):
         model = CustomerUser
         fields = ['username','password']
     
-    # def clean(self):
-    #     cleaned_data = super.clean()
-
-    #     username = cleaned_data.get('username','')
-    #     password1 = cleaned_data.get('password','')
-
-    #     if username == '':
-    #         return self.add_error('username','아이디를 다시 입력해주세요.')
-    #     else:
-    #         try:
-    #             user = CustomerUser.objects.get(username=username)
-    #         except CustomerUser.DoesNotExist:
-    #             return self.add_error('username','아이디가 존재하지 않습니다.')
-
-    #         try:
-    #             PasswordHasher().verify(CustomerUser.password1, password1)
-    #         except exceptions.VerifyMismatchError:
-    #             return self.add_error('password1','비밀번호가 다릅니다.')
+    

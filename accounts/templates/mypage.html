@@ -26,7 +26,9 @@
 
 {% if user.is_authenticated %}
 <img src="{{ user.profile.url }}">
+<a href="{% url 'userInfoChange' %}">회원 정보 변경</a>
 {% endif %}
+
 
 <div class="container px-4 px-lg-5">
     <div class="card text-white bg-secondary my-5 py-4 text-center">
