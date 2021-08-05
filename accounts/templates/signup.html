@@ -54,14 +54,10 @@
 <div class="signup">
     <br><h1>회원가입</h1>
 <div class="allBorder">
-<form action="{% url 'signup' %}" method="post">
+<form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{forms.as_p}}
-    {% if field.errors %}
-    {% for error in field.errors %}
-    {{ error }}
-    {% endfor %}
-    {% endif %}
+    
     <p>이미 회원이라면? <a href="{% url 'login' %}">로그인하기</a></p>
         <br>
         <button type="submit" class="button">확인</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

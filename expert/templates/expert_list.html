@@ -53,7 +53,7 @@
                 <img width="300" height="300" class="card-img-top" src="{{expert.image.url}}" alt="Card image cap">
                 <div class="card-body">
                   <div class="card_text">
-                    <p id="title">{{expert.title}} <small class="text-muted">{{expert.writer}}</small>
+                    <p id="title">[{{expert.category}}]{{expert.title}} <small class="text-muted">{{expert.writer}}</small>
                     </p>
                     {% if user.is_authenticated %}
                     <div class="btn-group">
