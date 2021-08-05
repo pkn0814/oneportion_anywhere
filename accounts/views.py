@@ -2,16 +2,32 @@ from django.contrib.auth.forms import AuthenticationForm
 from accounts.forms import SignupForm, CustomerUserChangeForm
 from django.shortcuts import redirect, render
 from . models import CustomerUser
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from . forms import LoginForm, SignupForm 
 from django.contrib import auth, messages
 from argon2 import PasswordHasher
 from expert.models import Expert, Scrap
 from community.models import Post, Scrap_commu
-from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 
 
 # Create your views here.
+def passwordChange(request):
+    if request.method == "POST":
+        password_change_form = PasswordChangeForm(request.user, request.POST)
+        
+        if password_change_form.is_valid():
+            user = password_change_form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, "비밀번호를 성공적으로 변경하였습니다.")
+            return redirect('mypage')
+        
+        
+    else:
+        password_change_form = PasswordChangeForm(request.user)
+        
+        
+    return render(request, 'passwordChange.html', {'password_change_form':password_change_form})
 
 def userInfoChange(request):
     if request.method == 'POST':

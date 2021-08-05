@@ -4,7 +4,7 @@
 
 
 <h1>User Edit</h1>
-
+<a href="{% url 'passwordChange' %}">비밀번호 변경하기</a>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form user_change_form %}
