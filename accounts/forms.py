@@ -31,6 +31,11 @@ class SignupForm(UserCreationForm):
             }
         )
     )
+    profile = forms.ImageField(
+        label = '프로필 사진',
+        required = False,
+        
+        )
     username = forms.CharField(
         label = '',
         widget=forms.TextInput(
@@ -90,7 +95,7 @@ class SignupForm(UserCreationForm):
     )
     class Meta:
         model = CustomerUser
-        fields = ['position','upload','username','nickname','password1','password2','email']
+        fields = ['position','upload','profile','username','nickname','password1','password2','email']
     
     def clean(self):
         cleaned_data = super().clean()

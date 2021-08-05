@@ -14,10 +14,10 @@ from community.models import Post, Scrap_commu
 def signup_view(request):
     if request.method=='POST':
         
-        forms = SignupForm(request.POST)
+        forms = SignupForm(request.POST,request.FILES)
         context = {'forms':forms}
         if forms.is_valid():
-            user = forms.save()
+            user = forms.save(commit=True)
             login(request, user)
             return redirect('main')
         else:
@@ -38,7 +38,6 @@ def mypage(request):
 
     best_post = Post.objects.filter(like__gt=4)
     best_scrap = Scrap_commu.objects.filter(user=user,post__like__gt=1)
-
     context = {
         'expert_posts':expert_post,
         'expert_scraps':expert_scrap,

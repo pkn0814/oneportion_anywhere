@@ -24,6 +24,10 @@
     </style>
 </head>
 
+{% if user.is_authenticated %}
+<img src="{{ user.profile.url }}">
+{% endif %}
+
 <div class="container px-4 px-lg-5">
     <div class="card text-white bg-secondary my-5 py-4 text-center">
         <div class="card-body"><p class="text-white m-0">작성한 게시글</p></div>
