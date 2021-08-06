@@ -13,7 +13,19 @@
         .title{
             width:720px;
         }
-        
+        .category{
+            list-style: none;
+        }
+        #text{
+            position:absolute;
+            left:350px;
+            top:200px;
+        }
+        #submit{
+            position:absolute;
+            left:670px;
+            
+        }
     </style>
     <script>
 //         window.setTimeout(function() {
@@ -23,6 +35,7 @@
 // }, 4000);
     </script>
 </head>
+<div id="text">
 <div class="error">
 {% for message in messages %}
 <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
@@ -37,9 +50,9 @@
 <form  method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
-    
-    <br><input type="submit" value="작성"/>
+    <button id="submit" type="submit" class="btn btn-warning btn-sm">작성</button>
 </form>
+</div>
 </div>
 {% endblock %}
 {% endblock %}

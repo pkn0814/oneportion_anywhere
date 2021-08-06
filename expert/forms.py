@@ -4,6 +4,21 @@ from django_summernote.fields import SummernoteTextField, SummernoteTextFormFiel
 from django_summernote.widgets import SummernoteWidget
 
 class ExpertForm(forms.ModelForm):
+    CATEGORY = (
+        ('레시피', '레시피'),
+        ('밀키트', '밀키트'),
+    )
+    category = forms.CharField(
+        label='',
+        widget=forms.RadioSelect(
+            choices=CATEGORY,
+            attrs={
+                'class':'category',
+            }
+            
+        )
+
+    )
     body = SummernoteTextFormField(
         label='',
         widget=forms.TextInput(
@@ -34,6 +49,7 @@ class ExpertForm(forms.ModelForm):
         model = Expert
         fields=[
             'title',
+            'category',
             'body',
             'image',
         ]

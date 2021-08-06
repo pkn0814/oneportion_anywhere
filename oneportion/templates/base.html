@@ -8,15 +8,14 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap');
+     
     * {
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
     }
-    
     body {
         font-family: 'Noto Sans KR';
-        background-size: cover;
     }
     
     a:link {
@@ -29,76 +28,128 @@
       color : yellow; 
     }
     #bar{
-      border-bottom:solid; border-bottom-color:darkorange;
+      width:1100px;
+      height:70px;
+      border:solid;
+      border-color:rgb(258, 157, 97);
+      border-radius:50px;
+      border-width:5px;
+      position:absolute;
+      top:50px;
+      left: 250px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
     }
     #bar ul{
-      margin:0; 
+      margin: 0;
       display:flex; 
       flex-flow:row nowrap; 
       justify-content:space-evenly; 
-      padding-left:130px; 
-      padding-top:50px; 
-      padding-bottom: 30px; 
+      padding-left:40px; 
+      padding-top:15px; 
+      padding-bottom: 15px; 
       font-size: 15pt;
-      background-color: rgba(255, 178, 77, 0.979);
     }
+
     #bar li{
       list-style-type: none;
     }
     
     #back{
-      color:black;
-      font-style:initial; font-size: 16pt; font-weight: bold;
-      text-decoration:initial;
-      position:absolute; top: 20px; left:70px;
+      position: fixed; top: 20px; left:60px;
     }
     #mypage{
       font-size:12pt;
     }
+    #my{
+      position:fixed;
+      top: 190px;
+      left:30px;
+      text-align:center;
+      background-color:rgb(253, 213, 150);
+      border-radius:15px;
+      width:200px;
+      height:100px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
+    }
+    #usual{
+      position:fixed;
+      top: 330px;
+      left: 30px;
+      text-align:center;
+      background-color:rgb(251, 191, 95);
+      border-radius:15px;
+      width:200px;
+      height:270px;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;      
+    }
+    #search{
+      position:fixed; 
+      top:150px; 
+      left:30px;
+    }        
+
   </style>
 </head>
 
 
+<a href="{% url 'main' %}" id="back"><img src = "{% static 'logoplus.png' %}" width = "110px" alt="로고"></a>
 <div id="bar">
-  <a href="{% url 'main' %}" id="back"><img src = "{% static 'logo.png' %}" width = "80px" alt="로고"></a>
   <nav>
       <ul>
         <li class="nav-item">
-            <a class="nav-link" href="{% url 'myfridge' %}">나의 냉장고</a>
+            <a class="nav-link" href="{% url 'myfridge' %}">나의 냉장고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
           </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'expert_list' %}">전문가 일인분</a>
+          <a class="nav-link" href="{% url 'expert_list' %}">전문가 일인분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'likelist' %}">BEST RECIPE</a>
+          <a class="nav-link" href="{% url 'likelist' %}">BEST RECIPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'list' %}">COMMUNITY</a>
         </li>
-        <li class="nav-item dropdown">
-            {% if user.is_authenticated %}
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{ user.username }}
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'mypage' %}">마이페이지</a>
-            <a class="dropdown-item" href="{% url 'logout' %}">로그아웃</a>
-          </div>
-          {% else %}
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            로그인/회원가입
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="{% url 'login' %}">로그인</a>
-            <a class="dropdown-item" href="{% url 'signup' %}">회원가입</a>
-          </div>
-        </li>
-        {% endif %}
       </ul>  
   </nav>
 </div>
 
+  <div id="my">
+    <class="nav-item dropdown">
+    {% if user.is_authenticated %}
+      <a href="#" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
+      {{ user.username }}
+      </a>
+      <div aria-labelledby="navbarDropdownMenuLink">
+        <a href="{% url 'mypage' %}">마이페이지</a>
+        <a href="{% url 'logout' %}">로그아웃</a>
+      </div>
+    {% else %}
+    <div aria-labelledby="navbarDropdownMenuLink">
+      <a href="{% url 'login' %}">로그인</a>
+      <a href="{% url 'signup' %}">회원가입</a>
+    </div>
+    {% endif %}
+  </div>
+
+  <div id="usual">
+    냠냠
+  </div>
+  
+  <div id="search">
+    <form action = "{% url 'result' %}" method = "get">
+        {% csrf_token %}
+        <input type = "search" placeholder="제목+본문" style="height:22px; font-family:'굴림';" name = "query">
+        <input type = "submit" name="" value="🔍">
+    </form>
+</div>
+
   {% block content %} 
   {% endblock %}
-
-
