@@ -23,7 +23,7 @@
                 {% for post in posts %}
                 {% if post.like.all.count > 4 %}
                     <tr>
-                    <th scope="row">{{ post.id }}</th>
+                        <th scope="row">{{forloop.revcounter}}</th>
                     {% if user.is_authenticated %}
                 <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
                 {% else %}
