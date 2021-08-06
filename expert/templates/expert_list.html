@@ -15,11 +15,16 @@
     .card_text {
       text-align: center;
     }
-    
-  </style>
+    #text{
+            position:absolute;
+            left:300px;
+            top:200px;
+        }
+</style>
 </head>
 
   <body>
+    <div id="text">
     <br>
     <main role="main">
 
@@ -53,7 +58,7 @@
                 <img width="300" height="300" class="card-img-top" src="{{expert.image.url}}" alt="Card image cap">
                 <div class="card-body">
                   <div class="card_text">
-                    <p id="title">[{{expert.category}}]{{expert.title}} <small class="text-muted">{{expert.writer}}</small>
+                    <p id="title">[{{expert.category}}]<br>{{expert.title}}<br><small class="text-muted">{{expert.writer}}</small>
                     </p>
                     {% if user.is_authenticated %}
                     <div class="btn-group">
@@ -110,15 +115,6 @@
     
     </div>
 
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          
-        </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-      </div>
-    </footer>
     
   </body>
 </html>

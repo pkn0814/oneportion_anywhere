@@ -8,7 +8,6 @@
     #little{font-family:'굴림';font-size:8pt; color:dimgrey; position:absolute; top:650px; left:670px; text-align:center;}
     #bibim:hover{opacity:0.7;}
     #pasta:hover{opacity:0.7;}
-    #search{position:absolute; top:620px; left:30px;}        
             
 </style>
 <span style="font-family:'굴림'; font-size:8pt; color:dimgrey; position:absolute; top:180px; left:420px;">* 이미지를 클릭하면 해당 음식의 레시피를 보실 수 있습니다.</span>
@@ -19,13 +18,7 @@
     </tr>
 </table>
 
-<div id="search">
-    <form action = "{% url 'result' %}" method = "get">
-        {% csrf_token %}
-        <input type = "search" placeholder="제목+본문" style="height:22px; font-family:'굴림';" name = "query">
-        <input type = "submit" name="" value="🔍">
-    </form>
-</div>
+
 
 <div id="little">
     고객센터 : 0000 - 0000<br />
