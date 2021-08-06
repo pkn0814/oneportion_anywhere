@@ -25,7 +25,7 @@
       color: black;
     }
     a:hover {
-      color : yellow; 
+      color :orange; 
     }
     #bar{
       width:1100px;
@@ -95,8 +95,13 @@
       position:fixed; 
       top:150px; 
       left:30px;
-      
-    }        
+    }
+
+    #page {
+      position: absolute;
+      left:280px;
+      top: 150px;
+    }
 
   </style>
 </head>
@@ -122,35 +127,38 @@
   </nav>
 </div>
 
-  <div id="my">
-    <class="nav-item dropdown">
-    {% if user.is_authenticated %}
-      <a href="#" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
-      {{ user.username }}
-      </a>
-      <div aria-labelledby="navbarDropdownMenuLink">
-        <a href="{% url 'mypage' %}">마이페이지</a>
-        <a href="{% url 'logout' %}">로그아웃</a>
-      </div>
-    {% else %}
+<div id="my">
+  <class="nav-item dropdown">
+  {% if user.is_authenticated %}
+    <a href="#" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
+    {{ user.username }}
+    </a>
     <div aria-labelledby="navbarDropdownMenuLink">
-      <a href="{% url 'login' %}">로그인</a>
-      <a href="{% url 'signup' %}">회원가입</a>
+      <a href="{% url 'mypage' %}">마이페이지</a>
+      <a href="{% url 'logout' %}">로그아웃</a>
     </div>
-    {% endif %}
+  {% else %}
+  <div aria-labelledby="navbarDropdownMenuLink">
+    <a href="{% url 'login' %}">로그인</a>
+    <a href="{% url 'signup' %}">회원가입</a>
   </div>
-
-  <div id="usual">
-    냠냠
-  </div>
-  
-  <div id="search">
-    <form action = "{% url 'result' %}" method = "get">
-        {% csrf_token %}
-        <input type = "search" placeholder="제목+본문" style="height:22px; font-family:'굴림';" name = "query">
-        <input type = "submit" name="" value="🔍">
-    </form>
+  {% endif %}
 </div>
 
+<div id="usual">
+  냠냠
+</div>
+  
+<div id="search">
+  <form action = "{% url 'result' %}" method = "get">
+      {% csrf_token %}
+      <input type = "search" placeholder="제목+본문" style="height:22px; font-family:'굴림';" name = "query">
+      <input type = "submit" name="" value="🔍">
+  </form>
+</div>
+
+<div id = "page">
   {% block content %} 
   {% endblock %}
+</div>
+  
