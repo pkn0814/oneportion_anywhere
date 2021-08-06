@@ -5,6 +5,7 @@
 {% load static %} 
 {% block content %} 
 
+<html lang="ko">
 <head>
     <style>
         hr{
@@ -24,6 +25,13 @@
             position: relative;
             margin: 10px;
         }
+
+        table {
+            width: 100%;
+        }
+        th {
+            text-align: center;
+        }
                 
         .box1 {
             padding: 10px; padding-bottom: 30px;
@@ -31,7 +39,7 @@
             text-align: center;
             position: relative;
             display: inline-block;
-            width: 500px; height: 350px;
+            width: 800px; height: fit-content;
             left: 50px;
         }
         .box1 p{
@@ -117,12 +125,10 @@
 
         <section>
             <h4>기본 재료</h4>
-            <p>기본적으로 필요한 재료들: 소금, 설탕, 식용유, 올리브유</p>
-            <p>자주 사용되는 재료들: 올리브유, 다진마늘, 굴소스, 파</p>
+            <p>기본적으로 필요한 재료들: 소금, 설탕, 후추, 식용유, 올리브유, 참기름, 들기름</p>
+            <p>자주 사용되는 재료들: 다진마늘, 굴소스, 파</p>
             <p><strong>메인재료와 부가재료 구분 기준</strong></p>
-            <p>메인재료와 부가재료 모두 해당 음식을 만들기 위해 필요한 재료입니다.</p>
             <p>메인재료: 해당 음식을 만드는 데에 주가 되는 재료</p>
-            <p>부가재료: 주는 아니지만 맛을 내기 위해 필요한 재료</p>
         </section>
 
         <section>
@@ -132,62 +138,71 @@
                     <p>어떤 재료를 메인 재료로 사용하시겠습니까? <br>가지고 있는 메인 재료를 선택해주세요:) <br>* 1개 이상 선택(중복 선택 가능)</p>
                     <hr>
                     <p><input type="checkbox" name="CheckAll" onclick = "checkAllmain(this)"/><strong>전체 선택</strong></p>
-                    <input type="checkbox" name="ingredients" value="밥" onclick="getCheckboxValue1()"/>밥
-                    <input type="checkbox" name="ingredients" value="식빵" onclick="getCheckboxValue1()"/>식빵
-                    <input type="checkbox" name="ingredients" value="달걀" onclick="getCheckboxValue1()"/>달걀
-                    <input type="checkbox" name="ingredients" value="김치" onclick="getCheckboxValue1()"/>김치
-                    <input type="checkbox" name="ingredients" value="햄" onclick="getCheckboxValue1()"/>햄
-                    <p><strong>면류: </strong>
-                        <input type="checkbox" name="ingredients" value="라면" onclick="getCheckboxValue1()"/>라면
-                        <input type="checkbox" name="ingredients" value="소면" onclick="getCheckboxValue1()"/>소면
-                        <input type="checkbox" name="ingredients" value="파스타면" onclick="getCheckboxValue1()"/>파스타면
-                    </p>
-                    <p><strong>육류: </strong>
-                        <input type="checkbox" name="ingredients" value="닭고기" onclick="getCheckboxValue1()"/>닭고기
-                        <input type="checkbox" name="ingredients" value="닭가슴살" onclick="getCheckboxValue1()"/>닭가슴살
-                        <input type="checkbox" name="ingredients" value="돼지고기" onclick="getCheckboxValue1()"/>돼지고기
-                        <input type="checkbox" name="ingredients" value="삼겹살" onclick="getCheckboxValue1()"/>삼겹살
-                        <input type="checkbox" name="ingredients" value="돼지목살" onclick="getCheckboxValue1()"/>돼지목살
-                        <input type="checkbox" name="ingredients" value="소고기" onclick="getCheckboxValue1()"/>소고기
-                        <input type="checkbox" name="ingredients" value="차돌박이" onclick="getCheckboxValue1()"/>차돌박이
-                    </p>
-                    <p><strong>야채/채소: </strong>
-                        <input type="checkbox" name="ingredients" value="버섯" onclick="getCheckboxValu1e()"/>버섯
-                        <input type="checkbox" name="ingredients" value="파" onclick="getCheckboxValue1()"/>파
-                        <input type="checkbox" name="ingredients" value="샐러드채소" onclick="getCheckboxValue1()"/>샐러드채소
-                        <input type="checkbox" name="ingredients" value="시금치파" onclick="getCheckboxValue1()"/>시금치
-                        <input type="checkbox" name="ingredients" value="숙주나물" onclick="getCheckboxValue1()"/>숙주나물
-                        <input type="checkbox" name="ingredients" value="콩나물" onclick="getCheckboxValue1()"/>콩나물
-                    </p>
-                    <p><strong>주요 소스: </strong>
-                        <input type="checkbox" name="ingredients" value="고추장" onclick="getCheckboxValue1()"/>고추장
-                        <input type="checkbox" name="ingredients" value="고춧가루" onclick="getCheckboxValue1()"/>고춧가루
-                    </p>
-                    <p>기타: </p>
-                    
+                    <table>
+                        <tr>
+                            <th>메인</th>
+                            <th>면류</th>
+                            <th>육류</th>
+                            <th>야채/채소</th>
+                            <th>주요 소스 </th>
+                            <th>디저트류</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p><input type="checkbox" name="ingredients" value="밥" onclick="getCheckboxValue1()"/>밥</p>
+                                <p><input type="checkbox" name="ingredients" value="식빵" onclick="getCheckboxValue1()"/>식빵</p>
+                                <p><input type="checkbox" name="ingredients" value="달걀" onclick="getCheckboxValue1()"/>달걀</p>
+                                <p><input type="checkbox" name="ingredients" value="김치" onclick="getCheckboxValue1()"/>김치</p>
+                                <p><input type="checkbox" name="ingredients" value="햄" onclick="getCheckboxValue1()"/>햄</p>
+                            </td>
+                            <td>
+                                <p><input type="checkbox" name="ingredients" value="라면" onclick="getCheckboxValue1()"/>라면</p>
+                                <p><input type="checkbox" name="ingredients" value="소면" onclick="getCheckboxValue1()"/>소면</p>
+                                <p><input type="checkbox" name="ingredients" value="파스타면" onclick="getCheckboxValue1()"/>파스타면</p>
+                                <p><input type="checkbox" name="ingredients" value="두부면" onclick="getCheckboxValue1()"/>두부면</p>
+                            </td>
+                            <td>
+                                <p><input type="checkbox" name="ingredients" value="닭고기" onclick="getCheckboxValue1()"/>닭고기</p>
+                                <p><input type="checkbox" name="ingredients" value="닭가슴살" onclick="getCheckboxValue1()"/>닭가슴살</p>
+                                <p><input type="checkbox" name="ingredients" value="돼지고기" onclick="getCheckboxValue1()"/>돼지고기</p>
+                                <p><input type="checkbox" name="ingredients" value="삼겹살" onclick="getCheckboxValue1()"/>삼겹살</p>
+                                <p><input type="checkbox" name="ingredients" value="돼지목살" onclick="getCheckboxValue1()"/>돼지목살</p>
+                                <p><input type="checkbox" name="ingredients" value="소고기" onclick="getCheckboxValue1()"/>소고기</p>
+                                <p><input type="checkbox" name="ingredients" value="차돌박이" onclick="getCheckboxValue1()"/>차돌박이</p>
+                            </td>
+                            <td>
+                                <p><input type="checkbox" name="ingredients" value="버섯" onclick="getCheckboxValu1e()"/>버섯</p>
+                                <p><input type="checkbox" name="ingredients" value="파" onclick="getCheckboxValue1()"/>파</p>
+                                <p><input type="checkbox" name="ingredients" value="양파" onclick="getCheckboxValue1()"/>양파</p>
+                                <p><input type="checkbox" name="ingredients" value="샐러드야채" onclick="getCheckboxValue1()"/>샐러드야채</p>
+                                <p><input type="checkbox" name="ingredients" value="시금치" onclick="getCheckboxValue1()"/>시금치</p>
+                                <p><input type="checkbox" name="ingredients" value="숙주나물" onclick="getCheckboxValue1()"/>숙주나물</p>
+                                <p><input type="checkbox" name="ingredients" value="콩나물" onclick="getCheckboxValue1()"/>콩나물</p>
+                            </td>
+                            <td>
+                                <p><input type="checkbox" name="ingredients" value="고추장" onclick="getCheckboxValue1()"/>고추장</p>
+                                <p><input type="checkbox" name="ingredients" value="고춧가루" onclick="getCheckboxValue1()"/>고춧가루</p>
+                                <p><input type="checkbox" name="ingredients" value="우유" onclick="getCheckboxValue1()"/>우유</p>
+                                <p><input type="checkbox" name="ingredients" value="잼" onclick="getCheckboxValue1()"/>잼</p>
+                                <p><input type="checkbox" name="ingredients" value="토마토소스" onclick="getCheckboxValue1()"/>토마토소스</p>
+                                <p><input type="checkbox" name="ingredients" value="까르보나라소스" onclick="getCheckboxValue1()"/>까르보나라소스</p>
+                                <p><input type="checkbox" name="ingredients" value="간장" onclick="getCheckboxValue1()"/>간장</p>
+                                <p><input type="checkbox" name="ingredients" value="생크림" onclick="getCheckboxValue1()"/>생크림</p>
+                                <p><input type="checkbox" name="ingredients" value="굴소스" onclick="getCheckboxValue1()"/>굴소스</p>
+                                <p><input type="checkbox" name="ingredients" value="치킨스톡" onclick="getCheckboxValue1()"/>치킨스톡</p>
+                                <p><input type="checkbox" name="ingredients" value="통마늘" onclick="getCheckboxValue1()"/>통마늘</p>
+                                <p><input type="checkbox" name="ingredients" value="다진마늘" onclick="getCheckboxValue1()"/>다진마늘</p>
+                                <p><input type="checkbox" name="ingredients" value="맛술" onclick="getCheckboxValue1()"/>맛술</p>
+                                <p><input type="checkbox" name="ingredients" value="맛술" onclick="getCheckboxValue1()"/>불닭소스</p>
+                            </td>
+                            <td>
+                                <p><input type="checkbox" name="ingredients" value="딸기청" onclick="getCheckboxValue1()"/>딸기청</p>
+                                <p><input type="checkbox" name="ingredients" value="자몽청" onclick="getCheckboxValue1()"/>자몽청</p>
+                                <p><input type="checkbox" name="ingredients" value="플레인요거트" onclick="getCheckboxValue1()"/>플레인요거트</p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                
-                <div class="box1 box2">
-                    <h2>부가재료</h2>
-                    <p>가지고 있는 부가 재료를 선택해주세요:) <br>메인 재료에 부가재료가 포함된 순으로 요리를 정렬하여 보여드립니다.</p>
-                    <hr>
-                    <p><input type="checkbox" name="checkAlladd" onclick="checkAllAdd(this)"/><strong>전체 선택</strong></p>
-                    <input type="checkbox" name="additional" value="올리브유" onclick="getCheckboxValu2()"/>올리브유
-                    <input type="checkbox" name="additional" value="우유" onclick="getCheckboxValue2()"/>우유
-                    <input type="checkbox" name="additional" value="잼" onclick="getCheckboxValue2()"/>잼
-                    <input type="checkbox" name="additional" value="토마토소스" onclick="getCheckboxValue2()"/>토마토소스
-                    <input type="checkbox" name="additional" value="까르보나라소스" onclick="getCheckboxValue2()"/>까르보나라소스
-                    <input type="checkbox" name="additional" value="간장" onclick="getCheckboxValue2()"/>간장
-                    <input type="checkbox" name="additional" value="굴소스" onclick="getCheckboxValue2()"/>굴소스
-                    <input type="checkbox" name="additional" value="치킨스톡" onclick="getCheckboxValue2()"/>치킨스톡
-                    <br>
-                    <input type="checkbox" name="additional" value="고춧가루" onclick="getCheckboxValue2()"/>고춧가루
-                    <input type="checkbox" name="additional" value="설탕" onclick="getCheckboxValue2()"/>설탕
-                    <input type="checkbox" name="additional" value="소금" onclick="getCheckboxValue2()"/>소금
-                    <input type="checkbox" name="additional" value="다진마늘" onclick="getCheckboxValue2()"/>다진마늘
-                    <input type="checkbox" name="additional" value="양파" onclick="getCheckboxValue2()"/>양파
-                </div>
-
                 <input id="check" type="submit" title="무슨 음식을 할 수 있을까?" target="_self" value="요리보기">
                 
             </form>
@@ -196,20 +211,13 @@
         <section>
             <div id="viewcook">
 
-                <div id="MainResult">선택한 메인 재료: 
-                    {{selectedMain}}
-                </div>
-        
-                <br>
-
-                <div id="AdditionalResult">선택한 부가 재료: 
-                    {{ selectedAdd}}
-                </div>
+                <div id="MainResult">선택한 메인 재료: </div>
             </div>
 
         </section>
 
     </article>
+
     <script type="text/javascript">
     const query1 = 'input[name="ingredients"]:checked';
     const query2 = 'input[name="additional"]:checked';
@@ -275,4 +283,4 @@
     {% endblock %}
 </body>
 
-
+</html>
