@@ -9,18 +9,11 @@ class PostForm(forms.ModelForm):
     )
 
     category_select = (
-        ('일반','일반'),
-        ('사업자','사업자'),
+        ('일상공유','일상공유'),
+        ('레시피공유','레시피공유'),
     )
-    category = forms.CharField(
-        label='',
-        widget=forms.RadioSelect(
-            choices=category_select,
-            attrs={
-                'class':'border1',
-            }
-            
-        )
+    category = forms.ChoiceField(
+        choices=category_select
     )
 
     title = forms.CharField(
@@ -32,9 +25,13 @@ class PostForm(forms.ModelForm):
         )
     )
 
+    tag = forms.CharField(
+        required=False, label="태그"
+    )
+
     class Meta:
         model = Post
-        fields = ['title', 'content','category']
+        fields = ['title', 'content','category', 'tag']
         widgets = {
             'content': SummernoteWidget(),
         }

@@ -74,3 +74,12 @@ def likes(request, post_id):
         post.like.add(request.user)
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
     #return redirect('list')
+
+def tag(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    tags = form.cleaned_data['tags'].split(',')
+    for tag in tags:
+        tag = tag.strip()
+        _tag, _ = Tag.objects.get_or_create(name=tag)
+        post.tags.add(_tag) 
+                                          
