@@ -18,7 +18,6 @@ class CustomerUserChangeForm(forms.ModelForm):
     profile = forms.ImageField(
         label = '프로필 사진',
         required = False,
-        
         )
 
     username = forms.CharField(
