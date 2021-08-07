@@ -6,7 +6,7 @@
       <br>
       {% block content %}
       {% if user.is_authenticated %}
-        <a class="new" href="{% url 'postcreate' %}">새 글 작성</a>
+        <a class="new" href="{% url 'postcreate' %}"><button type="button" class="btn btn-warning">새 글 작성</button></a>
         {% endif %}
       <br/>
 

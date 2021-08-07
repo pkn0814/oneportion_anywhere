@@ -24,6 +24,7 @@
         #profile{
             position:absolute;
             left:190px;
+            text-align: center;
             
         }
         #modify{
@@ -143,8 +144,9 @@
     <div id="profile">
         {% if user.is_authenticated %}
         <img width="140px" height="140px"src="{{ user.profile.url }}" alt="프로필 사진" class="img-circle">
-        <a  href="{% url 'userInfoChange' %}"><img width="20px" height="20px" id="modify" src="{% static 'edit.png' %}" alt="수정"></a>
-        {% endif %}
+            {{ user.username }}
+        <a  href="{% url 'userInfoChange' %}"><img width="20px" height="20px"  src="{% static 'edit.png' %}" alt="수정"></a>
+            {% endif %}
     </div>
     <div id="count">
         <table id="countT">

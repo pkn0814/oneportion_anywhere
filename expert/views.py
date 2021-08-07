@@ -9,7 +9,7 @@ from django.contrib import messages
 def expert_list(request):
     experts = Expert.objects.all
     page_list = Expert.objects.order_by('-pub_date')
-    paginator = Paginator(page_list, 6)
+    paginator = Paginator(page_list, 3)
     
     page = request.GET.get('page','1')
     

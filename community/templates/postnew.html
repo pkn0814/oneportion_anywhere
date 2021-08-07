@@ -12,14 +12,18 @@
         .title{
             width:720px;
         }
-        
+        #submit{
+            position:absolute;
+            left:650px;
+            
+        }
     </style>
     <script>
-        window.setTimeout(function() {
-    $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
-        $(this).remove();
-    });
-}, 4000);
+//         window.setTimeout(function() {
+//     $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+//         $(this).remove();
+//     });
+// }, 4000);
     </script>
 </head>
 
@@ -34,13 +38,12 @@
 {% endfor %}
 </div>
 
-<p>여기</p>
 <div class="form">
     <form  method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form }}
     
-    <br><input type="submit" value="작성"/>
+    <br><button id="submit" type="submit" class="btn btn-warning">작성</button>
 </form>
 </div>
 {% endblock %}
