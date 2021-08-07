@@ -7,6 +7,22 @@ class PostForm(forms.ModelForm):
     content = SummernoteTextFormField(
         label='',
     )
+
+    category_select = (
+        ('일반','일반'),
+        ('사업자','사업자'),
+    )
+    category = forms.CharField(
+        label='',
+        widget=forms.RadioSelect(
+            choices=category_select,
+            attrs={
+                'class':'border1',
+            }
+            
+        )
+    )
+
     title = forms.CharField(
         label='',
         widget = forms.TextInput(
@@ -15,12 +31,10 @@ class PostForm(forms.ModelForm):
             }
         )
     )
+
     class Meta:
         model = Post
-        fields = [
-        'title', 
-        'content',
-        ]
+        fields = ['title', 'content','category']
         widgets = {
             'content': SummernoteWidget(),
         }
