@@ -2,6 +2,18 @@
 {% load bootstrap4 %}
 {% load static %}
 
+<head>
+    <style>
+    table {
+        width: 80%;
+    }
+
+    .page {
+        right: 30px;
+    }
+</style>
+</head>
+
 <body>
       <br>
       {% block content %}
@@ -9,16 +21,16 @@
         <a class="new" href="{% url 'postcreate' %}"><button type="button" class="btn btn-warning">새 글 작성</button></a>
         {% endif %}
       <br/>
-
-        <div class="row mt-5">
-        <div class="col-12">
+      <br/>
+      <div class="row">
+        <div class="col-sm-8">
             <table class="table table-hover" style="text-align:center;">
                 <tr>
-                <th scope="col">No</th>
-                <th scope="col">제목</th>
-                <th scope="col">글쓴이</th>
-                <th scope="col">작성일</th>
-                <th scope="col">추천수</th>
+                <th>No</th>
+                <th>제목</th>
+                <th>글쓴이</th>
+                <th>작성일</th>
+                <th>추천수</th>
                 </tr>
             </thead>
 
@@ -38,9 +50,8 @@
                 {% endfor %}
             </tbody>
             </table>
+            </div>
         </div>
-        </div>
-
         <div class="page">
             <ul class="pagination justify-content-center">
               {% if posts.has_previous %}
