@@ -1,12 +1,26 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
 {% block content %}
-<h1>수정하기</h1>
+<head>
+    <style>
+        #text{
+            position:absolute;
+            left:350px;
+            top:200px;
+        }
+        #revise{
+            position:absolute;
+            left:670px;
+        }
+    </style>
+</head>
+<div id="text">
 <form method="POST" action="">
     {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="수정">
+    {{ form }}
+    <button id="revise" type="submit" class="btn btn-warning btn-sm">수정</button>
 </form>
+</div>
 {% endblock %}

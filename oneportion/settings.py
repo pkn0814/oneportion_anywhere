@@ -132,7 +132,8 @@ USE_TZ = False
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR, 'fridge', 'static'),
     os.path.join(BASE_DIR, 'oneportion', 'static'),
-    os.path.join(BASE_DIR, 'accounts', 'static')
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+    
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'

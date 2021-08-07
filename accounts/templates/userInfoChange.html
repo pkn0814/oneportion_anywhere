@@ -1,14 +1,25 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% block content %}
-
-
-<h1>User Edit</h1>
-<a href="{% url 'passwordChange' %}">비밀번호 변경하기</a>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% bootstrap_form user_change_form %}
-        <input type="submit" value="Submit"/>
-</form>
-
+<head>
+    <style>
+        #text{
+            position:absolute;
+            left:600px;
+            top:200px;
+        }
+        h4{
+            text-align: center;
+        }
+    </style>
+</head>
+<div id="text">
+    <h4>회원정보 수정</h4><br>
+    <a href="{% url 'passwordChange' %}">비밀번호 변경하기</a><br>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form user_change_form %}
+        <input type="submit" value="변경"/>
+    </form>
+</div>
 {% endblock %}

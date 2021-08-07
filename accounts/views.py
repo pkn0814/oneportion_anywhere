@@ -9,7 +9,8 @@ from argon2 import PasswordHasher
 from expert.models import Expert, Scrap
 from community.models import Post, Scrap_commu
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
-
+from django.db.models import Avg, Max, Min, Sum, Count
+from commentcrud.models import Comment
 
 # Create your views here.
 def passwordChange(request):
@@ -61,21 +62,36 @@ def signup_view(request):
     
 def mypage(request):
     user = request.user
+
     expert_post = Expert.objects.filter(writer=user)
     expert_scrap = Scrap.objects.filter(user=user)
 
     com_post = Post.objects.filter(writer=user)
     com_scrap = Scrap_commu.objects.filter(user=user)
 
-    best_post = Post.objects.filter(like__gt=4)
-    best_scrap = Scrap_commu.objects.filter(user=user,post__like__gt=1)
+    expertCount = expert_post.aggregate(Count('id'))
+    postCount = com_post.aggregate(Count('id'))
+    postSum = expertCount['id__count']+postCount['id__count']
+
+    expertScrapCount = expert_scrap.aggregate(Count('id'))
+    postScrapCount = com_scrap.aggregate(Count('id'))
+    scrapSum = expertScrapCount['id__count']+postScrapCount['id__count']
+
+    commentCount1 = Comment.objects.filter(writer=user).aggregate(Count('id'))
+    commentCount2 = commentCount1['id__count']
+
+    
+
+
     context = {
         'expert_posts':expert_post,
         'expert_scraps':expert_scrap,
         'com_posts':com_post,
         'com_scraps':com_scrap,
-        'best_posts':best_post,
-        'best_scraps':best_scrap,
+        'postSum':postSum,
+        'scrapSum':scrapSum,
+        'commentSum':commentCount2,
+        
     }
     return render(request, 'mypage.html', context)
 

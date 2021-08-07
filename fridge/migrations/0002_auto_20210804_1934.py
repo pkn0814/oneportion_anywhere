@@ -10,9 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.DeleteModel(
-            name='Ingredients',
-        ),
         migrations.AddField(
             model_name='dish',
             name='add',
