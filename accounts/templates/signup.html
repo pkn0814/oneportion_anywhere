@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base3.html' %}
 {% block content %}
 <head>
     <style>
@@ -6,62 +6,37 @@
             text-align: center;
         }
         h1{
-                font-family: 'Noto Sans KR', sans-serif;
-            }
-        .allBorder{
-                border: 2px solid gray;
-                padding-left: 20px;
-                padding-right:20px;
-                padding-top:10px;
-                padding-bottom:10px;
-                
-                margin-bottom: 200px;
-                margin-left: 10%;
-                margin-right:10%;
-                border-radius: 70px;
-            }
-            .border1{
-                border: 2px solid rgb(0,147,0);
-                background-color: white;
-                font-size: 11pt;
-            }
-            .business{
-                text-align: center;
-                
-            }
-            .box{
-                width:300px;
-                height:30px;
-                border: 2px solid orange;
-                border-radius: 5px;
-                color:gray;
-            }
-            .button{
-                width: 60px;
-                height:30px;
-                background-color: rgb(255,193,158);
-                border: 1px solid black;
-                border-radius: 6px;
-                color: white;
-            }
-            .errorlist{
-                font-size: 8pt;
-                background-color: white;
-                text-align: center;
-            }
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .border1{
+            
+        }
+        .business{
+            text-align: center;
+        }
+        .box{
+            width:300px;
+            height:30px;
+            border-radius: 5px;
+            color:gray;
+        }
+        .errorlist{
+            font-size: 8pt;
+            background-color: white;
+            text-align: center;
+        }
     </style>
 </head>
 <div class="signup">
-    <br><h1>회원가입</h1>
-<div class="allBorder">
+    <br><h4>SIGN UP</h4>
+<div>
 <form action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{forms.as_p}}
     
     <p>이미 회원이라면? <a href="{% url 'login' %}">로그인하기</a></p>
-        <br>
-        <button type="submit" class="button">확인</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button type="reset" class="button">취소</button>
+        <button type="submit" style="border-style:none; width:70px; height:40px; background-color:darkorange; border-radius:5px; font-size:12pt; font-weight:light;">확인</button>
+        <button type="reset" style="border-style:none; width:70px; height:40px; background-color:darkorange; border-radius:5px; font-size:12pt; font-weight:light;">취소</button>
 </form>
 </div>
 </div>
