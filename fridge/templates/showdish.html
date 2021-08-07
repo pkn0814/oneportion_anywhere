@@ -115,13 +115,10 @@
       <section class="jumbotron text-center">
         <div class="container">
           <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
-          <p class="lead text-muted">선택한 메인재료: 
-            {{ selectedMain|safeseq|join:", "}}
+          <p class="lead text-muted">선택한 재료: 
+            {{ selected|safeseq|join:", "}}
           </p>
-          <p class="lead text-muted">선택한 부가재료: 
-            {{ selectedAdd|safeseq|join:", "}}
-          </p>
-              
+
           <p>
             <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>
           </p>
@@ -131,7 +128,7 @@
       <div class="album py-5 bg-light">
 
         <div class="container">
-          <h3>선택한 메인재료들로만 만들 수 있는 요리</h3>
+          <h3>선택한 재료들로만 만들 수 있는 요리</h3>
           <div class="row">
             {% for dish in maindish.all %}
             <div class="col-md-4">
@@ -143,8 +140,10 @@
                   <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
                   <br>
                   <ul>
-                    <li>메인재료: {{dish.main}}</li>
-                    <li>부가재료: {{dish.add}}</li>
+                    {% if dish.basic %}
+                    <li>기본 재료: {{ dish.basic }}</li>
+                    {% endif %}
+                    <li>필요한 재료: {{dish.ingredients}}</li>
                     <li>옵션: {{dish.option}}</li>
                   </ul>
 
@@ -162,7 +161,7 @@
           </div>
 
           <div class="container">
-            <h3>선택한 메인재료들을 포함한 요리</h3>
+            <h3>선택한 재료들을 포함한 요리</h3>
             <div class="row">
               {% for dish in adddish.all %}
               <div class="col-md-4">
@@ -174,8 +173,10 @@
                     <img class="card-img-top" src="{{dish.image.url}}" alt="Card image cap">
                     <br>
                     <ul>
-                      <li>메인재료: {{dish.main}}</li>
-                      <li>부가재료: {{dish.add}}</li>
+                      {% if dish.basic %}
+                      <li>기본 재료: {{ dish.basic }}</li>
+                      {% endif %}
+                      <li>필요한 재료: {{dish.ingredients}}</li>
                       <li>옵션: {{dish.option}}</li>
                     </ul>
   

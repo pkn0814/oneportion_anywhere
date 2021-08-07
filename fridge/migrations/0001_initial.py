@@ -19,12 +19,4 @@ class Migration(migrations.Migration):
                 ('intro', models.CharField(max_length=20)),
             ],
         ),
-        migrations.CreateModel(
-            name='Ingredients',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('main_ingre', models.BooleanField(choices=[('밥', '밥'), ('식빵', '식빵'), ('달걀', '달걀'), ('김치', '김치'), ('햄', '햄'), ('라면', '라면'), ('소면', '소면'), ('파스타면', '파스타면'), ('닭고기', '닭고기'), ('돼지고기', '돼지고기'), ('소고기', '소고기'), ('버섯', '버섯'), ('파', '파')], default=False)),
-                ('text', models.CharField(max_length=10)),
-            ],
-        ),
     ]

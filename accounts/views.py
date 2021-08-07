@@ -91,6 +91,7 @@ def mypage(request):
         'postSum':postSum,
         'scrapSum':scrapSum,
         'commentSum':commentCount2,
+        'user':user,
         
     }
     return render(request, 'mypage.html', context)

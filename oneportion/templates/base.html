@@ -16,6 +16,7 @@
     }
     body {
         font-family: 'Noto Sans KR';
+        width: 100%;
     }
     
     a:link {
@@ -25,10 +26,10 @@
       color: black;
     }
     a:hover {
-      color : yellow; 
+      color :orange; 
     }
     #bar{
-      width:1100px;
+      width:1000px;
       height:70px;
       border:solid;
       border-color:rgb(258, 157, 97);
@@ -58,28 +59,28 @@
     }
     
     #back{
-      position: fixed; top: 20px; left:60px;
+      position: absolute; top: 20px; left:60px;
     }
     #mypage{
       font-size:12pt;
     }
     #my{
-      position:fixed;
-      top: 190px;
+      position:absolute;
+      top: 210px;
       left:30px;
       text-align:center;
       background-color:rgb(253, 213, 150);
       border-radius:15px;
       width:200px;
-      height:100px;
+      height:120px;
       display: flex;
       align-items: center;
       flex-direction: row;
       justify-content: center;
     }
     #usual{
-      position:fixed;
-      top: 330px;
+      position:absolute;
+      top: 340px;
       left: 30px;
       text-align:center;
       background-color:rgb(251, 191, 95);
@@ -91,11 +92,21 @@
       flex-direction: row;
       justify-content: center;      
     }
-    #search{
-      position:fixed; 
-      top:150px; 
+    #search {
+      position:absolute; 
+      top:160px; 
       left:30px;
-    }        
+      margin-top: 10px;
+    }
+    #searchbutton {
+      position: absolute;
+    }
+
+    #page {
+      position: absolute;
+      left:280px;
+      top: 150px;
+    }
 
   </style>
 </head>
@@ -121,35 +132,40 @@
   </nav>
 </div>
 
-  <div id="my">
-    <class="nav-item dropdown">
-    {% if user.is_authenticated %}
-      <a href="#" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
-      {{ user.username }}
-      </a>
-      <div aria-labelledby="navbarDropdownMenuLink">
-        <a href="{% url 'mypage' %}">마이페이지</a>
-        <a href="{% url 'logout' %}">로그아웃</a>
-      </div>
-    {% else %}
-    <div aria-labelledby="navbarDropdownMenuLink">
-      <a href="{% url 'login' %}">로그인</a>
-      <a href="{% url 'signup' %}">회원가입</a>
-    </div>
-    {% endif %}
-  </div>
+<div id="my">
+  <class="nav-item dropdown">
+  {% if user.is_authenticated %}
+    <img width="50px" height="50px" src = "{{ user.profile.url }}"> 
+    {{ user.username }} 님
 
-  <div id="usual">
-    냠냠
+    <div aria-labelledby="navbarDropdownMenuLink">
+      <a href="{% url 'mypage' %}">마이페이지</a>&nbsp;&nbsp;
+      <a href="{% url 'logout' %}">로그아웃</a>
+    </div>
+  {% else %}
+  <div aria-labelledby="navbarDropdownMenuLink">
+    <a href="{% url 'login' %}">로그인</a>&nbsp;&nbsp;
+    <a href="{% url 'signup' %}">회원가입</a>
   </div>
-  
-  <div id="search">
-    <form action = "{% url 'result' %}" method = "get">
-        {% csrf_token %}
-        <input type = "search" placeholder="제목+본문" style="height:22px; font-family:'굴림';" name = "query">
-        <input type = "submit" name="" value="🔍">
-    </form>
+  {% endif %}
 </div>
 
+<div id="usual">
+  ⭐⭐⭐⭐⭐ <br>
+  소금, 설탕, 후추, 식용유, 올리브유, 참기름, 들기름<br><br>
+  ⭐⭐⭐<br>
+  다진마늘, 굴소스, 파
+</div>
+  
+<div id="search">
+  <form action = "{% url 'result' %}" method = "get">
+      {% csrf_token %}
+      <input type = "search" placeholder="제목+본문" style="font-family:'굴림'; margin: auto;" name = "query">
+      <input id = "searchbutton" type = "submit" name="" value="🔍">
+  </form>
+</div>
+
+<div id = "page">
   {% block content %} 
   {% endblock %}
+</div>
