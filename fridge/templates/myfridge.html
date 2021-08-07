@@ -90,7 +90,7 @@
                     <h2>메인재료</h2>
                     <p>어떤 재료를 메인 재료로 사용하시겠습니까? <br>가지고 있는 메인 재료를 선택해주세요:) <br>* 1개 이상 선택(중복 선택 가능)</p>
                     <hr>
-                    <p><input type="checkbox" name="CheckAll" onclick = "checkAll(this)"/><strong>전체 선택</strong></p>
+                    <p><input type="checkbox" name="checkAll" value = "checkAll" onclick = "checkAll(this)"/><strong>전체 선택</strong></p>
                     <table>
                         <tr>
                             <th>메인</th>
@@ -124,7 +124,7 @@
                                 <p><input type="checkbox" name="ingredients" value="차돌박이" onclick="getCheckboxValue1()"/>차돌박이</p>
                             </td>
                             <td>
-                                <p><input type="checkbox" name="ingredients" value="버섯" onclick="getCheckboxValu1e()"/>버섯</p>
+                                <p><input type="checkbox" name="ingredients" value="버섯" onclick="getCheckboxValue1()"/>버섯</p>
                                 <p><input type="checkbox" name="ingredients" value="파" onclick="getCheckboxValue1()"/>파</p>
                                 <p><input type="checkbox" name="ingredients" value="양파" onclick="getCheckboxValue1()"/>양파</p>
                                 <p><input type="checkbox" name="ingredients" value="샐러드야채" onclick="getCheckboxValue1()"/>샐러드야채</p>
@@ -146,7 +146,7 @@
                                 <p><input type="checkbox" name="ingredients" value="통마늘" onclick="getCheckboxValue1()"/>통마늘</p>
                                 <p><input type="checkbox" name="ingredients" value="다진마늘" onclick="getCheckboxValue1()"/>다진마늘</p>
                                 <p><input type="checkbox" name="ingredients" value="맛술" onclick="getCheckboxValue1()"/>맛술</p>
-                                <p><input type="checkbox" name="ingredients" value="맛술" onclick="getCheckboxValue1()"/>불닭소스</p>
+                                <p><input type="checkbox" name="ingredients" value="불닭소스" onclick="getCheckboxValue1()"/>불닭소스</p>
                             </td>
                             <td>
                                 <p><input type="checkbox" name="ingredients" value="딸기청" onclick="getCheckboxValue1()"/>딸기청</p>
@@ -171,52 +171,42 @@
     </article>
 
     <script type="text/javascript">
+    
+        function checkAll(checkAll){
+            const checkboxes = document.getElementsByName('ingredients');
+            
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = checkAll.checked;
+            })
+
+        }
 
         function getCheckboxValue1()  {
             const checkboxes = document.querySelectorAll('input[name="ingredients"]');  //전체 체크박스
             const checked = document.querySelectorAll('input[name="ingredients"]:checked');  //선택된 체크박스
-            const selectAll = document.querySelector('input[name="CheckAll"]');    //전체 선택 체크박스
+            const checkAll = document.querySelector('input[name="checkAll"]');    //전체 선택 체크박스
 
-            if(checkboxes.length === checked.length)  {
-                selectAll.checked = true;
+            if(checkboxes.length == checked.length)  {
+                checkAll.checked = true;
             }else {
-                selectAll.checked = false;
+                checkAll.checked = false;
             }
 
             let result = ''; var count=1;
-            checked.forEach((el1) => {
-                result += el1.value
+            checked.forEach((el) => {
+                result += el.value
                 if (count!=checked.length) {
                     result += ', ';
                     count++
+                } else {
+                    count=1;
                 }
             });
   
             document.getElementById('MainResult').innerText= "선택한 메인 재료: " + result;
         }
 
-        function checkAll(checkAll){
-            const checkboxes = document.getElementsByName('ingredients');
-            const checked = document.querySelectorAll('input[name="ingredients"]:checked');  //선택된 체크박스
-            
-            checkboxes.forEach((checkbox) => {
-                checkbox.checked = checkAll.checked;
-            })
-            
-            if(checkbox.checked == false){
-                CheckAll.checked = false;
-            }
 
-            let result = ''; var count=1;
-            checked.forEach((el1) => {
-                result += el1.value
-                if (count!=checked.length) {
-                    result += ', ';
-                    count++
-                }
-            });   
-            document.getElementById('MainResult').innerText= "선택한 메인 재료: " + result;
-        }
         
     </script>
     {% endblock %}
