@@ -135,8 +135,14 @@
 <div id="my">
   <class="nav-item dropdown">
   {% if user.is_authenticated %}
+<<<<<<< HEAD
     <img src = "{{ user.profile.url }}">
     {{ user.username }} 님
+=======
+    <a href="#" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
+    {{ user.nickname }}
+    </a>
+>>>>>>> 2468ff0f6a15793792e4577f2c14f6ee6e78e5a4
     <div aria-labelledby="navbarDropdownMenuLink">
       <a href="{% url 'mypage' %}">마이페이지</a>&nbsp;&nbsp;
       <a href="{% url 'logout' %}">로그아웃</a>
