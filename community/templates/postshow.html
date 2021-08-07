@@ -10,15 +10,15 @@
     <br/>
     <p>글쓴이 <span id="user_name">{{ post.writer.nickname }}</span></p>
     <hr/>
-    <p>내용 : {{ post.content | safe }}</p>
+    <p>{{ post.content | safe }}</p>
     
+    <p>태그 : {{ post.tag }}</p>
     <div class="bt">
         {% if post.writer == user %}
             <a id="something" href="{% url 'postupdate' post.id %}">수정하기</a>
             <a id="something" href="{% url 'postdelete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
         {% endif %}
     </div>
-    <br/>
     <hr/>
     <a href="{% url 'list' %}">뒤로가기</a>
     <br/>

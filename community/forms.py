@@ -25,9 +25,13 @@ class PostForm(forms.ModelForm):
         )
     )
 
+    tag = forms.CharField(
+        required=False, label="태그"
+    )
+
     class Meta:
         model = Post
-        fields = ['title', 'content','category']
+        fields = ['title', 'content','category', 'tag']
         widgets = {
             'content': SummernoteWidget(),
         }

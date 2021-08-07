@@ -4,6 +4,7 @@ from taggit.managers import TaggableManager
 from taggit.models import (
     TagBase, TaggedItemBase
 )
+from tagging.fields import TagField
 
 # Create your models here.
 class Post(models.Model):
@@ -18,6 +19,7 @@ class Post(models.Model):
     pub_date = models.DateTimeField(auto_now_add=True, verbose_name="글작성일", null=True)
     like = models.ManyToManyField(CustomerUser, related_name='likes', blank=True)
     slug = models.SlugField('Slug', unique=False, allow_unicode=True, help_text='dashed words for title alias', null=True)
+    tag = TagField()
     def __str__(self):
         return self.title
 
