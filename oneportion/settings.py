@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'fridge.apps.FridgeConfig',
     'home',
     'search',
+    'taggit',
+    'tagging.apps.TaggingConfig',
 ]
 
 MIDDLEWARE = [

@@ -17,7 +17,6 @@
                 <th scope="col">No</th>
                 <th scope="col">제목</th>
                 <th scope="col">글쓴이</th>
-                <th scope="col">카테고리</th>
                 <th scope="col">작성일</th>
                 <th scope="col">추천수</th>
                 </tr>
@@ -28,12 +27,11 @@
                 <tr>
                 <th scope="row">{{forloop.revcounter}}</th>
                 {% if user.is_authenticated %}
-                <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
+                <td><a href="{% url 'postshow' post.id %}">[{{ post.category }}] {{post.title}}</a></td>
                 {% else %}
                 <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">{{post.title}}</a></td>
                 {% endif %}
                 <td>{{ post.writer }}</td>
-                <td>{{ post.category }}</td>
                 <td>{{ post.pub_date }}</td>
                 <td>{{ post.like.all.count }}</td>
                 </tr>
