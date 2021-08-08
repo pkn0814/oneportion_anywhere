@@ -83,7 +83,7 @@
         margin-top: 10px; margin-left: 10px;
       }
       #nomaindish img {
-        width: 600px; margin: 10px; left: 100px;
+        width: 600px; margin: 10px; left:100px;
       }
   </style>
   </head>
@@ -181,133 +181,11 @@
                 </div>
               </div>
               {% endfor %}
-            </div>
-
-      
+            </div>     
     </div>
-
-
-
-
-
-
-
-    
     </div>
 
   </div>
 
-
-
-
-
 </body>
 {% endblock %}
-
-
-
-
-
-
-
-    <div id="cookResult" class="col-md-8">
-      <div class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
-          <p class="lead text-muted">선택한 재료: 
-            {{ selected|safeseq|join:", "}}
-          </p>
-
-          <p>
-            <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>
-          </p>
-        </div>
-      </div>
-      <div class="album py-5 bg-light">
-
-        <div class="container">
-          <h3>선택한 재료들로만 만들 수 있는 요리</h3>
-          <div class="row">
-            {% for dish in maindish.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  
-                  <h4 class="card-text">{{dish.name}}</h4>
-                  <p class="card-text">{{dish.intro}}</p>
-                  {% if dish.image.url == '' %}
-                  <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
-                  {% else %}
-                  <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
-                  {% endif %}
-                  <br>
-                  <ul>
-                    {% if dish.basic %}
-                    <li>기본 재료: {{ dish.basic }}</li>
-                    {% endif %}
-                    <li>필요한 재료: {{dish.ingredients}}</li>
-                    <li>옵션: {{dish.option}}</li>
-                  </ul>
-
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">검색결과</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-
-          <div class="container">
-            <h3>선택한 재료들을 포함한 요리</h3>
-            <div class="row">
-              {% for dish in adddish.all %}
-              <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                  <div class="card-body">
-                    
-                    <h4 class="card-text">{{dish.name}}</h4>
-                    <p class="card-text">{{dish.intro}}</p>
-                    <img class="card-img-top" src="{{dish.image.url}}" alt="Card image cap">
-                    <br>
-                    <ul>
-                      {% if dish.basic %}
-                      <li>기본 재료: {{ dish.basic }}</li>
-                      {% endif %}
-                      <li>필요한 재료: {{dish.ingredients}}</li>
-                      <li>옵션: {{dish.option}}</li>
-                    </ul>
-  
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small class="text-muted">검색결과</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-
-      
-    </div>
-
-
-
-
-
-
-
-    
-
-     
-
-      
-
-    </body>
