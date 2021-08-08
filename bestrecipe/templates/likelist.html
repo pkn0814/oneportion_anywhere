@@ -1,76 +1,79 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% load static %}
-
+{% block content %}
 <body>
-      <br>
-      {% block content %}
-      <p>베스트 레시피는 커뮤니티에서 추천수 5개 이상 받은 게시물이 올라옵니다</p>
-
-      <div class="row">
-        <div class="col-sm-8">
-            <table class="table table-hover" style="text-align:center;">
-                <tr>
-                <th scope="col">No</th>
-                <th scope="col">제목</th>
-                <th scope="col">글쓴이</th>
-                <th scope="col">작성일</th>
-                <th scope="col">추천수</th>
-                </tr>
-            </thead>
-
-            <tbody style="text-align:center;">
-                {% for post in posts %}
-                {% if post.like.all.count > 4 %}
+    <div id="cookResult" class="col-md-8">
+        <p>베스트 레시피는 커뮤니티에서 추천수 5개 이상 받은 게시물이 올라옵니다</p>
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="table table-hover" style="text-align:center;">
                     <tr>
-                        <th scope="row">{{forloop.revcounter}}</th>
-                    {% if user.is_authenticated %}
-                <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
-                {% else %}
-                <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">{{post.title}}</a></td>
-                {% endif %}
-                    <td>{{ post.writer }}</td>
-                    <td>{{ post.pub_date }}</td>
-                    <td>{{ post.like.all.count }}</td>
+                    <th scope="col">No</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">글쓴이</th>
+                    <th scope="col">작성일</th>
+                    <th scope="col">추천수</th>
                     </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-            </table>
-        </div>
-        </div>
-
-        <div class="page">
-            <ul class="pagination justify-content-center">
-              {% if posts.has_previous %}
-              <li class="page-item">
-                  <a class="page-link" href="?page={{ posts.previous_page_number }}">이전</a>
-              </li>
-              {% else %}
-              <li class="page-item disabled">
-                  <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-              </li>
-              {% endif %}
-              {% for page_number in posts.paginator.page_range %}
-                  {% if page_number == posts.number %}
-                  <li class="page-item active" aria-current="page">
-                      <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                </thead>
+    
+                <tbody style="text-align:center;">
+                    {% for post in posts %}
+                    {% if post.like.all.count > 4 %}
+                        <tr>
+                            <th scope="row">{{forloop.revcounter}}</th>
+                        {% if user.is_authenticated %}
+                    <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
+                    {% else %}
+                    <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">{{post.title}}</a></td>
+                    {% endif %}
+                        <td>{{ post.writer }}</td>
+                        <td>{{ post.pub_date }}</td>
+                        <td>{{ post.like.all.count }}</td>
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+                </table>
+            </div>
+            </div>
+    
+            <div class="page">
+                <ul class="pagination justify-content-center">
+                  {% if posts.has_previous %}
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ posts.previous_page_number }}">이전</a>
                   </li>
                   {% else %}
-                  <li class="page-item">
-                      <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                  <li class="page-item disabled">
+                      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
                   </li>
                   {% endif %}
-              {% endfor %}
-              {% if posts.has_next %}
-              <li class="page-item">
-                  <a class="page-link" href="?page={{ posts.next_page_number }}">다음</a>
-              </li>
-              {% else %}
-              <li class="page-item disabled">
-                  <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-              </li>
-              {% endif %}
-
-        {% endblock %}
+                  {% for page_number in posts.paginator.page_range %}
+                      {% if page_number == posts.number %}
+                      <li class="page-item active" aria-current="page">
+                          <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                      </li>
+                      {% else %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                      </li>
+                      {% endif %}
+                  {% endfor %}
+                  {% if posts.has_next %}
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ posts.next_page_number }}">다음</a>
+                  </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                  </li>
+                  {% endif %}
+    </div>
+      
 </body>
+{% endblock %}
+
+
+      
+
