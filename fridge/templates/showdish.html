@@ -85,10 +85,12 @@
       #nomaindish img {
         width: 600px; margin: 10px; left:100px;
       }
+      
   </style>
   </head>
  
 <body>
+  
   <div class="col-md-10">
     <div id="cookResult" class="jumbotron text-center">
       <h2>
@@ -172,7 +174,7 @@
   
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button>
                         <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                       </div>
                       <small class="text-muted">검색결과</small>
@@ -181,11 +183,36 @@
                 </div>
               </div>
               {% endfor %}
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>     
-    </div>
     </div>
 
   </div>
 
+  <script type="text/javascript">
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  </script>
+  
 </body>
 {% endblock %}
