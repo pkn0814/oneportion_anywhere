@@ -87,7 +87,7 @@
       align-items: center;
       flex-direction: row;
       justify-content: center;
-      margin-top: 40px;
+      margin-top: 20px;
       margin-left:-15px;
     }
     #usual{
@@ -113,9 +113,9 @@
       left:30px; */
       margin-top: 10px;
     }
-    #searchbutton {
+    /* #searchbutton {
       position: absolute;
-    }
+    } */
 
     /* #page {
       position: relative;
@@ -157,9 +157,8 @@
       </form>
       <div id="my">
         {% if user.is_authenticated %}
-          <img width="50px" height="50px" src = "{{ user.profile.url }}"> 
+          <img width="50px" height="50px" alt="프로필 사진" src = "{{ user.profile.url }}"> 
           {{ user.username }} 님
-      
             <a href="{% url 'mypage' %}">마이페이지</a>&nbsp;&nbsp;
             <a href="{% url 'logout' %}">로그아웃</a>
         {% else %}
