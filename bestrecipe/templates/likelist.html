@@ -2,18 +2,36 @@
 {% load bootstrap4 %}
 {% load static %}
 {% block content %}
+<head>
+    <style>
+        #table1{
+        margin-left:30px;
+        margin-top:30px;
+    }
+    #but{
+        margin-left:50px;
+        margin-top:100px;
+    }
+    .page{
+        text-align: center;
+    }
+    #desc{
+        margin-top:20px;
+    }
+    </style>
+</head>
 <body>
-    <div id="cookResult" class="col-md-8">
-        <p>베스트 레시피는 커뮤니티에서 추천수 5개 이상 받은 게시물이 올라옵니다</p>
-        <div class="row">
-            <div class="col-sm-8">
-                <table class="table table-hover" style="text-align:center;">
+    <div id="cookResult" class="col-md-10">
+        <p id="desc">베스트 레시피는 커뮤니티에서 추천수 5개 이상 받은 게시물이 올라옵니다</p>
+        <div id="table1" class="row mt-5">
+            <div class="col-12">
+                <table class="table table-hover">
                     <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">글쓴이</th>
-                    <th scope="col">작성일</th>
-                    <th scope="col">추천수</th>
+                    <th style="text-align: center;" scope="col">No</th>
+                    <th style="text-align: center;" scope="col">제목</th>
+                    <th style="text-align: center;" scope="col">글쓴이</th>
+                    <th style="text-align: center;" scope="col">작성일</th>
+                    <th style="text-align: center;" scope="col">추천수</th>
                     </tr>
                 </thead>
     
