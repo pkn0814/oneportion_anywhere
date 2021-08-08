@@ -15,31 +15,37 @@
     </style>
 </head>
 <body>
-<div id="text">
-    <div>
-        <h1><img width="50" height="50" src="{{expert.image.url}}" alt="대표 사진">
-        {{ expert.title }} <span>{{expert.writer }} &nbsp; &nbsp;  {{ expert.pub_date }}</span> </h1>
-    </div>
-    <div class="exp_body">
-        {{ expert.body | safe }}
-    </div>
-{% if request.user == expert.writer %}
-<a href="{% url 'expertupdate' expert.id %}"><button type="button" class="btn btn-warning">수정</button>
-</a>
-<a href="{% url 'expertdelete' expert.id %}" onclick = "return confirm('정말 삭제하시겠습니까?')"><button type="button" class="btn btn-warning">삭제</button>
-</a>
-
-{% endif %}
-{% if user.is_authenticated %}
-{% if request.user != expert.writer %}
-{% if scrap %}
-<a href="{% url 'scrap' expert.id %}"><button type="button" class="btn btn-warning">스크랩 취소</button></a>
-    {% else %}
-<a href="{% url 'scrap' expert.id %}"><button type="button" class="btn btn-warning">스크랩</button></a>
+    <div id="cookResult" class="col-md-8">
+        <div>
+            <h1><img width="50" height="50" src="{{expert.image.url}}" alt="대표 사진">
+            {{ expert.title }} <span>{{expert.writer }} &nbsp; &nbsp;  {{ expert.pub_date }}</span> </h1>
+        </div>
+        <div class="exp_body">
+            {{ expert.body | safe }}
+        </div>
+    {% if request.user == expert.writer %}
+    <a href="{% url 'expertupdate' expert.id %}"><button type="button" class="btn btn-warning">수정</button>
+    </a>
+    <a href="{% url 'expertdelete' expert.id %}" onclick = "return confirm('정말 삭제하시겠습니까?')"><button type="button" class="btn btn-warning">삭제</button>
+    </a>
+    
     {% endif %}
-{% endif %}
-{% endif %}
+    {% if user.is_authenticated %}
+    {% if request.user != expert.writer %}
+    {% if scrap %}
+    <a href="{% url 'scrap' expert.id %}"><button type="button" class="btn btn-warning">스크랩 취소</button></a>
+        {% else %}
+    <a href="{% url 'scrap' expert.id %}"><button type="button" class="btn btn-warning">스크랩</button></a>
+        {% endif %}
+    {% endif %}
+    {% endif %}
+    
+    </div>
 
+
+
+
+
+    
 {% endblock %}
-</div>
 </body>

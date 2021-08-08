@@ -6,17 +6,22 @@
 <head>
     <style>
         
-        #revise{
-            position:absolute;
-            left:670px;
+        
+        #editpage{
+            margin-top: 20px;
+            margin-left:20px;
         }
     </style>
 </head>
-<div id="text">
-<form method="POST" action="">
-    {% csrf_token %}
-    {{ form }}
-    <button id="revise" type="submit" class="btn btn-warning btn-sm">수정</button>
-</form>
-</div>
+<body>
+    <div id="editpage" class="col-md-8">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form }}
+            <button id="revise" type="submit" class="btn btn-warning btn-sm">수정</button>
+        </form>
+    </div>
+</body>
+
+
 {% endblock %}
