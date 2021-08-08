@@ -125,7 +125,11 @@
                   
                   <h4 class="card-text">{{dish.name}}</h4>
                   <p class="card-text">{{dish.intro}}</p>
+                  {% if dish.image == None %}
+                  <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
+                  {% else %}
                   <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
+                  {% endif %}
                   <br>
                   <ul>
                     {% if dish.basic %}
