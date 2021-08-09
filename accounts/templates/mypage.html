@@ -22,10 +22,11 @@
             font-size: 30pt;
         }
         .title{
-            font-size: 25pt;
+            font-size: 20pt;
+            
         }
         .title2{
-            font-size: 25pt;
+            font-size: 20pt;
             padding-right:10px;
     
 
@@ -61,8 +62,10 @@
             text-align: center;
         }
         #mypage{
-            margin-left: 40px;
             margin-top:20px;
+        }
+        #tableshow{
+            margin-left:130px;
         }
         
     </style>
@@ -70,11 +73,11 @@
 </head>
 
 <body>
-    <div id="mypage" class="col-md-8">
+    <div id="mypage" class="col-md-offset-1 col-md-8">
 
-    <div class="container">
+    <!-- <div class="container"> -->
         <div class="row">
-            <div class="col-md-offset-1 col-md-2">
+            <div class="col-md-offset-1 col-md-3">
                 {% if user.is_authenticated %}
                 <div class="image">
                     <figure>
@@ -89,7 +92,7 @@
                     {% endif %}
                 </div>        
             </div>
-            <div class="col-md-2">
+            <div id="tableshow" class="col-md-2">
                 <table id="countT">
                     <tr>
                         <td>게시글</td>
@@ -105,10 +108,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-offset-1 col-md-3">
+            <div style="text-align: center;" class="col-md-offset-1 col-md-4">
                 <span class="title">작성한 게시글</span>
             </div>
-            <div class="col-md-offset-2 col-md-3">
+            <div style="text-align:center;" class="col-md-offset-2 col-md-4">
                 <span class="title2">스크랩한 게시글</span>
             </div>
         </div>
@@ -126,7 +129,7 @@
                     {% endif %}
                 </p>        
             </div>
-            <div class="col-md-2">
+            <div class="col-md-offset-1 col-md-2">
                 <p>
                     <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
                     {% if com_posts %}
@@ -150,7 +153,7 @@
                     {% endif %}
                 </p>        
             </div>
-            <div class="col-md-2">
+            <div class="col-md-offset-1 col-md-2">
                 <p>
                     <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
                     {% if com_scraps %}
@@ -187,7 +190,7 @@
                     {% endif %}
                 </p>       
             </div>
-            <div class="col-md-2">
+            <div class="col-md-offset-2 col-md-2">
                 <p id="scrap2">
                     <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
                     {% if com_scraps %}

@@ -14,7 +14,7 @@ class CustomerUser(AbstractUser):
     profile = ProcessedImageField(
         upload_to='images/',
         processors=[ResizeToFit(width=50, height=50, upscale=False)],
-        default='images/face.jpg',blank=True,null=False
+        default='images/default.jpg',blank=True,null=False
     )
     nickname = models.CharField(max_length=100)
     email = models.EmailField()

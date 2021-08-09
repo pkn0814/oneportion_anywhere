@@ -18,13 +18,12 @@
         }
         
         #submit{
-            position:absolute;
-            left:670px;
+            float:right;
             
         }
-        #newpage{
+        /* #newpage{
             margin-left:10px;
-        }
+        } */
     </style>
     <script>
 //         window.setTimeout(function() {
@@ -35,7 +34,7 @@
     </script>
 </head>
 <body>
-    <div id="newpage" class="col-md-8">
+    <div class="col-md-offset-1 col-md-8">
         {% for message in messages %}
         <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -44,7 +43,7 @@
                 {{ message }}
         </div>
         {% endfor %}
-    
+    <br>
     <form  method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form }}
@@ -63,3 +62,5 @@
 
 {% endblock %}
 {% endblock %}
+
+

@@ -83,12 +83,20 @@
         margin-top: 10px; margin-left: 10px;
       }
       #nomaindish img {
-        width: 600px; margin: 10px; left: 100px;
+        width: 600px; margin: 10px; left:100px;
       }
+      .card-img-top img {
+        object-fit: contain;
+        position: absolute;
+        width: 100%;
+        height: auto;
+      }
+      
   </style>
   </head>
  
 <body>
+  
   <div class="col-md-10">
     <div id="cookResult" class="jumbotron text-center">
       <h2>
@@ -111,203 +119,108 @@
 
       {% else %}
       {% for dish in maindish.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  
-                  <h4 class="card-text">{{dish.name}}</h4>
-                  <p class="card-text">{{dish.intro}}</p>
-                  {% if dish.image %}
-                  <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
-                  {% else %}
-                  <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
-                  {% endif %}
-                  <br>
-                  <ul>
-                    {% if dish.basic %}
-                    <li>기본 재료: {{ dish.basic }}</li>
-                    {% endif %}
-                    <li>필요한 재료: {{dish.ingredients}}</li>
-                    {% if dish.option %}
-                    <li>옵션: {{dish.option}}</li>
-                    {% endif %}
-                  </ul>
-
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">검색결과</small>
-                  </div>
-                </div>
-              </div>
-              </div>
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <div class="card-body">
             
-            {% endfor %}
-          {% endif %}
-        <h3>선택한 재료들을 포함한 요리</h3>
-        {% for dish in adddish.all %}
-              <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                  <div class="card-body">
-                    
-                    <h4 class="card-text">{{dish.name}}</h4>
-                    <p class="card-text">{{dish.intro}}</p>
-                    {% if dish.image %}
-                    <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
-                    {% else %}
-                    <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
-                    {% endif %}
-                    <br>
-                    <ul>
-                      {% if dish.basic %}
-                      <li>기본 재료: {{ dish.basic }}</li>
-                      {% endif %}
-                      <li>필요한 재료: {{dish.ingredients}}</li>
-                      {% if dish.option %}
-                      <li>옵션: {{dish.option}}</li>
-                      {% endif %}
-                    </ul>
-  
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small class="text-muted">검색결과</small>
-                    </div>
-                  </div>
-                </div>
+            <h4 class="card-text">{{dish.name}}</h4>
+            <p class="card-text">{{dish.intro}}</p>
+            {% if dish.image %}
+            <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
+            {% else %}
+            <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
+            {% endif %}
+            <br>
+            <ul>
+              {% if dish.basic %}
+              <li>기본 재료: {{ dish.basic }}</li>
+              {% endif %}
+              <li>필요한 재료: {{dish.ingredients}}</li>
+              {% if dish.option %}
+              <li>옵션: {{dish.option}}</li>
+              {% endif %}
+            </ul>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">View</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
               </div>
-              {% endfor %}
+              <small class="text-muted">일인분</small>
             </div>
-
-      
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
     </div>
+    <div class="album py-5 bg-light">
+      <h3>선택한 재료들을 포함한 요리</h3>
+        {% for dish in adddish.all %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-body">
+              
+              <h4 class="card-text">{{dish.name}}</h4>
+              <p class="card-text">{{dish.intro}}</p>
+              {% if dish.image %}
+              <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
+              {% else %}
+              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
+              {% endif %}
+              <br>
+              <ul>
+                {% if dish.basic %}
+                <li>기본 재료: {{ dish.basic }}</li>
+                {% endif %}
+                <li>필요한 재료: {{dish.ingredients}}</li>
+                {% if dish.option %}
+                <li>옵션: {{dish.option}}</li>
+                {% endif %}
+              </ul>
 
-
-
-
-
-
-
-    
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-muted">일인분</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- Modal -->
+        <div class="modal fade" id="recipy" tabindex="-1" role="dialog" aria-labelledby="recipyTitle" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="recipyTitle">요리레시피</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                달걀볶음밥 만드는 법<br>
+                재료:<br/>
+                만드는 법:
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div> 
+      </div>    
     </div>
-
   </div>
 
-
-
-
+  <script type="text/javascript">
+    $('#recipy').on('show.bs.modal', function (e) {
+      $('#recipy').modal('toggle')
+    })
+  </script>
 
 </body>
 {% endblock %}
-
-
-
-
-
-
-
-    <div id="cookResult" class="col-md-8">
-      <div class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">나의 냉장고 _ 요리보기</h1>
-          <p class="lead text-muted">선택한 재료: 
-            {{ selected|safeseq|join:", "}}
-          </p>
-
-          <p>
-            <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>
-          </p>
-        </div>
-      </div>
-      <div class="album py-5 bg-light">
-
-        <div class="container">
-          <h3>선택한 재료들로만 만들 수 있는 요리</h3>
-          <div class="row">
-            {% for dish in maindish.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                  
-                  <h4 class="card-text">{{dish.name}}</h4>
-                  <p class="card-text">{{dish.intro}}</p>
-                  {% if dish.image.url == '' %}
-                  <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
-                  {% else %}
-                  <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
-                  {% endif %}
-                  <br>
-                  <ul>
-                    {% if dish.basic %}
-                    <li>기본 재료: {{ dish.basic }}</li>
-                    {% endif %}
-                    <li>필요한 재료: {{dish.ingredients}}</li>
-                    <li>옵션: {{dish.option}}</li>
-                  </ul>
-
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                    </div>
-                    <small class="text-muted">검색결과</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
-          </div>
-
-          <div class="container">
-            <h3>선택한 재료들을 포함한 요리</h3>
-            <div class="row">
-              {% for dish in adddish.all %}
-              <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                  <div class="card-body">
-                    
-                    <h4 class="card-text">{{dish.name}}</h4>
-                    <p class="card-text">{{dish.intro}}</p>
-                    <img class="card-img-top" src="{{dish.image.url}}" alt="Card image cap">
-                    <br>
-                    <ul>
-                      {% if dish.basic %}
-                      <li>기본 재료: {{ dish.basic }}</li>
-                      {% endif %}
-                      <li>필요한 재료: {{dish.ingredients}}</li>
-                      <li>옵션: {{dish.option}}</li>
-                    </ul>
-  
-                    <div class="d-flex justify-content-between align-items-center">
-                      <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                      </div>
-                      <small class="text-muted">검색결과</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {% endfor %}
-            </div>
-
-      
-    </div>
-
-
-
-
-
-
-
-    
-
-     
-
-      
-
-    </body>

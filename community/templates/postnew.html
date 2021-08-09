@@ -12,11 +12,10 @@
         .title{
             width:720px;
         }
-        /* #submit{
-            position:absolute;
-            left:650px;
+        #submit{
+            float:right;
             
-        } */
+        }
     </style>
     <script>
 //         window.setTimeout(function() {
@@ -28,7 +27,8 @@
 </head>
 
 <body>
-    <div id="cookResult" class="col-md-8">
+    <div class="col-md-offset-1 col-md-8">
+        
         {% for message in messages %}
         <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">

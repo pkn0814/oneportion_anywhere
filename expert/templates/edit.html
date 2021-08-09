@@ -9,12 +9,15 @@
         
         #editpage{
             margin-top: 20px;
-            margin-left:20px;
+            
+        }
+        #revise{
+            float:right;
         }
     </style>
 </head>
 <body>
-    <div id="editpage" class="col-md-8">
+    <div id="editpage" class="col-md-offset-1 col-md-8">
         <form method="POST" action="">
             {% csrf_token %}
             {{ form }}
