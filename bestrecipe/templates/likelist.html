@@ -33,25 +33,24 @@
                     <th style="text-align: center;" scope="col">글쓴이</th>
                     <th style="text-align: center;" scope="col">작성일</th>
                     <th style="text-align: center;" scope="col">추천수</th>
-                    </tr>
+                    </tr>   
                 </thead>
-    
+                
+                {% for post in posts %}
                 <tbody style="text-align:center;">
-                    {% for post in posts %}
-                    {% if post.like.all.count > 4 %}
                         <tr>
-                            <th scope="row">{{ posts.paginator.count|sub:posts.start_index|sub:forloop.counter0|add:1 }}</th>
+                            <td scope="row">{{ posts.paginator.count|sub:posts.start_index|sub:forloop.counter0|add:1 }}</td>
                         {% if user.is_authenticated %}
-                    <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
-                    {% else %}
-                    <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">{{post.title}}</a></td>
-                    {% endif %}
+                        <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
+                        {% else %}
+                        <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">{{post.title}}</a></td>
+                        {% endif %}
                         <td>{{ post.writer }}</td>
                         <td>{{ post.pub_date }}</td>
                         <td>{{ post.like.all.count }}</td>
                         </tr>
-                    {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                   
                 </tbody>
                 </table>
             </div>
