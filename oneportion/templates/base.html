@@ -174,35 +174,15 @@
         {% endif %}
       </div>
       <div id="usual" >
-        ⭐⭐⭐⭐⭐ <br>
-      소금, 설탕, 후추, 식용유, 올리브유, 참기름, 들기름<br><br>
-      ⭐⭐⭐<br>
-      다진마늘, 굴소스, 파
+      ⭐⭐꼭 필요해요⭐⭐ <br><br>
+      소금, 설탕, 후추, 식용유, 올리브유, 참기름, 들기름<br><br><br>
+      ⭐있으면 좋아요⭐<br><br>
+      다진마늘, 굴소스, 파 등
       </div>
       
-</div>
-<<<<<<< HEAD
-
-<div id="usual">
-  ⭐⭐⭐⭐⭐ <br>
-  소금, 설탕, 후추, 식용유,<br>올리브유, 참기름, 들기름<br><br>
-  ⭐⭐⭐<br>
-  다진마늘, 굴소스, 파
-</div>
-  
-<div id="search">
-  <form action = "{% url 'result' %}" method = "get">
-      {% csrf_token %}
-      <input type = "search" placeholder="제목+본문" style="font-family:'굴림'; margin: auto;" name = "query">
-      <input id = "searchbutton" type = "submit" name="" value="🔍">
-  </form>
 </div>
 
 <div id = "page">
   {% block content %} 
   {% endblock %}
 </div>
-=======
-{% block content %}
-{% endblock %}
->>>>>>> e2fa5e09d61de8ce23541ea3682d8be8cad820d3
