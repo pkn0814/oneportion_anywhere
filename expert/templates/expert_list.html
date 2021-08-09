@@ -25,10 +25,11 @@
 <body>
   <div class="col-md-10">
     <div id="desc" class="jumbotron text-center">
-      <h1>Hello, world!</h1>
-      <p> in action.
+      <h2>전문가들의 한 끼는 어떤가요?</h2>
+      <p style="font-size:14pt;"> 요리 전문가들의 레시피와 밀키트 판매점의 밀키트 소개를 볼 수 있는 전문가 일인분 게시판입니다.<br>
+          전문가들의 한 끼를 살펴보며 오늘의 맛있는 한 끼를 준비해보는 건 어떨까요?
           {% if user.is_authenticated %}
-          {% if request.user.position == "사업자" %}
+          {% if request.user.position == "사업자" %}<br>
           <a href="{% url 'expertcreate' %}"><button type="button" class="btn btn-warning">새 글 작성</button></a>
           {% else %}
           <a></a>
