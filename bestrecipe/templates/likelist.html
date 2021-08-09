@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 {% load static %}
+{% load indexfilter %}
 {% block content %}
 <head>
     <style>
@@ -39,7 +40,7 @@
                     {% for post in posts %}
                     {% if post.like.all.count > 4 %}
                         <tr>
-                            <th scope="row">{{forloop.revcounter}}</th>
+                            <th scope="row">{{ posts.paginator.count|sub:posts.start_index|sub:forloop.counter0|add:1 }}</th>
                         {% if user.is_authenticated %}
                     <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
                     {% else %}
