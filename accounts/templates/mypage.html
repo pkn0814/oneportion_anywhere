@@ -6,100 +6,39 @@
 {% block content %}
 <head>
     <style>
-        .view{
-            font-size: x-small;
-        }
-        .card-text{
-            height:100px;
-            overflow: auto;
-        }
-        .hoverBlue:hover{
-            color:blue ;
-        }
-        .center{
-            display:flex;
-            justify-content: center;
-        }
-        
-        #profile{
-            position:absolute;
-            left:190px;
-            text-align: center;
-            
-        }
-        #modify{
-            position:absolute;
-            left:100px;
-            top:90px;
-            
-        }
-        #count{
-            position:absolute;
-            left:500px;
-            top:20px;
-            width:400px;
-            height:200px;
-        }
         #countT{
             text-align: center;
+            margin-top: 40px;
             border-spacing: 30px;
-            padding:30px;
-        }
-        td{
             padding-left:20px;
-            padding-right:20px;
+            padding-right: 20px;
+            width:400px;
+
+        }
+        body{
+            max-width:100%;
         }
         .down{
-            font-size: 40pt;
-        }
-        #postList{
-            position: absolute;
-            top:200px;
-            left:100px;
-        }
-        .post{
             font-size: 30pt;
         }
-        #title{
-            text-align: center;
-            position: absolute;
-            top:170px;
-            left:100px;
-            width:700px;
-        }   
-        #scrap1{
-            position: absolute;
-            top:250px;
-            left:480px;
+        .title{
+            font-size: 20pt;
+            
         }
-        #scrap2{
-            position:absolute;
-            top:250px;
-            left:700px;
+        .title2{
+            font-size: 20pt;
+            padding-right:10px;
+    
+
         }
-        #write3{
-            position: absolute;
-            top:250px;
-            left:132px;
-        }
-        #write1{
-            position:absolute;
-            top:250px;
-            left:30px;
-        }
-        #write2{
-            position:absolute;
-            top:250px;
-            left:250px;
-        }
-        h2{
-            font-size: 13pt;
-        }
-        p{
+        .mini_title{
+           color: yellow;
+       }
+       p{
             background-color: orange;
             border-radius: 50px;
-            width:200px;
-            height:270px;
+            width:180px;
+            height:250px;
             padding:15px;
             text-align: center;  
             overflow-y:auto;
@@ -111,131 +50,177 @@
         p::-webkit-scrollbar{
             display:none; 
         }
-
-        #writeAndScrap{
-            position:absolute;
-            top:200px;
-            width:1000px;
-            left:157px;
-            font-size: 20pt;
+        #scrap1{
+            margin-left:30px;
+            
         }
-        #message{
+        #scrap2{
+            margin-left:35px;
+        }
+        .image{
+            margin-left:30px;
             text-align: center;
         }
-       .mini_title{
-           color: yellow;
-       }
-
+        #mypage{
+            margin-top:20px;
+        }
+        #tableshow{
+            margin-left:130px;
+        }
         
     </style>
+    <script>
+        window.setTimeout(function() {
+    $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+    });
+}, 4000);
+    </script>
     
 </head>
 
 <body>
-<div id="text">
-    <div id="message">
-    {% for message in messages %}
-        <script>
-            alert("성공적으로 변경되었습니다.")
-        </script>        
-    {% endfor %}
+    <div id="mypage" class="col-md-offset-1 col-md-8">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+                {{ message }}
+        </div>
+        {% endfor %}
+    <!-- <div class="container"> -->
+        <div class="row">
+            <div class="col-md-offset-1 col-md-3">
+                {% if user.is_authenticated %}
+                <div class="image">
+                    <figure>
+                    <img width="140px" height="140px"src="{{ user.profile.url }}" alt="프로필 사진" class="img-circle">
+                    <figcaption>
+                        {{ user.nickname }}
+                        <a  href="{% url 'userInfoChange' %}">
+                            <img width="20px" height="20px" id="modify" src="{% static 'edit.png' %}" alt="수정">
+                        </a>
+                    </figcaption>
+                    </figure>
+                    {% endif %}
+                </div>        
+            </div>
+            <div id="tableshow" class="col-md-2">
+                <table id="countT">
+                    <tr>
+                        <td>게시글</td>
+                        <td>댓글</td>
+                        <td>스크랩</td>
+                    </tr>
+                    <tr>
+                        <td class="down">{{ postSum }}</td>
+                        <td class="down">{{ commentSum }}</td>
+                        <td class="down">{{ scrapSum }}</td>
+                    </tr>
+                </table>        
+            </div>
+        </div>
+        <div class="row">
+            <div style="text-align: center;" class="col-md-offset-1 col-md-4">
+                <span class="title">작성한 게시글</span>
+            </div>
+            <div style="text-align:center;" class="col-md-offset-2 col-md-4">
+                <span class="title2">스크랩한 게시글</span>
+            </div>
+        </div>
+        {% if request.user.position == "사업자" %}
+        <div class="row">
+            <div class="col-md-2">
+                <p>
+                    <span class="mini_title">전문가 일인분</span><br><br>
+                    {% if expert_posts %}
+                    {% for expert_post in expert_posts %}
+                    {{ expert_post.title }}  <a class="hoverBlue"href="{% url 'detail' expert_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>        
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                <p>
+                    <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
+                    {% if com_posts %}
+                    {% for com_post in com_posts %}
+                    {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}  
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>        
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                <p>
+                    <span class="mini_title">전문가 일인분</span><br><br>
+                    {% if expert_scraps %}
+                    {% for expert_scrap in expert_scraps %}
+                    {{ expert_scrap.expert }}<a class="hoverBlue"href="{% url 'detail' expert_scrap.expert.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+                </p>        
+            </div>
+            <div class="col-md-offset-1 col-md-2">
+                <p>
+                    <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
+                    {% if com_scraps %}
+                    {% for com_scrap in com_scraps %}
+                    {{ com_scrap.post }}<a class="hoverBlue"href="{% url 'postshow' com_scrap.post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+                </p>        
+            </div>
+        {% else %}
+            <div class="col-md-offset-1 col-md-2">
+                <p>
+                    <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
+                    {% if com_posts %}
+                    {% for com_post in com_posts %}
+                    {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}  
+                    아직 작성한 글이 없습니다.
+                    {% endif %}
+                </p>        
+            </div>
+            <div class="col-md-offset-2 col-md-2">
+                <p id="scrap1">
+                    <span class="mini_title">전문가 일인분</span><br><br>
+                    {% if expert_scraps %}
+                    {% for expert_scrap in expert_scraps %}
+                    {{ expert_scrap.expert }}<a class="hoverBlue"href="{% url 'detail' expert_scrap.expert.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+                </p>       
+            </div>
+            <div class="col-md-offset-2 col-md-2">
+                <p id="scrap2">
+                    <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
+                    {% if com_scraps %}
+                    {% for com_scrap in com_scraps %}
+                    {{ com_scrap.post }}<a class="hoverBlue"href="{% url 'postshow' com_scrap.post.id %}"> <span class="view">글보기</span></a><br>
+                    {% endfor %}
+                    {% else %}
+                    아직 스크랩한 글이 없습니다.
+                    {% endif %}
+                </p>        
+            </div>
+        {% endif %}
+            
+        </div>
     </div>
-
-    <div id="profile">
-        {% if user.is_authenticated %}
-        <img width="140px" height="140px"src="{{ user.profile.url }}" alt="프로필 사진" class="img-circle">
-            {{ user.username }}
-        <a  href="{% url 'userInfoChange' %}"><img width="20px" height="20px"  src="{% static 'edit.png' %}" alt="수정"></a>
-            {% endif %}
     </div>
-    <div id="count">
-        <table id="countT">
-            <tr>
-                <td>게시글</td>
-                <td>댓글</td>
-                <td>스크랩</td>
-            </tr>
-            <tr>
-                <td class="down">{{ postSum }}</td>
-                <td class="down">{{ commentSum }}</td>
-                <td class="down">{{ scrapSum }}</td>
-            </tr>
-        </table>
-    </div>
-    <div id="writeAndScrap">
-        작성한 게시글
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;
-        스크랩한 게시글
-    </div>
-    {% if request.user.position == "사업자" %}
-    <div id="write1">
-        <p>
-            <span class="mini_title">전문가 일인분</span><br><br>
-            {% if expert_posts %}
-            {% for expert_post in expert_posts %}
-            {{ expert_post.title }}  <a class="hoverBlue"href="{% url 'detail' expert_post.id %}"> <span class="view">글보기</span></a><br>
-            {% endfor %}
-            {% else %}
-            아직 작성한 글이 없습니다.
-            {% endif %}
-        </p>
-    </div>
-    <div id="write2">
-        <p>
-            <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
-            {% if com_posts %}
-            {% for com_post in com_posts %}
-            {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
-            {% endfor %}
-            {% else %}  
-            아직 작성한 글이 없습니다.
-            {% endif %}
-        </p>
-    </div>
-    {% else %}
-    <div id="write3">
-        <p>
-            <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
-            {% if com_posts %}
-            {% for com_post in com_posts %}
-            {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
-            {% endfor %}
-            {% else %}  
-            아직 작성한 글이 없습니다.
-            {% endif %}
-        </p>
-    </div>
-    {% endif %}
-    <div id="scrap1">
-        <p>
-            <span class="mini_title">전문가 일인분</span><br><br>
-            {% if expert_scraps %}
-            {% for expert_scrap in expert_scraps %}
-            {{ expert_scrap.expert }}<a class="hoverBlue"href="{% url 'detail' expert_scrap.expert.id %}"> <span class="view">글보기</span></a><br>
-            {% endfor %}
-            {% else %}
-            아직 스크랩한 글이 없습니다.
-            {% endif %}
-        </p>
-    </div>
-    <div id="scrap2">
-        <p>
-            <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
-            {% if com_scraps %}
-            {% for com_scrap in com_scraps %}
-            {{ com_scrap.post }}<a class="hoverBlue"href="{% url 'postshow' com_scrap.post.id %}"> <span class="view">글보기</span></a><br>
-            {% endfor %}
-            {% else %}
-            아직 스크랩한 글이 없습니다.
-            {% endif %}
-        </p>
-    </div>
-</div>
-
 </body>
 
 {% endblock %}

@@ -13,8 +13,7 @@
             width:720px;
         }
         #submit{
-            position:absolute;
-            left:650px;
+            float:right;
             
         }
     </style>
@@ -27,25 +26,29 @@
     </script>
 </head>
 
-<div class="error">
+<body>
+    <div class="col-md-offset-1 col-md-8">
+        
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+                {{ message }}
+        </div>
+        {% endfor %}
+        <div class="form">
+            <form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            
+            <br><button id="submit" type="submit" class="btn btn-warning">작성</button>
+        </form>
+        </div>
+    </div>
+</body>
 
-{% for message in messages %}
-<div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    {{ message }}
-</div>
-{% endfor %}
-</div>
 
-<div class="form">
-    <form  method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    
-    <br><button id="submit" type="submit" class="btn btn-warning">작성</button>
-</form>
-</div>
+
 {% endblock %}
 {% endblock %}

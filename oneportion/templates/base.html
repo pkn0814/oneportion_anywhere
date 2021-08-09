@@ -4,6 +4,14 @@
 {% load static %}
 
 <head>
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1">
   <style>
@@ -29,19 +37,20 @@
       color :orange; 
     }
     #bar{
-      width:1000px;
-      height:70px;
+      /* width:1000px;
+      height:70px; */
       border:solid;
       border-color:rgb(258, 157, 97);
       border-radius:50px;
       border-width:5px;
-      position:absolute;
+      /* position:absolute;
       top:50px;
-      left: 250px;
+      left: 250px; */
       display: flex;
       align-items: center;
       flex-direction: row;
       justify-content: center;
+      margin-top:20px;
     }
     #bar ul{
       margin: 0;
@@ -59,29 +68,33 @@
     }
     
     #back{
-      position: absolute; top: 20px; left:60px;
+      /* position: absolute;
+      top: 20px; left:60px; */
     }
     #mypage{
       font-size:12pt;
     }
     #my{
-      position:absolute;
+      /* position:absolute;
       top: 210px;
-      left:30px;
+      left:30px; */
       text-align:center;
       background-color:rgb(253, 213, 150);
       border-radius:15px;
       width:200px;
       height:120px;
-      display: flex;
+      /* display: flex;
       align-items: center;
       flex-direction: row;
-      justify-content: center;
+      justify-content: center; */
+      margin-top: 20px;
+      margin-left:-15px;
+      padding-top:20px;
     }
     #usual{
-      position:absolute;
+      /* position:absolute;
       top: 340px;
-      left: 30px;
+      left: 30px; */
       text-align:center;
       background-color:rgb(251, 191, 95);
       border-radius:15px;
@@ -90,65 +103,85 @@
       display: flex;
       align-items: center;
       flex-direction: row;
-      justify-content: center;      
+      justify-content: center;
+      margin-top: 10px;   
+      margin-left:-15px;
+
     }
     #search {
-      position:absolute; 
+      /* position:absolute; 
       top:160px; 
-      left:30px;
+      left:30px; */
       margin-top: 10px;
     }
-    #searchbutton {
+    /* #searchbutton {
       position: absolute;
-    }
+    } */
 
-    #page {
-      position: absolute;
+    /* #page {
+      position: relative;
       left:280px;
       top: 150px;
+    } */
+    #searchtext{
+      width:121px;
     }
-
+    
   </style>
 </head>
 
-
-<a href="{% url 'main' %}" id="back"><img src = "{% static 'logoplus.png' %}" width = "110px" alt="로고"></a>
-<div id="bar">
-  <nav>
-      <ul>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'myfridge' %}">나의 냉장고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-          </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'expert_list' %}">전문가 일인분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'likelist' %}">BEST RECIPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{% url 'list' %}">COMMUNITY</a>
-        </li>
-      </ul>  
-  </nav>
+<div class="container">
+  <div class="row">
+      <div class="col-md-2">
+        <a href="{% url 'main' %}" id="back"><img src = "{% static 'logoplus.png' %}" width = "110px" alt="로고"></a>
+      </div>
+      <div id="bar" class="col-md-10">
+        <nav>
+          <ul>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'myfridge' %}">나의 냉장고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'expert_list' %}">전문가 일인분&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'likelist' %}">BEST RECIPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'list' %}">COMMUNITY</a>
+            </li>
+          </ul>  
+      </nav>
+      </div>
+      <div id="search" class="col-md-2">
+        <div>
+        <form action = "{% url 'result' %}" method = "get">
+          {% csrf_token %}
+          <input id="searchtext" type = "search" placeholder="제목+본문" style="font-family:'굴림';" name = "query">
+          <input id = "searchbutton" type = "submit" name="" value="🔍">
+        </form>
+        </div>
+      <div id="my">
+        {% if user.is_authenticated %}
+          <img width="50px" height="50px" alt="프로필 사진" src = "{{ user.profile.url }}"> 
+          {{ user.nickname }} 님<br>
+            <a href="{% url 'mypage' %}">마이페이지</a>&nbsp;&nbsp;
+            <a href="{% url 'logout' %}">로그아웃</a>
+        {% else %}
+            <br>
+          <a href="{% url 'login' %}">로그인</a>&nbsp;&nbsp;
+          <a href="{% url 'signup' %}">회원가입</a>
+        {% endif %}
+      </div>
+      <div id="usual" >
+        ⭐⭐⭐⭐⭐ <br>
+      소금, 설탕, 후추, 식용유, 올리브유, 참기름, 들기름<br><br>
+      ⭐⭐⭐<br>
+      다진마늘, 굴소스, 파
+      </div>
+      
 </div>
-
-<div id="my">
-  <class="nav-item dropdown">
-  {% if user.is_authenticated %}
-    <img width="50px" height="50px" src = "{{ user.profile.url }}"> 
-    {{ user.username }} 님
-
-    <div aria-labelledby="navbarDropdownMenuLink">
-      <a href="{% url 'mypage' %}">마이페이지</a>&nbsp;&nbsp;
-      <a href="{% url 'logout' %}">로그아웃</a>
-    </div>
-  {% else %}
-  <div aria-labelledby="navbarDropdownMenuLink">
-    <a href="{% url 'login' %}">로그인</a>&nbsp;&nbsp;
-    <a href="{% url 'signup' %}">회원가입</a>
-  </div>
-  {% endif %}
-</div>
+<<<<<<< HEAD
 
 <div id="usual">
   ⭐⭐⭐⭐⭐ <br>
@@ -169,3 +202,7 @@
   {% block content %} 
   {% endblock %}
 </div>
+=======
+{% block content %}
+{% endblock %}
+>>>>>>> e2fa5e09d61de8ce23541ea3682d8be8cad820d3

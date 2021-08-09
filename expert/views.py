@@ -50,7 +50,10 @@ def expertcreate(request):
 
     else:
         form = ExpertForm()
-        messages.info(request,'작성법 소개')
+        message = "밀키트 글을 작성할 경우 본문에 음식 사진과 구매를 위한 사이트 주소를 필수적으로 입력해야 합니다."
+        message2 = "파일 선택을 통해 업로드되는 사진은 게시판 글 목록에 대표적으로 표시되는 사진입니다. 본문에 들어갈 사진은 글 작성 에디터에 있는 사진 등록 버튼을 이용해주세요."
+        messages.info(request,message)
+        messages.info(request, message2)
         return render(request, 'new.html', {'form':form})         
 
 

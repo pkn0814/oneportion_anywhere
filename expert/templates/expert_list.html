@@ -9,106 +9,94 @@
 <head>
   <style>
     .page {
-      margin-left: auto;
-      margin-right: auto;
+      text-align: center;
     }
     .card_text {
       text-align: center;
+    }
+    #desc{
+      margin-left:10px;
+      margin-top:20px;
     }
 
 </style>
 </head>
 
-  <body>
-    <div id="text">
-    <br>
-    <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Album example</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-          <p>
-              {% if user.is_authenticated %}
-              {% if request.user.position == "사업자" %}
-              <a href="{% url 'expertcreate' %}"><button type="button" class="btn btn-warning">새 글 작성</button></a>
-              {% else %}
-              <a></a>
-              {% endif %}
-              {% endif %} 
-          </p>
-        </div>
-      </section>
-
+<body>
+  <div class="col-md-10">
+    <div id="desc" class="jumbotron text-center">
+      <h2>전문가들의 한 끼는 어떤가요?</h2>
+      <p style="font-size:14pt;"> 요리 전문가들의 레시피와 밀키트 판매점의 밀키트 소개를 볼 수 있는 전문가 일인분 게시판입니다.<br>
+          전문가들의 한 끼를 살펴보며 오늘의 맛있는 한 끼를 준비해보는 건 어떨까요?
+          {% if user.is_authenticated %}
+          {% if request.user.position == "사업자" %}<br>
+          <a href="{% url 'expertcreate' %}"><button type="button" class="btn btn-warning">새 글 작성</button></a>
+          {% else %}
+          <a></a>
+          {% endif %}
+          {% endif %} 
+      </p>
+    </div>
+    <div>
       <div class="album py-5 bg-light">
-        <div class="container">
-
-          <div class="row">
-            
-            {% for expert in page_list %}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img width="300" height="300" class="card-img-top" src="{{expert.image.url}}" alt="Card image cap">
-                <div class="card-body">
-                  <div class="card_text">
-                    <p id="title">[{{expert.category}}]<br>{{expert.title}}<br><small class="text-muted">{{expert.writer}}</small>
-                    </p>
-                    {% if user.is_authenticated %}
-                    <div class="btn-group">
-                      <a href="{% url 'detail' expert.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">자세히 보기</button></a>
-                    </div>
+      <div class="row">
+      {% for expert in page_list %}
+      
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <img width="300" height="300" class="card-img-top" src="{{expert.image.url}}" alt="Card image cap">
+          <div class="card-body">
+            <p class="card-text">
+              <p style="text-align: center;">[{{expert.category}}]<br>{{expert.title}}<br><small class="text-muted">{{expert.writer}}</small>
+                <br>{% if user.is_authenticated %}
+                    <a class="btn btn-warning" href="{% url 'detail' expert.id %}" role="button">자세히 보기</a>
                     {% else %}
-                    <div class="btn-group">
-                      <a href="#" onclick = "return alert('로그인 후 열람 가능합니다.')"><button type="button" class="btn btn-sm btn-outline-secondary">자세히 보기</button></a>
-                    </div>
+                    <a class="btn btn-warning" onclick = "return alert('로그인 후 열람 가능합니다.')" href="#" role="button">자세히 보기</a>
                     {% endif %}
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
+              </p>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+    </div>
 
-            
-              
-
-    </main>
     <div class="page">
       <ul class="pagination justify-content-center">
         {% if page_list.has_previous %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_list.previous_page_number }}">이전</a>
+          <a class="page-link" href="?page={{ page_list.previous_page_number }}">이전</a>
         </li>
         {% else %}
         <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
         </li>
         {% endif %}
         {% for page_number in page_list.paginator.page_range %}
-            {% if page_number == page_list.number %}
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-            {% endif %}
+        {% if page_number == page_list.number %}
+        <li class="page-item active" aria-current="page">
+          <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% else %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+        </li>
+        {% endif %}
         {% endfor %}
         {% if page_list.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ page_list.next_page_number }}">다음</a>
+          <a class="page-link" href="?page={{ page_list.next_page_number }}">다음</a>
         </li>
         {% else %}
         <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
         </li>
         {% endif %}
-    </ul>
-    
+      </ul>
     </div>
-
-    
-  </body>
-</html>
+</body>
+      
 {% endblock %}
+
