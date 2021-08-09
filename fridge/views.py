@@ -41,7 +41,8 @@ def showdish(request):
             else:
                 qe &= ~Q(ingredients__icontains=j)
         
-        
+        print(adddish)
+        print(adddish.count)
         maindish = maindish.filter(qe&qm).order_by('ingredients') 
         adddish = adddish.filter(q).order_by('ingredients')
         return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
@@ -49,6 +50,7 @@ def showdish(request):
         if searched[0] != '':  #검색어를 입력하면 selected 리스트에 붙이기
             selected.extend(searched)
             maindish = Dish.objects.all()
+            adddish = Dish.objects.all()
             for i in selected:
                 if i==selected[0]:
                     qm = Q(ingredients__icontains=i)
@@ -66,9 +68,9 @@ def showdish(request):
                     qe = ~Q(ingredients__icontains = j) 
                 else:
                     qe &= ~Q(ingredients__icontains=j)
-                
+
             maindish = maindish.filter(qe&qm).order_by('ingredients') 
-            adddish = Dish.objects.filter(q).order_by('ingredients')
+            adddish = adddish.filter(q).order_by('ingredients.count')
             return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
         else:
             return redirect('myfridge')
