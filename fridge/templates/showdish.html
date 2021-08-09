@@ -77,19 +77,18 @@
       #cookResult{
         margin-left:10px;
         margin-top:20px;
+        min-height: 200px; max-height: fit-content;
       }
       #nomaindish {
         width: 500px;
         margin-top: 10px; margin-left: 10px;
       }
       #nomaindish img {
-        width: 600px; margin: 10px; left:100px;
+        width: 500px; margin: 10px;
       }
-      .card-img-top img {
-        object-fit: contain;
-        position: absolute;
-        width: 100%;
-        height: auto;
+      .showdish {
+        margin-left: 10px; margin-right: 10px;
+        padding-left: 20px; padding-right: 20px;
       }
       
   </style>
@@ -106,7 +105,7 @@
       <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a> 
     </div>
 
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-light showdish">
       <h3>선택한 재료들만으로 만들 수 있는 요리</h3>
 
       {% if maindish.count == 0 %}
@@ -153,7 +152,7 @@
       {% endfor %}
       {% endif %}
     </div>
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-light showdish">
       <h3>선택한 재료들을 포함한 요리</h3>
         {% for dish in adddish.all %}
         <div class="col-md-4">
@@ -165,7 +164,7 @@
               {% if dish.image %}
               <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
               {% else %}
-              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
+              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" style="object-fit: contain;" alt="이미지 준비중">
               {% endif %}
               <br>
               <ul>
