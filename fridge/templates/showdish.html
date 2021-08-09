@@ -84,13 +84,12 @@
         margin-top: 10px; margin-left: 10px;
       }
       #nomaindish img {
-        width: 500px; margin: 10px;
+        height: 300px; margin: 10px; text-align: center;
       }
       .showdish {
         margin-left: 10px; margin-right: 10px;
         padding-left: 20px; padding-right: 20px;
       }
-      
   </style>
   </head>
  
@@ -102,7 +101,7 @@
         나의 냉장고 _ 요리보기
       </h2>
       <p>선택한 재료: {{ selected|safeseq|join:", "}}</p>
-      <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a> 
+      <a href="{% url 'myfridge' %}" class="btn btn-warning my-2 bg-gold" title="재료 다시 선택" target="_self" >재료 재선택</a> 
     </div>
 
     <div class="album py-5 bg-light showdish">
@@ -110,7 +109,7 @@
 
       {% if maindish.count == 0 %}
       <div id = "nomaindish">
-        <p>아쉽지만 해당 재료만으로 만들 수 있는 요리는 준비 중입니다. <br>
+        <p class="bs-callout bs-callout-warning">아쉽지만 해당 재료만으로 만들 수 있는 요리는 준비 중입니다. <br>
           새로운 레시피가 있다면 <a href="{% url 'list' %}" >Community</a>에 공유해주세요! </p>
         <img src="{% static 'gettingready.jpg' %}" alt ="음식 준비 중">
       </div>
@@ -184,13 +183,16 @@
                 </div>
                 <small class="text-muted">일인분</small>
               </div>
+
             </div>
           </div>
         </div>
         {% endfor %}
+
+    </div>
         <!-- Modal -->
         <div class="modal fade" id="recipy" tabindex="-1" role="dialog" aria-labelledby="recipyTitle" aria-hidden="true">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="recipyTitle">요리레시피</h5>
@@ -211,13 +213,19 @@
           </div>
         </div> 
       </div>    
-    </div>
+    
   </div>
 
   <script type="text/javascript">
-    $('#recipy').on('show.bs.modal', function (e) {
-      $('#recipy').modal('toggle')
-    })
+    // $('#recipy').click(function(){
+    //   $('#recipy').modal('show')
+    // })
+    // $('#recipy').on('show.bs.modal', function (e) {
+    //   var button = $(e.relatedTarget)
+    //   var recipient = button.data('whatever')
+    //   modal.find('.modal-title').text('New message to ' + recipient)
+    //   modal.find('.modal-body input').val(recipient)
+    // })
   </script>
 
 </body>
