@@ -83,12 +83,13 @@
       border-radius:15px;
       width:200px;
       height:120px;
-      display: flex;
+      /* display: flex;
       align-items: center;
       flex-direction: row;
-      justify-content: center;
+      justify-content: center; */
       margin-top: 20px;
       margin-left:-15px;
+      padding-top:20px;
     }
     #usual{
       /* position:absolute;
@@ -122,7 +123,10 @@
       left:280px;
       top: 150px;
     } */
-
+    #searchtext{
+      width:121px;
+    }
+    
   </style>
 </head>
 
@@ -150,18 +154,21 @@
       </nav>
       </div>
       <div id="search" class="col-md-2">
+        <div>
         <form action = "{% url 'result' %}" method = "get">
           {% csrf_token %}
-          <input type = "search" placeholder="제목+본문" style="font-family:'굴림'; margin: auto;" name = "query">
+          <input id="searchtext" type = "search" placeholder="제목+본문" style="font-family:'굴림';" name = "query">
           <input id = "searchbutton" type = "submit" name="" value="🔍">
-      </form>
+        </form>
+        </div>
       <div id="my">
         {% if user.is_authenticated %}
           <img width="50px" height="50px" alt="프로필 사진" src = "{{ user.profile.url }}"> 
-          {{ user.username }} 님
+          {{ user.nickname }} 님<br>
             <a href="{% url 'mypage' %}">마이페이지</a>&nbsp;&nbsp;
             <a href="{% url 'logout' %}">로그아웃</a>
         {% else %}
+            <br>
           <a href="{% url 'login' %}">로그인</a>&nbsp;&nbsp;
           <a href="{% url 'signup' %}">회원가입</a>
         {% endif %}
