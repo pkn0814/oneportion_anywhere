@@ -120,7 +120,7 @@
       {% else %}
       {% for dish in maindish.all %}
       <div class="col-md-4">
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4 shadow-sm" style="height: 500px;">
           <div class="card-body">
             
             <h4 class="card-text">{{dish.name}}</h4>
@@ -158,7 +158,7 @@
       <h3>선택한 재료들을 포함한 요리</h3>
         {% for dish in adddish.all %}
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
+          <div class="card mb-4 shadow-sm" style="height: 500px;">
             <div class="card-body">
               
               <h4 class="card-text">{{dish.name}}</h4>
