@@ -42,12 +42,10 @@ def showdish(request):
             
         maindish = maindish.filter(qe&qm).order_by('ingredients') 
         adddish = Dish.objects.filter(q).order_by('ingredients')
-        print(selected)
         return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
     else:
         if searched[0] != '':  #검색어를 입력하면 selected 리스트에 붙이기
             selected.extend(searched)
-            print(selected)
             maindish = Dish.objects.all()
             for i in selected:
                 if i==selected[0]:

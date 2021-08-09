@@ -102,17 +102,16 @@
       <h2>
         나의 냉장고 _ 요리보기
       </h2>
-      <p>
-        선택한 재료: 
-            {{ selected|safeseq|join:", "}}
-            <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>
-      </p>
+      <p>선택한 재료: {{ selected|safeseq|join:", "}}</p>
+      <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a> 
     </div>
+
     <div class="album py-5 bg-light">
-      <h3>선택한 재료들로만 만들 수 있는 요리</h3>
+      <h3>선택한 재료들만으로 만들 수 있는 요리</h3>
+
       {% if maindish.count == 0 %}
       <div id = "nomaindish">
-        <p>아쉽지만 해당 재료로만 만들 수 있는 요리는 준비 중입니다. <br>
+        <p>아쉽지만 해당 재료만으로 만들 수 있는 요리는 준비 중입니다. <br>
           새로운 레시피가 있다면 <a href="{% url 'list' %}" >Community</a>에 공유해주세요! </p>
         <img src="{% static 'gettingready.jpg' %}" alt ="음식 준비 중">
       </div>
