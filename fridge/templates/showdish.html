@@ -77,21 +77,19 @@
       #cookResult{
         margin-left:10px;
         margin-top:20px;
+        min-height: 200px; max-height: fit-content;
       }
       #nomaindish {
         width: 500px;
         margin-top: 10px; margin-left: 10px;
       }
       #nomaindish img {
-        width: 600px; margin: 10px; left:100px;
+        height: 300px; margin: 10px; text-align: center;
       }
-      .card-img-top img {
-        object-fit: contain;
-        position: absolute;
-        width: 100%;
-        height: auto;
+      .showdish {
+        margin-left: 10px; margin-right: 10px;
+        padding-left: 20px; padding-right: 20px;
       }
-      
   </style>
   </head>
  
@@ -102,17 +100,16 @@
       <h2>
         나의 냉장고 _ 요리보기
       </h2>
-      <p>
-        선택한 재료: 
-            {{ selected|safeseq|join:", "}}
-            <a href="{% url 'myfridge' %}" class="btn btn-primary my-2" title="재료 다시 선택" target="_self" >재료 재선택</a>
-      </p>
+      <p>선택한 재료: {{ selected|safeseq|join:", "}}</p>
+      <a href="{% url 'myfridge' %}" class="btn btn-warning my-2 bg-gold" title="재료 다시 선택" target="_self" >재료 재선택</a> 
     </div>
-    <div class="album py-5 bg-light">
-      <h3>선택한 재료들로만 만들 수 있는 요리</h3>
+
+    <div class="album py-5 bg-light showdish">
+      <h3>선택한 재료들만으로 만들 수 있는 요리</h3>
+      <div class="row">
       {% if maindish.count == 0 %}
       <div id = "nomaindish">
-        <p>아쉽지만 해당 재료로만 만들 수 있는 요리는 준비 중입니다. <br>
+        <p class="bs-callout bs-callout-warning">아쉽지만 해당 재료만으로 만들 수 있는 요리는 준비 중입니다. <br>
           새로운 레시피가 있다면 <a href="{% url 'list' %}" >Community</a>에 공유해주세요! </p>
         <img src="{% static 'gettingready.jpg' %}" alt ="음식 준비 중">
       </div>
@@ -120,7 +117,7 @@
       {% else %}
       {% for dish in maindish.all %}
       <div class="col-md-4">
-        <div class="card mb-4 shadow-sm" style="height: 500px;">
+        <div class="card mb-4 shadow-sm" style="height: 500px; max-height: fit-content; max-width: 285px; min-width: none;">
           <div class="card-body">
             
             <h4 class="card-text">{{dish.name}}</h4>
@@ -143,8 +140,7 @@
 
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">View</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">Recipy</button>
               </div>
               <small class="text-muted">일인분</small>
             </div>
@@ -154,22 +150,25 @@
       {% endfor %}
       {% endif %}
     </div>
-    <div class="album py-5 bg-light">
+  </div>
+    <br/>
+    <div class="album py-5 bg-light showdish">
       <h3>선택한 재료들을 포함한 요리</h3>
+      <div class="row">
         {% for dish in adddish.all %}
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" style="height: 500px;">
-            <div class="card-body">
+          <div class="card mb-4 shadow-sm" style="height: 500px; max-height: fit-content; max-width: 285px; min-width: none;">
+            <div class="card-body" style="min-height: fit-content;">
               
               <h4 class="card-text">{{dish.name}}</h4>
               <p class="card-text">{{dish.intro}}</p>
               {% if dish.image %}
               <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
               {% else %}
-              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
+              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" style="object-fit: contain;" alt="이미지 준비중">
               {% endif %}
               <br>
-              <ul>
+              <ul class="card-text">
                 {% if dish.basic %}
                 <li>기본 재료: {{ dish.basic }}</li>
                 {% endif %}
@@ -179,20 +178,22 @@
                 {% endif %}
               </ul>
 
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="card-text d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">Recipy</button>
                 </div>
                 <small class="text-muted">일인분</small>
               </div>
+
             </div>
           </div>
         </div>
         {% endfor %}
+      </div>
+    </div>
         <!-- Modal -->
-        <div class="modal fade" id="recipy" tabindex="-1" role="dialog" aria-labelledby="recipyTitle" aria-hidden="true">
-          <div class="modal-dialog" role="document">
+        <div class="modal fade" id="recipy" tabindex="-1" role="dialog" aria-labelledby="recipyTitle" >
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="recipyTitle">요리레시피</h5>
@@ -201,9 +202,13 @@
                 </button>
               </div>
               <div class="modal-body">
+                
                 달걀볶음밥 만드는 법<br>
+                {% if addish.ingredients %}
                 재료:<br/>
+                {% else %}
                 만드는 법:
+                {% endif %}
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -213,13 +218,14 @@
           </div>
         </div> 
       </div>    
-    </div>
+    
   </div>
 
-  <script type="text/javascript">
-    $('#recipy').on('show.bs.modal', function (e) {
-      $('#recipy').modal('toggle')
-    })
+  <script>
+    //모달 버튼에 이벤트를 건다.
+    $('#recipy').on('click', function(){
+      $('#recipy').modal('show');
+    });
   </script>
 
 </body>
