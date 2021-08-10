@@ -41,8 +41,6 @@ def showdish(request):
             else:
                 qe &= ~Q(ingredients__icontains=j)
         
-        print(adddish)
-        print(adddish.count)
         maindish = maindish.filter(qe&qm).order_by('ingredients') 
         adddish = adddish.filter(q).order_by('ingredients')
         return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
