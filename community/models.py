@@ -12,7 +12,7 @@ class Post(models.Model):
         ('일상공유','일상공유'),
         ('레시피공유', '레시피공유'),
     )
-    writer = models.ForeignKey(CustomerUser, related_name="community", on_delete=models.CASCADE, verbose_name="작성자", null=True)
+    writer = models.ForeignKey(CustomerUser, related_name="community", on_delete=models.CASCADE, verbose_name="작성자", default="관리자", null=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
     category = models.CharField(max_length=30, choices=category_select, default='일상공유', null=True)
@@ -20,6 +20,8 @@ class Post(models.Model):
     like = models.ManyToManyField(CustomerUser, related_name='likes', blank=True)
     slug = models.SlugField('Slug', unique=False, allow_unicode=True, help_text='dashed words for title alias', null=True)
     tag = TagField()
+    top_fixed = models.BooleanField(verbose_name='상단고정', default=False)
+
     def __str__(self):
         return self.title
 
