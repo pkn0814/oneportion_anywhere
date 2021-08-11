@@ -44,7 +44,9 @@
                 <tr>
                     <td>
                         {% if todaydish.image %}
+                        <a href="{% url 'recommendrecipy' todaydish.id %}" title="레시피 보기">
                         <img class = "img-thumbnail todaydish" src = "{{todaydish.image.url}}" alt = "이미지 준비중">
+                        </a>
                         {% endif %}
                         <br>
                         

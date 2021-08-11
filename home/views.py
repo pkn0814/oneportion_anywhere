@@ -1,5 +1,5 @@
 from django.db.models.query_utils import Q
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from fridge.models import Dish
 from django.db.models import Max
 import random
@@ -15,3 +15,7 @@ def get_random_dish():
 def main(request):
     todaydish = get_random_dish()
     return render(request, 'main.html', {'todaydish': todaydish})
+
+def recipy(request, dish_id):
+    dish_recipy = get_object_or_404(Dish, pk = dish_id)
+    return render(request, 'recipy.html', {'dish' : dish_recipy})
