@@ -43,8 +43,9 @@
         }
     
         #viewcook{
-            /* position: relative; width: 700px; */
-            margin-left: 100px;
+            position: absolute; width: 600px; min-height: 150px;
+            margin-left: 20px; 
+            padding: 15px;
         }
     
         #MainResult{
@@ -57,15 +58,23 @@
             width: 200px; height: 50px; 
             margin-left:auto;
             margin-right:auto;
-            /* position: relative; left: 375; */
+            position: relative; left: 600px;
             border-radius: 10px;
             background-color: #f59e00; border-color: #f59e00; 
             -webkit-box-shadow: 0 3px 0 #b37401; box-shadow: 0 3px 0 #b37401;
-            z-index: 1;   
+            z-index: 1;
         }
     
         #check:hover {
             background-color:#dd9003;
+        }
+        th {
+            padding-bottom: 5px; padding-top: 5px;
+            background-color: rgba(255, 211, 65, 0.603);
+        }
+        td {
+            vertical-align: text-top; padding: 10px;
+            border-bottom: thin; border-style:ridge; border-left: none; border-right: none;
         }
     
     </style>
@@ -74,10 +83,10 @@
 
 
 <body>
-    <div class="container-fluid col-md-8">
+    <div class="col-md-12">
         <article>
             <section>
-                <h1><img src="{% static 'fridge.png' %}" width="50px">나의 냉장고 _ What's In Your Refrigerator?</h1>
+                <h1><img src="{% static 'fridge.png' %}" width="50px" left="20">나의 냉장고 _ What's In Your Refrigerator?</h1>
                 <p>당신의 냉장고에는 무엇이 있나요? 가지고 있는 재료를 선택해주세요. <br/>
                     선택한 재료만으로 만들 수 있는 요리와 선택한 재료를 포함한 요리를 구분하여 추천해드립니다.</p>
             </section>
@@ -94,6 +103,7 @@
                                 <th>육류</th>
                                 <th>야채/채소</th>
                                 <th>주요 소스 </th>
+                                <th>과일/디저트류</th>
                             </tr>
                             <tr>
                                 <td>
@@ -112,7 +122,7 @@
                                     <p><input type="checkbox" name="ingredients" value="소고기" onclick="getCheckboxValue1()"/>소고기</p>
                                     <p><input type="checkbox" name="ingredients" value="차돌박이" onclick="getCheckboxValue1()"/>차돌박이</p>
                                 </td>
-                                <td>
+                                <td rowspan="3">
                                     <p><input type="checkbox" name="ingredients" value="버섯" onclick="getCheckboxValue1()"/>버섯</p>
                                     <p><input type="checkbox" name="ingredients" value="파" onclick="getCheckboxValue1()"/>파</p>
                                     <p><input type="checkbox" name="ingredients" value="양파" onclick="getCheckboxValue1()"/>양파</p>
@@ -121,6 +131,8 @@
                                     <p><input type="checkbox" name="ingredients" value="숙주나물" onclick="getCheckboxValue1()"/>숙주나물</p>
                                     <p><input type="checkbox" name="ingredients" value="콩나물" onclick="getCheckboxValue1()"/>콩나물</p>
                                     <p><input type="checkbox" name="ingredients" value="당근" onclick="getCheckboxValue1()"/>당근</p>
+                                    <p><input type="checkbox" name="ingredients" value="감자" onclick="getCheckboxValue1()"/>감자</p>
+                                    <p><input type="checkbox" name="ingredients" value="고구마" onclick="getCheckboxValue1()"/>고구마</p>
                                     <p><input type="checkbox" name="ingredients" value="애호박" onclick="getCheckboxValue1()"/>애호박</p>
                                     <p><input type="checkbox" name="ingredients" value="고추" onclick="getCheckboxValue1()"/>고추</p>
                                     <p><input type="checkbox" name="ingredients" value="깻잎" onclick="getCheckboxValue1()"/>깻잎</p>
@@ -146,11 +158,24 @@
                                     <p><input type="checkbox" name="ingredients" value="케찹" onclick="getCheckboxValue1()"/>케찹</p>
                                     <p><input type="checkbox" name="ingredients" value="버터" onclick="getCheckboxValue1()"/>버터</p>
                                 </td>
+                                <td rowspan="3">
+                                    <p><input type="checkbox" name="ingredients" value="블루베리" onclick="getCheckboxValue1()"/>블루베리</p>
+                                    <p><input type="checkbox" name="ingredients" value="딸기" onclick="getCheckboxValue1()"/>딸기</p>
+                                    <p><input type="checkbox" name="ingredients" value="바나나" onclick="getCheckboxValue1()"/>바나나</p>
+                                    <p><input type="checkbox" name="ingredients" value="귤" onclick="getCheckboxValue1()"/>귤</p>
+                                    <p><input type="checkbox" name="ingredients" value="사과" onclick="getCheckboxValue1()"/>사과</p>
+                                    <p><input type="checkbox" name="ingredients" value="그래놀라" onclick="getCheckboxValue1()"/>그래놀라</p>
+                                    <p><input type="checkbox" name="ingredients" value="두부면" onclick="getCheckboxValue1()"/>시리얼</p>
+                                    <p><input type="checkbox" name="ingredients" value="시리얼" onclick="getCheckboxValue1()"/>딸기청</p>
+                                    <p><input type="checkbox" name="ingredients" value="자몽청" onclick="getCheckboxValue1()"/>자몽청</p>
+                                    <p><input type="checkbox" name="ingredients" value="플레인요거트" onclick="getCheckboxValue1()"/>플레인요거트</p>
+                                    <p><input type="checkbox" name="ingredients" value="그릭요거트" onclick="getCheckboxValue1()"/>그릭요거트</p>
+                                </td>
                             </tr>
                             <tr>
                                 <th>면류</th>
                                 <th>해조류/해산물</th>
-                                <th>과일/디저트류</th>
+                                
                             </tr>
                             <tr>
                                 <td>
@@ -168,19 +193,7 @@
                                     <p><input type="checkbox" name="ingredients" value="쭈꾸미" onclick="getCheckboxValue1()"/>쭈꾸미</p>
                                     <p><input type="checkbox" name="ingredients" value="게맛살" onclick="getCheckboxValue1()"/>게맛살</p>
                                 </td>
-                                <td>
-                                    <p><input type="checkbox" name="ingredients" value="블루베리" onclick="getCheckboxValue1()"/>블루베리</p>
-                                    <p><input type="checkbox" name="ingredients" value="딸기" onclick="getCheckboxValue1()"/>딸기</p>
-                                    <p><input type="checkbox" name="ingredients" value="바나나" onclick="getCheckboxValue1()"/>바나나</p>
-                                    <p><input type="checkbox" name="ingredients" value="귤" onclick="getCheckboxValue1()"/>귤</p>
-                                    <p><input type="checkbox" name="ingredients" value="사과" onclick="getCheckboxValue1()"/>사과</p>
-                                    <p><input type="checkbox" name="ingredients" value="그래놀라" onclick="getCheckboxValue1()"/>그래놀라</p>
-                                    <p><input type="checkbox" name="ingredients" value="두부면" onclick="getCheckboxValue1()"/>시리얼</p>
-                                    <p><input type="checkbox" name="ingredients" value="시리얼" onclick="getCheckboxValue1()"/>딸기청</p>
-                                    <p><input type="checkbox" name="ingredients" value="자몽청" onclick="getCheckboxValue1()"/>자몽청</p>
-                                    <p><input type="checkbox" name="ingredients" value="플레인요거트" onclick="getCheckboxValue1()"/>플레인요거트</p>
-                                    <p><input type="checkbox" name="ingredients" value="그릭요거트" onclick="getCheckboxValue1()"/>그릭요거트</p>
-                                </td>
+
                             </tr>
                             <tr>
                                 <td colspan="6" style="text-align: center;">기타: <input type="text" name="direct" maxlength="50" default=''/> </td>

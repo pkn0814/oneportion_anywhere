@@ -1,5 +1,5 @@
 from fridge.models import Dish
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import Q
 from django.views.decorators.http import require_GET
 
@@ -22,6 +22,7 @@ def showdish(request):
             selected.extend(searched)
         #검색어를 입력하지 않으면 그냥 그대로 진행
         maindish = Dish.objects.all()
+        adddish = Dish.objects.all()
         for i in selected:
             if i==selected[0]:
                 qm = Q(ingredients__icontains=i)
@@ -39,16 +40,15 @@ def showdish(request):
                 qe = ~Q(ingredients__icontains = j) 
             else:
                 qe &= ~Q(ingredients__icontains=j)
-            
+        
         maindish = maindish.filter(qe&qm).order_by('ingredients') 
-        adddish = Dish.objects.filter(q).order_by('ingredients')
-        print(selected)
+        adddish = adddish.filter(q).order_by('ingredients')
         return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
     else:
         if searched[0] != '':  #검색어를 입력하면 selected 리스트에 붙이기
             selected.extend(searched)
-            print(selected)
             maindish = Dish.objects.all()
+            adddish = Dish.objects.all()
             for i in selected:
                 if i==selected[0]:
                     qm = Q(ingredients__icontains=i)
@@ -66,9 +66,13 @@ def showdish(request):
                     qe = ~Q(ingredients__icontains = j) 
                 else:
                     qe &= ~Q(ingredients__icontains=j)
-                
+
             maindish = maindish.filter(qe&qm).order_by('ingredients') 
-            adddish = Dish.objects.filter(q).order_by('ingredients')
+            adddish = adddish.filter(q).order_by('ingredients.count')
             return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
         else:
             return redirect('myfridge')
+
+def recipy(request, dish_id):
+    dish_recipy = get_object_or_404(Dish, pk = dish_id)
+    return render(request, 'recipy.html', {'dish' : dish_recipy})
