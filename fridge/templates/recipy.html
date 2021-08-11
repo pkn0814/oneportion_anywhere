@@ -1,15 +1,108 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>요리 레시피</h2>
-<br>
-<h3>음식 이름: {{dish.name}}</h3>
-<p>필요한 재료: {{dish.ingredients}}</p>
-<p>요리 방법: </p>
-<br>
-{% if dish.recipy %}
-<pre>{{dish.recipy}}</pre>
-{% else %}
-<p>아직 등록된 레시피가 없어요! </p>
-{% endif%}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipy</title>
+    <style>
+        .recipy {
+            background-color: white; padding: 20 30; 
+            border-color: rgba(110, 108, 106, 0.801); border-width: 4; border-style: solid; border-radius: 10px;
+        }
+        .recipy section {
+            margin-top: 10px; font-size: 15pt;
+        }
+        .selectagain {
+            background-color: rgb(255, 140, 73); right: 30px;
+            margin: 10 20; padding: 10 20; font-size: 12pt; border-radius: 15px;
+            position: absolute; right: 30px;
+        }
+        .gocommunity {
+            background-color: rgba(255, 140, 73, 0.747); border-radius: 10px;
+            margin: 3 7; padding: 3 7; 
+        }
+        a:hover {
+            color :white;
+        }
+        mark {
+            background-color: rgba(255, 231, 124, 0.89);
+        }
+    </style>
+</head>
+<body>
+    <h2>요리 레시피</h2>
+    <article class="recipy">
+        <section>
+            <h3><mark>[ {{dish.name}} ] 레시피</mark></h3>
+            <hr>
+        </section>
+        <section>
+            <p>필요한 재료: {{dish.ingredients}}</p>
+            <hr>
+        </section>
+        <section>
+            <p>요리 방법: </p>
+            {% if dish.recipy %}
+            <pre style="font-family: 'Noto Sans KR'; font-size:12pt;">{{dish.recipy}}</pre>
+            {% else %}
+            <p>아직 등록된 레시피가 없어요! <br>
+                새로운 레시피가 있다면 <a href="{% url 'list' %}" class="gocommunity">Community</a>에 공유해주세요!</p>
+            {% endif%}
+        </section>
+        
+    </article>
+    <article>
+        <section>
+            <div class="row mt-5">
+                <div class="col-12">
+                    {% if result or result2 %}
+                    <b>[ '전문가 일인분'과 'COMMUNITY'에서 "{{dish.name}}"을(를) 검색한 결과 ]</b>
+                    <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col" style="text-align:center;">No</th>
+                    <th scope="col" style="text-align:center;">제목</th>
+                    <th scope="col" style="text-align:center;">글쓴이</th>
+                    <th scope="col" style="text-align:center;">작성일</th>
+                    <th scope="col" style="text-align:center;">추천수</th>
+                    <th scope="col" style="text-align:center;">게시판</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align:center;">
+                        {% for post in result %}
+                        <tr>
+                        <th scope="row"> {{forloop.revcounter}} </th>
+                        <td><a href="{% url 'postshow' post.id %}">{{post.title}}</a></td>
+                        <td>{{ post.writer }}</td>
+                        <td>{{ post.pub_date }}</td>
+                        <td>{{ post.like.all.count }}</td>
+                        <td> COMMUNITY </td>
+                        </tr>
+                        {% endfor %}
+    
+                        {% for expert in result2 %}
+                        <tr>
+                        <th scope="row">{{ expert.id }}</th>
+                        <td><a href="{% url 'detail' expert.id %}">{{ expert.title }}</a></td>
+                        <td>{{ expert.writer }}</td>
+                        <td>{{ expert.pub_date }}</td>
+                        <td></td>
+                        <td> 전문가일인분 </td>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+                </table>
+                </div>
+            </div>
+        </section>
+    </article>
+    <a href="{% url 'myfridge' %}"><button type="button" class="selectagain">재료 다시 선택</button></a>
+
+</body>
+</html>
+
 {% endblock %}
