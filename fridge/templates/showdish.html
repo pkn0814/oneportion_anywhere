@@ -140,7 +140,8 @@
 
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">Recipy</button>
+                <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Recipy</button> -->
+                <p><a href="{% url 'recipy' dish.id %}">Recipy</a></p>
               </div>
               <small class="text-muted">일인분</small>
             </div>
@@ -189,37 +190,8 @@
           </div>
         </div>
         {% endfor %}
-      </div>
+        </div>
     </div>
-        <!-- Modal -->
-        <div class="modal fade" id="recipy" tabindex="-1" role="dialog" aria-labelledby="recipyTitle" >
-          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="recipyTitle">요리레시피</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                
-                달걀볶음밥 만드는 법<br>
-                {% if addish.ingredients %}
-                재료:<br/>
-                {% else %}
-                만드는 법:
-                {% endif %}
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div> 
-      </div>    
-    
-  </div>
 
   <script>
     //모달 버튼에 이벤트를 건다.

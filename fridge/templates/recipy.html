@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>요리 레시피</h2>
+<br>
+<h3>음식 제목: {{dish.name}}</h3>
+<p>필요한 재료: {{dish.ingredients}}</p>
+<p>요리 방법: {{dish.recipy}}</p>
+
+{% endblock %}
