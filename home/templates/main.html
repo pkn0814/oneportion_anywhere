@@ -5,11 +5,13 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+        <meta charset="utf-8">
+        <title>일인분</title>
         <style>
             .recommend {
                 border:dashed; border-color:darkorange; text-align:center; 
                 position: relative; width:900px; height:430px; margin: 10 10 10 10;
-                padding-top: 10;
+                padding: 20 20;
             }
             .recommend th {
                 text-align: center; padding: 5px;
@@ -23,11 +25,6 @@
                 width: 300px; height: 300px; 
             }
             .todaydish:hover {opacity:0.8;}
-            
-            .bestweekly{
-                width: 300px; height: 300px; 
-            }
-            .bestweekly:hover{opacity:0.8;}
 
         </style>
     </head>
@@ -39,7 +36,14 @@
             <table class="recommend">
                 <tr>
                     <th>일인분의 랜덤메뉴</th>
-                    <th>YOUTUBE LINK</th>
+                    <td rowspan="3" style="font-size: 15pt;">
+                        '오늘은 뭐 먹지?'<br>'이 재료들로 할 수 있는 요리가 뭐가 있지?'<br>
+                        고민 중이셨나요? <br/>
+                        선택한 재료만으로 할 수 있는 요리와 <br>
+                        선택한 재료를 포함하는 요리를 구분지어 보여주는 <br>
+                        당신만을 위한 요리냉장고 <mark>'일인분'</mark>에 오신 것을 환영합니다!
+
+                    </td>             
                 </tr>
                 <tr>
                     <td>
@@ -52,7 +56,8 @@
                         
                     </td>
                     <td>
-                        {% if '달걀간장밥' in todaydish.name %}
+                        
+                        <!-- {% if '달걀간장밥' in todaydish.name %}
                         <embed width="300" height="300" src="https://www.youtube.com/embed/UekEolhleeU" frameborder="0" allowfullscreen>
                         {% elif '딸기요거트' in todaydish.name %}
                         <embed width="300" height="300" src="https://www.youtube.com/embed/00YWfb6_mIE" frameborder="0" allowfullscreen>
@@ -80,12 +85,15 @@
                         <embed width="300" height="300" src="https://www.youtube.com/embed/V9a7AL_6Od0" frameborder="0" allowfullscreen>
                         {% else %}
                         <h5> 직접 유튜브에 검색해 레시피를 알아보세요! </h5>
-                        {% endif %}
+                        {% endif %} -->
                     </td>
                 </tr>
                 <tr>
-                    <td><span style="font-size:15pt; background-color:orange;">[ {{ todaydish.name }} ]</span></td>
-                    <td><span style="font-size:15pt; background-color:orange;">[ 참고 ]</span></td>
+                    <td>
+                        <span style="font-size:15pt; background-color:orange;">[ {{ todaydish.name }} ]</span><br>
+                        <span class="glyphicon glyphicon-expand"></span>
+                        <a href="https://www.youtube.com/results?search_query={{todaydish.name}}">유튜브검색결과</a>
+                    </td>
                 </tr>
             </table>
             <div id="little" >
