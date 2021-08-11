@@ -12,7 +12,7 @@ class Post(models.Model):
         ('일상공유','일상공유'),
         ('레시피공유', '레시피공유'),
     )
-    writer = models.ForeignKey(CustomerUser, related_name="community", on_delete=models.CASCADE, verbose_name="작성자", default="관리자", null=True)
+    writer = models.ForeignKey(CustomerUser, related_name="community", on_delete=models.CASCADE, verbose_name="작성자", null=True)
     title = models.CharField(max_length=100)
     content = models.TextField()
     category = models.CharField(max_length=30, choices=category_select, default='일상공유', null=True)
