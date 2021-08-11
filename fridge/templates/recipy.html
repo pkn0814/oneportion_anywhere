@@ -3,8 +3,13 @@
 {% block content %}
 <h2>요리 레시피</h2>
 <br>
-<h3>음식 제목: {{dish.name}}</h3>
+<h3>음식 이름: {{dish.name}}</h3>
 <p>필요한 재료: {{dish.ingredients}}</p>
-<p>요리 방법: {{dish.recipy}}</p>
-
+<p>요리 방법: </p>
+<br>
+{% if dish.recipy %}
+<pre>{{dish.recipy}}</pre>
+{% else %}
+<p>아직 등록된 레시피가 없어요! </p>
+{% endif%}
 {% endblock %}
