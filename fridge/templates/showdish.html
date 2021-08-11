@@ -75,9 +75,9 @@
           top: 0px;
       }
       #cookResult{
-        margin-left:10px;
-        margin-top:20px;
+        margin: 10 10 10 10;
         min-height: 200px; max-height: fit-content;
+        padding: 20 20 20 20;
       }
       #nomaindish {
         width: 500px;
@@ -96,11 +96,11 @@
 <body>
   
   <div class="col-md-10">
-    <div id="cookResult" class="jumbotron text-center bg-light">
+    <div id="cookResult" class="text-center">
       <h2>
         나의 냉장고 _ 요리보기
       </h2>
-      <p>선택한 재료: {{ selected|safeseq|join:", "}}</p>
+      <h4>선택한 재료: {{ selected|safeseq|join:", "}}</h4>
       <a href="{% url 'myfridge' %}" class="btn btn-warning my-2 bg-gold" title="재료 다시 선택" target="_self" >재료 재선택</a> 
     </div>
 

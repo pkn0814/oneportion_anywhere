@@ -58,7 +58,7 @@
             width: 200px; height: 50px; 
             margin-left:auto;
             margin-right:auto;
-            position: absolute; left: 600px;
+            position: relative; left: 600px;
             border-radius: 10px;
             background-color: #f59e00; border-color: #f59e00; 
             -webkit-box-shadow: 0 3px 0 #b37401; box-shadow: 0 3px 0 #b37401;
@@ -83,10 +83,10 @@
 
 
 <body>
-    <div class="container-fluid col-md-8">
+    <div class="col-md-12">
         <article>
             <section>
-                <h1><img src="{% static 'fridge.png' %}" width="50px">나의 냉장고 _ What's In Your Refrigerator?</h1>
+                <h1><img src="{% static 'fridge.png' %}" width="50px" left="20">나의 냉장고 _ What's In Your Refrigerator?</h1>
                 <p>당신의 냉장고에는 무엇이 있나요? 가지고 있는 재료를 선택해주세요. <br/>
                     선택한 재료만으로 만들 수 있는 요리와 선택한 재료를 포함한 요리를 구분하여 추천해드립니다.</p>
             </section>
