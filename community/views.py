@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 
 def list(request):
     posts = Post.objects.order_by('-pub_date')
+    notice_fixed = Post.objects.filter(top_fixed=True).order_by('-pub_date')
     page = request.GET.get('page','1')
     paginator = Paginator(posts, 10)
     page_obj = paginator.page(page)
@@ -15,6 +16,12 @@ def postshow(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     scrap = Scrap_commu.objects.filter(user=request.user,post=post)
     return render(request, 'postshow.html', {'post': post,'scrap':scrap})
+
+def notice1(request):
+    return render(request, 'notice1.html')
+
+def notice2(request):
+    return render(request, 'notice2.html')
 
 def postnew(request):
     if request.user.is_authenticated: 
