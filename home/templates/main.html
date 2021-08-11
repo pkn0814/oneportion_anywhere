@@ -2,67 +2,90 @@
 {% load static %}
 
 {% block content %}
+<!DOCTYPE html>
 <html lang="ko">
-    <script language = "javascript">
-        var imgArray = new Array();
-        imgArray[0] = "{% static '계란찜.jpg' %}"
-        imgArray[1] = "{% static '김밥.jpg' %}"
-        imgArray[2] = "{% static '김치볶음밥.jpg' %}"
-        imgArray[3] = "{% static '낙지덮밥.jpg' %}"
-        imgArray[4] = "{% static '달걀버섯두부면.jpg' %}"
-        imgArray[5] = "{% static '달걀볶음밥.jpg' %}"
-        imgArray[6] = "{% static '달걀빵.jpeg' %}"
-        imgArray[7] = "{% static '닭갈비.jpg' %}"
-        imgArray[8] = "{% static '돈가스.jpg' %}"
-        imgArray[9] = "{% static '딸기요거트.jpg' %}"
-        imgArray[10] = "{% static '로제떡볶이.jpg' %}"
-        imgArray[11] = "{% static '불닭볶음밥.jpg' %}"
-        imgArray[12] = "{% static '비빔밥.jpg' %}"
-        imgArray[13] = "{% static '샤브샤브.jpg' %}"
-        imgArray[14] = "{% static '야채볶음밥.jpg' %}"
-        imgArray[15] = "{% static '오므라이스.jpg' %}"
-        imgArray[16] = "{% static '차돌박이숙주볶음16.jpg' %}"
-        imgArray[17] = "{% static '크림파스타.jpg' %}"
-        imgArray[18] = "{% static '토마토달걀볶음.jpg' %}"
-        imgArray[19] = "{% static '토마토샐러드.jpg' %}"
-        imgArray[20] = "{% static '토마토스파게티.jpg' %}"
-        imgArray[21] = "{% static '토스트.jpg' %}"
-
-        function showImage(){
-            var imgNum = Math.round(Math.random()*21);
-            var objImg = document.getElementById("introImg");
-            objImg.src = imgArray[imgNum];
-        }
-    </script>
     <head>
         <style>
-            #logo{position: absolute; left:-20px; top:-10px;}
-            #vertical{position:absolute; left:150px;}  
-            table{
+            .recommend {
                 border:dashed; border-color:darkorange; text-align:center; 
-                position: relative; left: 13px; width:900px; height:430px; margin: 10px;
+                position: relative; width:900px; height:430px; margin: 10 10 10 10;
+                padding-top: 10;
+            }
+            .recommend th {
+                text-align: center; padding: 5px;
             }
             #little{
                 font-family:'굴림';font-size:8pt; color:dimgrey; 
                 top:650px; left:670px; 
                 text-align:center; margin: 20px;
             }
-            #bibim:hover{opacity:0.7;}
-            #pasta:hover{opacity:0.7;}
-            #mainTable{
-                margin-top: 20px;
+            .todaydish{
+                width: 300px; height: 300px; 
             }
+            .todaydish:hover {opacity:0.8;}
+            
+            .bestweekly{
+                width: 300px; height: 300px; 
+            }
+            .bestweekly:hover{opacity:0.8;}
+
         </style>
     </head>
 
-    <body onload = "showImage()">
-        <div id="mainTable"class="col-md-8">
-            <span style="font-family:'굴림'; font-size:8pt; color:dimgrey; position: relative; left:20px;">
+    <body>    
+        <div class="col-md-10">
+            <span style="font-family:'굴림'; font-size:8pt; color:dimgrey; position: relative; left:20px; margin-top: 10px;">
                 * 이미지를 클릭하면 해당 음식의 레시피를 보실 수 있습니다.</span>
-            <table>
+            <table class="recommend">
                 <tr>
-                    <td><img id= "introImg" border="0" width="300" height="300" /></a><br />오늘의 추천 음식<br /><span style="font-size:15pt; background-color:orange;"></span><br />&nbsp;</td>
-                    <td><a href="https://www.youtube.com/results?search_query=%ED%81%AC%EB%A6%BC%ED%8C%8C%EC%8A%A4%ED%83%80"><img id="pasta" src="https://cdn.pixabay.com/photo/2014/10/26/12/03/pasta-503773_960_720.jpg" alt="크림파스타" width="300" height="300" /></a><br />WEEKLY BEST RECIPE<br /><span style="font-size:15pt; background-color:orange;">[ 들깨 크림 파스타 ]</span><br />- <span style="text-decoration:underline;">호랑이</span>님</td>
+                    <th>오늘의 추천 메뉴</th>
+                    <th>YOUTUBE LINK</th>
+                </tr>
+                <tr>
+                    <td>
+                        {% if todaydish.image %}
+                        <a href="{% url 'recommendrecipy' todaydish.id %}" title="레시피 보기">
+                        <img class = "img-thumbnail todaydish" src = "{{todaydish.image.url}}" alt = "이미지 준비중">
+                        </a>
+                        {% endif %}
+                        <br>
+                        
+                    </td>
+                    <td>
+                        {% if '달걀간장밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/UekEolhleeU" frameborder="0" allowfullscreen>
+                        {% elif '딸기요거트' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/00YWfb6_mIE" frameborder="0" allowfullscreen>
+                        {% elif '김치볶음밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/eIo2BaE6LxI" frameborder="0" allowfullscreen>
+                        {% elif '닭가슴살볶음' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/oWoun98fxBk" frameborder="0" allowfullscreen>
+                        {% elif '토마토달걀볶음' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/pTvMsM2v1tg" frameborder="0" allowfullscreen>
+                        {% elif '불닭볶음밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/a0rLqfL_Pu0" frameborder="0" allowfullscreen>
+                        {% elif '달걀볶음밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/qUDEyONQaCA" frameborder="0" allowfullscreen>
+                        {% elif '스탠다드김밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/10fl2mebYHs" frameborder="0" allowfullscreen>
+                        {% elif '김치밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/R6IT_f0XPT8" frameborder="0" allowfullscreen>
+                        {% elif '달걀버섯두부면' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/NwxIv4TIXMA" frameborder="0" allowfullscreen>
+                        {% elif '비빔밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/_wdyeAA1Wqc" frameborder="0" allowfullscreen>
+                        {% elif '스팸마요김치덮밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/kj2ZupQ7fts" frameborder="0" allowfullscreen>
+                        {% elif '오므라이스' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/V9a7AL_6Od0" frameborder="0" allowfullscreen>
+                        {% else %}
+                        <h5> 직접 유튜브에 검색해 레시피를 알아보세요! </h5>
+                        {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td><span style="font-size:15pt; background-color:orange;">[ {{ todaydish.name }} ]</span></td>
+                    <td><span style="font-size:15pt; background-color:orange;">[ 참고 ]</span></td>
                 </tr>
             </table>
             <div id="little" >

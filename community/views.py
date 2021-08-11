@@ -8,7 +8,7 @@ def list(request):
     posts = Post.objects.order_by('-pub_date')
     notice_fixed = Post.objects.filter(top_fixed=True).order_by('-pub_date')
     page = request.GET.get('page','1')
-    paginator = Paginator(posts, 5)
+    paginator = Paginator(posts, 10)
     page_obj = paginator.page(page)
     return render(request, 'list.html', {'posts': page_obj})
 
@@ -41,7 +41,7 @@ def postcreate(request):
             return render(request, 'new.html', {'form':form}) 
     else:
         form = PostForm()
-        messages.info(request,'작성법 소개')
+        messages.info(request,'태그는 쉼표로 구분해주세요.')
         return render(request, 'postnew.html', {'form':form})  
 
 def edit(request):

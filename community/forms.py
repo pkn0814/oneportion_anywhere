@@ -26,7 +26,7 @@ class PostForm(forms.ModelForm):
     )
 
     tag = forms.CharField(
-        required=False, label="태그"
+        required=False, label="태그 "
     )
 
     class Meta:
