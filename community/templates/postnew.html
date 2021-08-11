@@ -41,6 +41,8 @@
             <form  method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
+            {{ form.top_fixed }}
+            <span>상단에 표시하기</span>
             
             <br><button id="submit" type="submit" class="btn btn-warning">작성</button>
         </form>

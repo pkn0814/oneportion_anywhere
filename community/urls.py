@@ -11,5 +11,6 @@ urlpatterns = [
     path('postshow/postdelete/<int:post_id>', views.postdelete, name='postdelete'),
     path('communityscrap/<int:post_id>', views.communityscrap, name='communityscrap'),
     path('likes/<int:post_id>', views.likes, name="likes"),
-    
+    path('notice1', views.notice1, name='notice1'),
+    path('notice2', views.notice2, name='notice2'),
 ]

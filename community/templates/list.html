@@ -50,6 +50,22 @@
                 </thead>
     
                 <tbody>
+                    <tr>
+                        <td><font color="red">공지</font></td>
+                        <td><a href="{% url 'notice1' %}">게시물 작성법</a></td>
+                        <td>관리자</td>
+                        <td>2021년 8월 11일 10:17 오후</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td><font color="red">공지</font></td>
+                        <td><a href="{% url 'notice2' %}">태그 작성법</a></td>
+                        <td>관리자</td>
+                        <td>2021년 8월 11일 10:17 오후</td>
+                        <td></td>
+                    </tr>
+
                     {% for post in posts %}
                     <tr>
                         <th scope="row">{{ posts.paginator.count|sub:posts.start_index|sub:forloop.counter0|add:1 }}</th>
