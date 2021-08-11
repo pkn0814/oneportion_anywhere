@@ -49,7 +49,7 @@
       flex-direction: row;
       justify-content: center;
       margin-top:20px; margin-bottom: 20px;
-      min-width: max-content; max-width: 1000px;
+      min-width: max-content; max-width: 1100px;
     }
     #bar ul{
       margin: 0;
@@ -129,13 +129,8 @@
 <body style="background-color: antiquewhite;">
 <div class="container side">
   <div class="row">
-<<<<<<< HEAD
-      <div class="col-md-2">
-        <a href="{% url 'main' %}" id="back"><img src = "{% static 'logo.png' %}" width = "110px" alt="로고"></a>
-=======
       <div class="col-md-2 logo">
         <a href="{% url 'main' %}"><img src = "{% static 'logoplus.png' %}" width = "110px" alt="로고"></a>
->>>>>>> 808ef77d968f195e4d8fcfda96a9aaa1a0147970
       </div>
       <div id="bar" class="col-md-10">
         <nav>
@@ -159,7 +154,7 @@
         <div>
         <form action = "{% url 'result' %}" method = "get">
           {% csrf_token %}
-          <input id="searchtext" type = "search" placeholder="제목+본문" style="font-family:'굴림';" name = "query">
+          <input id="searchtext" type = "search" placeholder="제목+본문" style="font-family:'굴림';" name = "query">&nbsp;&nbsp;&nbsp;
           <input id = "searchbutton" type = "submit" name="" value="🔍">
         </form>
       </div>
@@ -176,18 +171,13 @@
         {% endif %}
       </div>
       <div id="usual" >
-      ⭐⭐꼭 필요해요⭐⭐ <br><br>
-<<<<<<< HEAD
-      소금, 설탕, 후추, 식용유,<br>올리브유, 간장, 참기름, 들기름<br><br><br>
-=======
+      ⭐⭐⭐꼭 필요해요⭐⭐⭐ <br><br>
       소금, 설탕, 후추, 식용유, 올리브유, 참기름, 들기름, 간장(진간장, 국간장)<br><br><br>
->>>>>>> 808ef77d968f195e4d8fcfda96a9aaa1a0147970
       ⭐있으면 좋아요⭐<br><br>
       다진마늘, 굴소스, 파 등
       </div>
-      
 </div>
-<div class="container col-md-10 page0">
+<div class="container col-md-20 page0">
   {% block content %} 
   {% endblock %}
 </div>

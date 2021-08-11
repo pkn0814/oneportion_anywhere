@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-from django.shortcuts import render
-
-# Create your views here.
-=======
 from django.db.models.query_utils import Q
 from django.shortcuts import render, get_object_or_404
 from fridge.models import Dish
@@ -16,7 +11,6 @@ def get_random_dish():
         dish = Dish.objects.filter(pk=pk).exclude(Q(image='loaddish.jpg')|Q(image='')).first()
         if dish:
             return dish
->>>>>>> 808ef77d968f195e4d8fcfda96a9aaa1a0147970
 
 def main(request):
     todaydish = get_random_dish()
