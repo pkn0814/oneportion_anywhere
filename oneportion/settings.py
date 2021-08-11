@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +55,7 @@ INSTALLED_APPS = [
     'search',
     'taggit',
     'tagging.apps.TaggingConfig',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -175,3 +179,9 @@ SUMMERNOTE_CONFIG = {
 
     }
 }
+
+cloudinary.config( 
+  cloud_name = "dgpwxnuza", 
+  api_key = "315995683374944", 
+  api_secret = "_Tpykjyq8xhsBqxumCJQPMM104I" 
+)
