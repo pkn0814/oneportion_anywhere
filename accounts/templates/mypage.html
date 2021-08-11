@@ -22,11 +22,10 @@
             font-size: 30pt;
         }
         .title{
-            font-size: 20pt;
-            
+            font-size: 18pt;
         }
         .title2{
-            font-size: 20pt;
+            font-size: 18pt;
             padding-right:10px;
     
 
@@ -132,7 +131,7 @@
             <div style="text-align: center;" class="col-md-offset-1 col-md-4">
                 <span class="title">작성한 게시글</span>
             </div>
-            <div style="text-align:center;" class="col-md-offset-2 col-md-4">
+            <div style="text-align:center;" class="col-md-offset-2 col-md-5">
                 <span class="title2">스크랩한 게시글</span>
             </div>
         </div>
@@ -152,7 +151,7 @@
             </div>
             <div class="col-md-offset-1 col-md-2">
                 <p>
-                    <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
+                    <span class="mini_title">BEST RECIPE /<br>COMMUNITY</span><br><br>
                     {% if com_posts %}
                     {% for com_post in com_posts %}
                     {{ com_post.title }}  <a class="hoverBlue"href="{% url 'postshow' com_post.id %}"> <span class="view">글보기</span></a><br>
@@ -176,7 +175,7 @@
             </div>
             <div class="col-md-offset-1 col-md-2">
                 <p>
-                    <span class="mini_title">BEST RECIPE/<br>COMMUNITY</span><br><br>
+                    <span class="mini_title">BEST RECIPE /<br>COMMUNITY</span><br><br>
                     {% if com_scraps %}
                     {% for com_scrap in com_scraps %}
                     {{ com_scrap.post }}<a class="hoverBlue"href="{% url 'postshow' com_scrap.post.id %}"> <span class="view">글보기</span></a><br>
