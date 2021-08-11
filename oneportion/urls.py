@@ -16,12 +16,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import home.views
-import accounts.views
-import fridge.views 
-import expert.views
-import community.views
-import bestrecipe.views
-import commentcrud.views
 from django.conf import settings
 from django.conf.urls.static import static
 import search.views
@@ -29,6 +23,7 @@ import search.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home.views.main, name="main"),
+    path('recipy/<int:dish_id>/', home.views.recipy, name="recommendrecipy"),
     path('accounts/', include('accounts.urls')),
     path('fridge/', include('fridge.urls')),
     path('expert/', include('expert.urls')),

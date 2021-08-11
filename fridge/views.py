@@ -1,5 +1,5 @@
 from fridge.models import Dish
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import Q
 from django.views.decorators.http import require_GET
 
@@ -73,3 +73,6 @@ def showdish(request):
         else:
             return redirect('myfridge')
 
+def recipy(request, dish_id):
+    dish_recipy = get_object_or_404(Dish, pk = dish_id)
+    return render(request, 'recipy.html', {'dish' : dish_recipy})
