@@ -1,1 +1,0 @@
-web: gunicorn oneportion.wsgi --log-file -
