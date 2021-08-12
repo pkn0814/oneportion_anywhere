@@ -7,15 +7,15 @@ from django.db.models import Max
 import random
 
 def get_random_dish():
-    max_id = Dish.objects.all().exclude(image='loaddish.jpg').aggregate(max_id=Max("id"))['max_id']
+    max_id = Dish.objects.all().exclude(image='ttgaogawdwdfmexebiwz.jpg').aggregate(max_id=Max("id"))['max_id']
     while True:
-        pk = random.randint(1, max_id)
+        pk = random.randint(1, max_id) #
         dish = Dish.objects.filter(pk=pk).exclude(Q(image='loaddish.jpg')|Q(image='')).first()
         if dish:
             return dish
 
 def main(request):
-    todaydish = get_random_dish()
+    todaydish = get_random_dish() #
     return render(request, 'main.html', {'todaydish': todaydish})
 
 
