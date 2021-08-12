@@ -18,11 +18,11 @@
         
     <!--<h4 style="border-radius:40px;color:white;padding-bottom:20px;padding-top:20px;background-color: salmon;">회원정보 수정</h4><br>-->
     <div style="border:2px solid salmon;margin-left:200px;margin-right:200px;padding-top:20px;border-radius:30px;">
-    <a href="{% url 'passwordChange' %}">비밀번호 변경하기</a><br>
         <div id="text">
             <form class="form-inline-center" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% bootstrap_form user_change_form %}
+                <a href="{% url 'passwordChange' %}" style="text-decoration:underline;">비밀번호 변경하기</a><br><br>
                 <button type="submit" class="btn btn-warning">변경</button>
             </form>
         </div>
