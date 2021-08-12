@@ -32,18 +32,19 @@
     <body>    
         <div class="col-md-10">
             <span style="font-family:'굴림'; font-size:8pt; color:dimgrey; position: relative; left:20px; margin-top: 10px;">
-                * 이미지를 클릭하면 해당 음식의 레시피를 보실 수 있습니다.</span>
+                * 이미지를 클릭하면 해당 음식의 레시피를 보실 수 있습니다.<br>
+                * '유튜브검색결과'를 클릭하면 유튜브에서 해당 음식을 검색한 결과를 제공합니다.</span>
             <table class="recommend">
                 <tr>
                     <th>일인분의 랜덤메뉴</th>
-                    <td rowspan="3" style="font-size: 15pt;">
+                    <th>VIDEO</th>
+                    <!-- <td rowspan="3" style="font-size: 15pt;">
                         '오늘은 뭐 먹지?'<br>'이 재료들로 할 수 있는 요리가 뭐가 있지?'<br>
                         고민 중이셨나요? <br/>
                         선택한 재료만으로 할 수 있는 요리와 <br>
                         선택한 재료를 포함하는 요리를 구분지어 보여주는 <br>
                         당신만을 위한 요리냉장고 <mark>'일인분'</mark>에 오신 것을 환영합니다!
-
-                    </td>             
+                    </td> -->             
                 </tr>
                 <tr>
                     <td>
@@ -82,6 +83,22 @@
                         <embed width="300" height="300" src="https://www.youtube.com/embed/kj2ZupQ7fts" frameborder="0" allowfullscreen>
                         {% elif '오므라이스' in todaydish.name %}
                         <embed width="300" height="300" src="https://www.youtube.com/embed/V9a7AL_6Od0" frameborder="0" allowfullscreen>
+                        {% elif '달걀빵' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/FZOQ8x30raM" frameborder="0" allowfullscreen>
+                        {% elif '달걀 토스트' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/vI_4irMaZrM" frameborder="0" allowfullscreen>
+                        {% elif '토마토샐러드' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/0fApokprvzs" frameborder="0" allowfullscreen>
+                        {% elif '토마토스파게티' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/bUepic1X2Q4" frameborder="0" allowfullscreen>
+                        {% elif '차돌박이숙주볶음' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/3sv2zvrnk2s" frameborder="0" allowfullscreen>
+                        {% elif '로제 떡볶이' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/3lfGGdhsq5Y" frameborder="0" allowfullscreen>
+                        {% elif '불맛 달걀볶음밥' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/kR77WlHRZrs" frameborder="0" allowfullscreen>
+                        {% elif '베이컨 크림 파스타' in todaydish.name %}
+                        <embed width="300" height="300" src="https://www.youtube.com/embed/0bnFoRQebq0" frameborder="0" allowfullscreen>
                         {% else %}
                         <h5> 직접 유튜브에 검색해 레시피를 알아보세요! </h5>
                         {% endif %}
@@ -89,9 +106,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <span style="font-size:15pt; background-color:orange;">[ {{ todaydish.name }} ]</span><br>
+                        <span style="font-size:15pt; background-color:orange;">[ {{ todaydish.name }} ]</span><br>&nbsp;
+                    </td>
+                    <td>
                         <span class="glyphicon glyphicon-expand"></span>
-                        <a href="https://www.youtube.com/results?search_query={{todaydish.name}}">유튜브검색결과</a>
+                        <a href="https://www.youtube.com/results?search_query={{todaydish.name}}" title="일인분은 유튜브 검색 결과 중 상단에 있으며 음식명이 같은 영상을 제공합니다.
+또다른 영상이 궁금하시다면 버튼을 눌러 확인해보세요!" style="text-decoration: underline;">유튜브검색결과</a>
+                        <br>&nbsp;
                     </td>
                 </tr>
             </table>
