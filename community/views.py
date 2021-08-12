@@ -88,5 +88,5 @@ def tag(request, post_id):
     for tag in tags:
         tag = tag.strip()
         _tag, _ = Tag.objects.get_or_create(name=tag)
-        post.tags.add(_tag) 
-                                          
+        post.tags.add(_tag)
+                                    

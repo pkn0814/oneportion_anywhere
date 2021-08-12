@@ -11,14 +11,10 @@
         }
 
         #cookResult {
-<<<<<<< HEAD
-            background-color: white;
             background-color:bisque;
             border-radius: 20px;
-=======
             background-color:bisque;
             border-radius: 40px;
->>>>>>> 08adb5d49bdaecd9a9da8c01c443586471561868
             width : 1000px;
             padding:20px;
         }
@@ -40,13 +36,7 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
     <div id="cookResult" class="col-md-12">
-    <div class="container">
-=======
-    <div id="cookResult" class="col-md-offset-1 col-md-10">
-
->>>>>>> 08adb5d49bdaecd9a9da8c01c443586471561868
             <h3>제목 : {{ post.title }}</h3>
             <br/>
             <p>글쓴이: <span id="user_name">{{ post.writer.nickname }}</span></p>
@@ -74,7 +64,6 @@
             {% endif %}
             {% endif %}
             {% endif %}
-                <br/><br/>
                 {% if request.user != post.writer %}
                 <a href="#" data-uri="{% url 'likes' post.id  %}" class="recommend"><span class="glyphicon glyphicon-thumbs-up"></span> 추천</a>
                 {% endif %}
@@ -91,31 +80,28 @@
                 </script>
                 {% endblock %}
         
-                <p id="cmt"><a href="{% url 'commentcreate' post.id %}">댓글 작성하기</a></p>
-                <form method='POST'>
+                <form method='POST' action="{% url 'commentcreate' post.id %}">
                     {% csrf_token %}
-                    {{form}}
-                    <button type="submit" class="btn btn-secondary">댓글 등록</button>
+                    <input type="text" placeholder="댓글을 입력해주세요." style="width:600px;height:50px" name="content"></input>
+                    <button type="submit" class="btn btn-secondary btn-sm">등록</button>
                 </form>
         
                 
         <hr/>
             <h4>댓글 목록</h4>
-            {% if post.comment %}
-            {% for comment in post.comment_set.all %}
-                
-                <img src="/media/{{comment.writer.profile}}" alt=""/> {{comment.writer.nickname}} : {{comment.content}}
-                {% if comment.writer == user %}
-                    <a id="something" href="{% url 'commentupdate' post.id comment.id %}">수정하기</a>
-                    <a id="something" href="{% url 'commentdelete' post.id comment.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
-                {% endif %}
-                
-                <br/>
-                
-            {% endfor %}
+            {% if post.comment_set.all.count == 0 %}
+                <p>아직 댓글이 없어요! :(</p>
             {% else %}
-            <p>아직 작성된 댓글이 없습니다.</p>
+                {% for comment in post.comment_set.all %}
+                    <img src="/media/{{comment.writer.profile}}" alt=""/> {{comment.writer.nickname}} : {{comment.content}}
+                    {% if comment.writer == user %}
+                        <a id="something" href="{% url 'commentupdate' post.id comment.id %}"><button type="button" class="btn btn-light btn-sm">수정하기</button></a>
+                        <a id="something" href="{% url 'commentdelete' post.id comment.id %}" onclick="return confirm('정말 삭제하시겠습니까?')"><button type="button" class="btn btn-light btn-sm">삭제하기</button></a>
+                    {% endif %}
+                    <br/>
+                {% endfor %}
             {% endif %}
+
     </div>
 
     

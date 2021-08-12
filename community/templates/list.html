@@ -63,7 +63,7 @@
                     {% if user.is_authenticated %}
                     <td><a href="{% url 'postshow' post.id %}">[{{ post.category }}] {{post.title}}</a></td>
                     {% else %}
-                    <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">{{post.title}}</a></td>
+                    <td><a href=""onclick = "return alert('로그인 후 열람 가능합니다.')">[{{ post.category }}] {{post.title}}</a></td>
                     {% endif %}
                     <td>{{ post.writer }}</td>
                     <td>{{ post.pub_date }}</td>

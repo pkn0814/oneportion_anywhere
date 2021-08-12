@@ -24,12 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=bx0bcl751a(==9!_m1d!q6si90akn-h#3+cav6jts#r+!gmym'
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY', 'django-insecure-=bx0bcl751a(==9!_m1d!q6si90akn-h#3+cav6jts#r+!gmym')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ.get('DEBUG', 'True') != 'False')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'accounts.CustomerUser'
 
@@ -60,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -185,3 +188,16 @@ cloudinary.config(
   api_key = "315995683374944", 
   api_secret = "_Tpykjyq8xhsBqxumCJQPMM104I" 
 )
+
+
+AWS_ACCESS_KEY_ID = os.environ.get('AKIAUFDOP3YVPYUUNN3D')
+AWS_SECRET_ACCESS_KEY = os.environ.get('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')
+AWS_STORAGE_BUCKET_NAME = 'oneportioninductionbucket'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'ap-northeast-2'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500) 
+DATABASES['default'].update(db_from_env)

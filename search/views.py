@@ -9,7 +9,7 @@ def result(request):
     query = request.GET.get('query', '')
 
     if query:
-        result = post_object.filter (title__contains=query) | post_object.filter(content__contains = query)
+        result = post_object.filter (title__contains=query) | post_object.filter(content__contains = query) | post_object.filter(tag__contains=query)
         result2 = expert_object.filter (title__contains = query) | expert_object.filter(body__contains = query)
     return render(request, 'result.html', {'result': result, 'result2':result2})
 

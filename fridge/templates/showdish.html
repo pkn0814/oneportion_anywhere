@@ -73,7 +73,10 @@
         background-color: rgba(255, 221, 208, 0.938);
       }
       .card {
-        margin-bottom: 10px;
+        margin-bottom: 10px; margin-top: 10px;
+      }
+      .card-img-top {
+        height: min-content;
       }
   </style>
   </head>
@@ -113,7 +116,7 @@
             {% if dish.image %}
             <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
             {% else %}
-            <img class="card-img-top cardimgsize" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
+            <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
             {% endif %}
             <ul class="list-group list-group-flush">
               {% if dish.basic %}
@@ -153,12 +156,12 @@
             <div class="card-header">
               <h4 class="card-title">{{dish.name}}</h4>
             </div>
-            <div class="card-body" style="min-height: fit-content;">
+            <div class="card-body">
               <p class="card-text">{{dish.intro}}</p>
               {% if dish.image %}
-              <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
+              <img class="card-img-top" src="{{ dish.image.url }}" alt="이미지 준비중">
               {% else %}
-              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" style="object-fit: contain;" alt="이미지 준비중">
+              <img class="card-img-top" src="{% static 'loaddish.jpg' %}" alt="이미지 준비중">
               {% endif %}
               <br>
               <ul class="list-group list-group-flush">
@@ -174,13 +177,13 @@
               <div class="card-footer card-text align-items-right">
                 <a href="{% url 'recipy' dish.id %}"><button type="button" class="recipybtn">Recipe</button></a>
               </div>
-
             </div>
           </div>
         </div>
+
         {% endfor %}
         {% endif %}
-        </div>
+      </div>
     </div>
 </body>
 {% endblock %}
