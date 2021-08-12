@@ -10,7 +10,7 @@ def get_random_dish():
     max_id = Dish.objects.all().exclude(image='ttgaogawdwdfmexebiwz.jpg').aggregate(max_id=Max("id"))['max_id']
     while True:
         pk = random.randint(1, max_id) #
-        dish = Dish.objects.filter(pk=pk).exclude(Q(image='loaddish.jpg')|Q(image='')).first()
+        dish = Dish.objects.filter(pk=pk).exclude(Q(image='ttgaogawdwdfmexebiwz.jpg')|Q(image='')).first()
         if dish:
             return dish
 
