@@ -33,6 +33,7 @@ class ExpertForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 'class':'title',
+                'placeholder':'제목'
 
             }
             
