@@ -13,7 +13,8 @@ class PostForm(forms.ModelForm):
         ('레시피공유','레시피공유'),
     )
     category = forms.ChoiceField(
-        choices=category_select
+        choices=category_select,
+        
     )
 
     title = forms.CharField(
@@ -21,6 +22,7 @@ class PostForm(forms.ModelForm):
         widget = forms.TextInput(
             attrs={
                 'class':'title',
+                'placeholder':'제목'
             }
         )
     )
@@ -31,7 +33,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['title', 'content','category', 'tag',]
+        fields = ['title','category', 'content', 'tag',]
         widgets = {
             'content': SummernoteWidget(),
         }

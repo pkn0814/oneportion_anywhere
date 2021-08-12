@@ -11,10 +11,14 @@
         }
         .title{
             width:720px;
+            height:35px;
         }
         #submit{
             float:right;
             
+        }
+        .back{
+            background-color:#FAECC5;
         }
     </style>
     <script>
@@ -27,10 +31,10 @@
 </head>
 
 <body>
-    <div class="col-md-offset-1 col-md-8">
+    <div class="col-md-offset-1 col-md-10">
         
         {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
+        <div class="back alert {{ message.tags }} alert-auto-dismissible alert-dismissible notification-container text-center" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -42,7 +46,7 @@
             {% csrf_token %}
             {{ form }}
             {{ form.top_fixed }}
-            <span>상단에 표시하기</span>
+            
             
             <br><button id="submit" type="submit" class="btn btn-warning">작성</button>
         </form>
