@@ -63,9 +63,8 @@
         <section>
             <div class="row mt-5">
                 <div class="col-12">
-                    {% if result or result2 %}
-                    <b>[ '전문가 일인분'과 'COMMUNITY'에서 "<mark>{{dish.name}}</mark>"을(를) 검색한 결과 ]</b>
-                    <hr>
+                    <b>[ '전문가 일인분'과 'COMMUNITY'에서 "<mark>{{dish.name}}</mark>"을(를) 검색한 결과 ]</b><hr>
+                    {% if result or result2 %} 
                     <table class="table table-hover">
                 <thead>
                     <tr>
@@ -98,6 +97,8 @@
                         <td></td>
                         <td> 전문가일인분 </td>
                         {% endfor %}
+                        {% else %}
+                            <p>검색 결과가 없습니다.</p>
                     {% endif %}
                 </tbody>
                 </table>
