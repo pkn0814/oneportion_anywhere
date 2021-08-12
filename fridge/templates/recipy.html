@@ -14,17 +14,9 @@
             border-color: rgba(146, 143, 140, 0.801); border-width: 2; border-style: solid; border-radius: 10px;
         }
         .recipy section {
-            margin-top: 10px; font-size: 15pt;
+            margin-top: 10px; font-size: 12pt;
         }
-        .again a:hover{
-            color :white;
-        }
-        .selectagain {
-            background-color: rgb(255, 140, 73); right: 30px;
-            margin: 0 10; padding: 10 20; font-size: 12pt; border-radius: 15px;
-            position: absolute; right: 30px;
-        }
-        .selectagain button:hover{color :white;}
+
         .gocommunity {
             background-color: rgba(255, 140, 73, 0.747); border-radius: 10px;
             margin: 3 7; padding: 3 7; 
@@ -63,9 +55,8 @@
         <section>
             <div class="row mt-5">
                 <div class="col-12">
-                    {% if result or result2 %}
-                    <b>[ '전문가 일인분'과 'COMMUNITY'에서 "<mark>{{dish.name}}</mark>"을(를) 검색한 결과 ]</b>
-                    <hr>
+                    <b>[ '전문가 일인분'과 'COMMUNITY'에서 "<mark>{{dish.name}}</mark>"을(를) 검색한 결과 ]</b><hr>
+                    {% if result or result2 %} 
                     <table class="table table-hover">
                 <thead>
                     <tr>
@@ -98,6 +89,8 @@
                         <td></td>
                         <td> 전문가일인분 </td>
                         {% endfor %}
+                        {% else %}
+                            <p>검색 결과가 없습니다.</p>
                     {% endif %}
                 </tbody>
                 </table>
@@ -105,9 +98,7 @@
             </div>
         </section>
     </article>
-    <article class="again">
-        <a href="{% url 'myfridge' %}"><button type="button" class="selectagain">재료 다시 선택</button></a>
-    </article>
+
 </body>
 </html>
 
