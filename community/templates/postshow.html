@@ -11,16 +11,29 @@
         }
 
         #cookResult {
-            background-color: #F3F3F1;
+            background-color: white;
             border-radius: 40px;
             width : 1000px
         }
+        .scrap {
+            background-color: rgb(255, 140, 73); padding:5 10;
+            margin: 5 10; border-radius: 5px;
+        }
+        .scrapped {
+            background-color: rgb(255, 187, 147); padding:5 10;
+            margin: 5 10; border-radius: 5px;
+        }
+
+        .recommend {
+            background-color: rgb(255, 140, 73); padding:5 10;
+            margin: 5 10; border-radius: 5px;
+        }
+        .recommend a:hover{color :white;}
         
     </style>
 </head>
 <body>
-    <div id="cookResult" class="col-md-offset-1 col-md-8">
-        <!-- <div class="container"> -->
+    <div id="cookResult" class="col-md-offset-1 col-md-10">
 
             <h3>제목 : {{ post.title }}</h3>
             <br/>
@@ -43,17 +56,17 @@
             {% if user.is_authenticated %}
             {% if request.user != post.writer %}
             {% if scrap %}
-                    <a href="{% url 'communityscrap' post.id %}">스크랩 취소</a>
+                    <a href="{% url 'communityscrap' post.id %}" class="scrapped">스크랩 취소</a>
                 {% else %}
-                    <a href="{% url 'communityscrap' post.id %}">스크랩</a>
+                    <a href="{% url 'communityscrap' post.id %}" class="scrap">스크랩</a>
             {% endif %}
             {% endif %}
             {% endif %}
                 <br/><br/>
                 {% if request.user != post.writer %}
-                <a href="#" data-uri="{% url 'likes' post.id  %}" class="recommend btn btn-primary">추천</a>
+                <a href="#" data-uri="{% url 'likes' post.id  %}" class="recommend"><span class="glyphicon glyphicon-thumbs-up"></span> 추천</a>
                 {% endif %}
-                <p>{{ post.like.all.count }}명이 이 게시글을 좋아합니다.</p>
+                <p style="margin-top: 10px;">{{ post.like.all.count }}명이 이 게시글을 좋아합니다.</p>
                 {% block script %}
                 <script type='text/javascript'>
                 $(document).ready(function(){
@@ -76,6 +89,7 @@
                 
         <hr/>
             <h4>댓글 목록</h4>
+            {% if post.comment %}
             {% for comment in post.comment_set.all %}
                 
                 <img src="/media/{{comment.writer.profile}}" alt=""/> {{comment.writer.nickname}} : {{comment.content}}
@@ -87,6 +101,9 @@
                 <br/>
                 
             {% endfor %}
+            {% else %}
+            <p>아직 작성된 댓글이 없습니다.</p>
+            {% endif %}
     </div>
 
     
