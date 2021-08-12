@@ -8,7 +8,8 @@ import random
 
 def get_random_dish():
     #max_id = Dish.objects.all().exclude(image='ttgaogawdwdfmexebiwz.jpg').aggregate(max_id=Max("id"))['max_id']
-    max_id = Dish.objects.all().aggregate(max_id=Max("id"))['max_id']
+    #max_id = Dish.objects.all().aggregate(max_id=Max("id"))['max_id']
+    max_id = 26
     while True:
         pk = random.randint(1, max_id) #
         dish = Dish.objects.filter(pk=pk).first()
