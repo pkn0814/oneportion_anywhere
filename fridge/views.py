@@ -70,7 +70,7 @@ def showdish(request):
                     qe &= ~Q(ingredients__icontains=j)
 
             maindish = maindish.filter(qe&qm).order_by('ingredients') 
-            adddish = adddish.filter(q).order_by('ingredients.count')
+            adddish = adddish.filter(q).order_by('ingredients')
             return render(request, 'showdish.html', {'maindish': maindish, 'adddish' : adddish, 'selected':selected })
         else:
             return redirect('myfridge')
