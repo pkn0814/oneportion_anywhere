@@ -41,7 +41,7 @@ def postcreate(request):
             return render(request, 'new.html', {'form':form}) 
     else:
         form = PostForm()
-        messages.info(request,'태그는 쉼표로 구분해주세요.')
+        messages.info(request,'태그는 쉼표로 구분해주세요. ex)일인분,레시피')
         return render(request, 'postnew.html', {'form':form})  
 
 def edit(request):

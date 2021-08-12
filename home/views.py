@@ -18,16 +18,13 @@ def main(request):
     todaydish = get_random_dish()
     return render(request, 'main.html', {'todaydish': todaydish})
 
+
 def recipy(request, dish_id):
     dish_recipy = get_object_or_404(Dish, pk = dish_id)
-    return render(request, 'recipy.html', {'dish' : dish_recipy})
-
-def searchrecipy(request, dish_id):
     post_object = Post.objects.all()
     expert_object = Expert.objects.all()
-    query = dish_id
 
-    if query:
-        result = post_object.filter (title__contains=query) | post_object.filter(content__contains = query)
-        result2 = expert_object.filter (title__contains = query) | expert_object.filter(body__contains = query)
-    return render(request, 'result.html', {'result': result, 'result2':result2})
+    if dish_recipy:
+        result = post_object.filter (title__contains=dish_recipy) | post_object.filter(content__contains = dish_recipy)
+        result2 = expert_object.filter (title__contains = dish_recipy) | expert_object.filter(body__contains = dish_recipy)
+    return render(request, 'recipy.html', {'dish' : dish_recipy, 'result': result, 'result2':result2})

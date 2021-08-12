@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang="ko">
   <head>
-    <title>What's In My Refrigerator </title>
+    <title>요리보기</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -45,35 +45,7 @@
           background-color: rgb(255, 152, 16);
           border-radius: 10px;
       }
-  
-      .dish {
-          border:thin solid silver;
-          display: inline-block;
-          width: 270px;
-          height: 380px;
-          padding: 10px;
-          margin: 10px;
-          border-radius: 10px;
-          text-align: center;
-      }
-      .dish img{
-          max-width: 240px;
-          max-height: 170px;
-          margin: 5px;
-      }
-      /* ul {
-          margin-top: 10px;
-          text-align: left;
-      } */
 
-      #check {
-          width: 200px;
-          height: 50px;
-          background-color: rgb(248, 173, 74);
-          position: absolute;
-          right: 300px;
-          top: 0px;
-      }
       #cookResult{
         margin: 10 10 10 10;
         min-height: 200px; max-height: fit-content;
@@ -91,10 +63,17 @@
         padding-left: 20px; padding-right: 20px;
       }
       .recipybtn {
+        position: relative; left: 140px;
         background-color: rgb(255, 206, 115); border-radius: 5px; padding: 5px 7px;
       }
       .cardalign {
         height: fit-content; max-height: fit-content; max-width: 285px; min-width: none;
+      }
+      .card-header {
+        background-color: rgba(255, 221, 208, 0.938);
+      }
+      .card {
+        margin-bottom: 10px;
       }
   </style>
   </head>
@@ -123,10 +102,13 @@
       {% else %}
       {% for dish in maindish.all %}
       <div class="col-md-4">
-        <div class="card mb-4 shadow-sm cardalign">
+        <div class="card mb-4 shadow-sm cardalign h-100">
+          <div class="card-header ">
+            <h4 class="card-title">{{dish.name}}</h4>
+          </div>
           <div class="card-body">
             
-            <h4 class="card-title">{{dish.name}}</h4>
+            
             <p class="card-text">{{dish.intro}}</p>
             {% if dish.image %}
             <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
@@ -144,8 +126,7 @@
             </ul>
 
             <div class="card-footer d-flex justify-content-between align-items-center">
-                <p class="recipybtn"><a href="{% url 'recipy' dish.id %}">Recipe</a></p>
-              <small class="text-muted">일인분</small>
+              <a href="{% url 'recipy' dish.id %}"><button type="button" class="recipybtn">Recipy</button></a>
             </div>
           </div>
         </div>
@@ -158,12 +139,21 @@
     <div class="album py-5 bg-light showdish">
       <h3>선택한 재료들을 포함한 요리</h3>
       <div class="row">
+        {% if adddish.count == 0 %}
+        <div id = "nomaindish">
+          <p class="bs-callout bs-callout-warning">아쉽지만 해당 재료만으로 만들 수 있는 요리는 준비 중입니다. <br>
+            새로운 레시피가 있다면 <a href="{% url 'list' %}" >Community</a>에 공유해주세요! </p>
+          <img src="{% static 'gettingready.jpg' %}" alt ="음식 준비 중">
+        </div>
+  
+        {% else %}
         {% for dish in adddish.all %}
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm cardalign">
-            <div class="card-body" style="min-height: fit-content;">
-              
+          <div class="card mb-4 shadow-sm cardalign h-100">
+            <div class="card-header">
               <h4 class="card-title">{{dish.name}}</h4>
+            </div>
+            <div class="card-body" style="min-height: fit-content;">
               <p class="card-text">{{dish.intro}}</p>
               {% if dish.image %}
               <img class="card-img-top" src="{{dish.image.url}}" alt="이미지 준비중">
@@ -181,27 +171,16 @@
                 {% endif %}
               </ul>
 
-              <div class="card-footer bg-transparent card-text d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <!-- <button type="button" class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#recipy">Recipy</button> -->
-                  <p class="recipybtn"><a href="{% url 'recipy' dish.id %}">Recipe</a></p>
-                </div>
-                <small class="text-muted">일인분</small>
+              <div class="card-footer card-text align-items-right">
+                <a href="{% url 'recipy' dish.id %}"><button type="button" class="recipybtn">Recipy</button></a>
               </div>
 
             </div>
           </div>
         </div>
         {% endfor %}
+        {% endif %}
         </div>
     </div>
-
-  <script>
-    //모달 버튼에 이벤트를 건다.
-    $('#recipy').on('click', function(){
-      $('#recipy').modal('show');
-    });
-  </script>
-
 </body>
 {% endblock %}
