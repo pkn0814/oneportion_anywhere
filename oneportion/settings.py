@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_summernote',
     'imagekit',
     'bootstrap4',
     'accounts',
@@ -155,35 +151,3 @@ MEDIA_URL='/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-SUMMERNOTE_THEME = 'bs4'
-
-SUMMERNOTE_CONFIG = {
-    'attachment_filesize_limit':1024 * 1024 * 10,
-
-    'summernote': {
-        'width':720,
-        'height':480,
-        'lang':'ko-KR',
-        'toolbar': [
-            ['style',['style']],
-            ['font',['bold', 'italic', 'underline', 'superscript','subscript','strikethrough','clear']],
-            ['fontname',['fontname']],
-            ['fontsize', ['fontsize']],
-            ['color',['color']],
-            ['para', ['ul','ol','paragragh']],
-            ['height', ['height']],
-            ['table', ['table']],
-            ['insert', ['link','picture','hr']],
-            ['view', ['fullscreen', 'codeview']],
-            ['help',['help']],
-        ],
-
-    }
-}
-
-cloudinary.config( 
-  cloud_name = "dgpwxnuza", 
-  api_key = "315995683374944", 
-  api_secret = "_Tpykjyq8xhsBqxumCJQPMM104I" 
-)

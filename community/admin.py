@@ -1,4 +1,4 @@
 from django.contrib import admin
-from . models import Scrap_commu
+from . models import Post
 
-admin.site.register(Scrap_commu)
+admin.site.register(Post)
